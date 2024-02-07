@@ -1,5 +1,5 @@
 ---
-title: "BCB520GitHub"
+title: "Welcome to Lucas' BCB520 Data Viz GitHub!"
 listing:
   contents: posts
   sort: ""

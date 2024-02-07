@@ -18,6 +18,6 @@
     "href": "posts/index.html",
     "title": "Lucas' BCB520",
     "section": "",
-    "text": "title: “Welcome to Lucas’ BCB520 Data Viz GitHub”\nsubtitle:\nauthor: “Lucas Ripa”\ndate:\ncategories: [Welcome]\nimage:\ncode-fold: true\ncode-tools: true\ndescription: “Here I will submit my assignments and hopefully try to keep everything organized”"
+    "text": "title: “Welcome!”\nsubtitle: “Introduction”\nauthor: “Lucas”\ndate: “2024-02-06”\ncategories: [Introduction, DataViz]\nimage: “lacewing.JPG”\ncode-fold: true\ncode-tools: true\ndescription: “Welcome to my GitHub, here I will try to provide examples of Data Viz and try to keep this virtual domain organized, I hope you will have fun!”"
   }
 ]

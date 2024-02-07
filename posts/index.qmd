@@ -1,17 +1,17 @@
-title: “Welcome to Lucas' BCB520 Data Viz GitHub”
+title: “Welcome!”
 
-subtitle: 
+subtitle: “Introduction”
 
-author: “Lucas Ripa”
+author: “Lucas”
 
-date:
+date: “2024-02-06”
 
-categories: [Welcome]
+categories: [Introduction, DataViz]
 
-image: 
+image: “lacewing.JPG"
 
 code-fold: true
 
 code-tools: true
 
-description: “Here I will submit my assignments and hopefully try to keep everything organized”
+description: “Welcome to my GitHub, here I will try to provide examples of Data Viz and try to keep this virtual domain organized, I hope you will have fun!”
