@@ -1,14 +1,21 @@
 ---
-title: "BCB520GitHub"
-listing:
-  contents: posts
-  sort: "Graphs"
-  type: grid
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: “ASSIGNMENT 4”
+
+subtitle: “Marks and Channels”
+
+author: “Lucas Ripa”
+
+date: “2024-02-07”
+
+categories: [Assignment, DataViz]
+
+image: “some fun image you put in that new directory.png”
+
+code-fold: true
+
+code-tools: true
+
+description: “A clever description that describes the stuff”
 ---
 
 ## Let's try some bar graphs:
