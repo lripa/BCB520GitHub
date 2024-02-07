@@ -3,9 +3,9 @@ title: “ASSIGNMENT 4”
 
 subtitle: “Marks and Channels”
 
-author: “Lucas Ripa”
+author: “Lucas”
 
-date: “2024-02-07”
+date: “2024-02-08”
 
 categories: [Assignment, DataViz]
 

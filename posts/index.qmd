@@ -1,0 +1,17 @@
+title: “Welcome to Lucas' BCB520 Data Viz GitHub”
+
+subtitle: 
+
+author: “Lucas Ripa”
+
+date:
+
+categories: [Welcome]
+
+image: 
+
+code-fold: true
+
+code-tools: true
+
+description: “Here I will submit my assignments and hopefully try to keep everything organized”
