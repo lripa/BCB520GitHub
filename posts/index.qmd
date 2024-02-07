@@ -5,9 +5,9 @@ subtitle: “Introduction”
 
 author: “Lucas”
 
-date: “2024-02-06”
+date: February 6, 2024  
 
-categories: \[Introduction, DataViz\]
+categories: [Introduction, DataViz]
 
 code-fold: true
 
@@ -16,4 +16,4 @@ code-tools: true
 description: “Welcome to my GitHub, here I will try to provide examples of Data Viz and try to keep this virtual domain organized, I hope you will have fun!”
 ---
 
-![](lacewing.JPG){fig-align="center" width="1424"}
+![Green lacewing family Chrysopidae](lacewing.JPG){fig-align="center" width="1424"}

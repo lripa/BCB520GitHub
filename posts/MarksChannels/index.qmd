@@ -5,20 +5,18 @@ subtitle: “Marks and Channels”
 
 author: “Lucas”
 
-date: “2024-02-08”
+date: February 6, 2024  
+
+image: "weevil.jpg" 
 
 categories: [Assignment, DataViz]
-
-image: “some fun image you put in that new directory.png”
 
 code-fold: true
 
 code-tools: true
 
-description: “A clever description that describes the stuff”
+description: “Let's try some bar graphs and basic data viz for an insecticide trial”
 ---
-
-## Let's try some bar graphs:
 
 What I did here was to prepare a separate bar graph for each evaluation date: before the application of the insecticides, 7 days post-application (DPA), 14 DPA, 21 DPA, 28 DPA, and 35 DPA. Upon examining the graphs, the weevil population appears to remain quite low even at 35 DPA. A specific color was selected for each treatment and maintained as a color code for all the graphs.
 
