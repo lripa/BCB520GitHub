@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="“Lucas Ripa”">
-<meta name="description" content="“A clever description that describes the stuff”">
+<meta name="author" content="“Lucas”">
+<meta name="dcterms.date" content="2024-02-06">
+<meta name="description" content="“Bar graphs and basic data viz for an insecticide trial”">
 
 <title>Lucas’ BCB520 - “ASSIGNMENT 4”</title>
 <style>
@@ -146,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <p class="subtitle lead">“Marks and Channels”</p>
                   <div>
         <div class="description">
-          “A clever description that describes the stuff”
+          “Bar graphs and basic data viz for an insecticide trial”
         </div>
       </div>
                           <div class="quarto-categories">
@@ -162,14 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>“Lucas Ripa” </p>
+               <p>“Lucas” </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">Invalid Date</p>
+        <p class="date">February 6, 2024</p>
       </div>
     </div>
     
@@ -181,13 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#lets-try-some-bar-graphs" id="toc-lets-try-some-bar-graphs" class="nav-link active" data-scroll-target="#lets-try-some-bar-graphs">Let’s try some bar graphs:</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -195,8 +190,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="lets-try-some-bar-graphs" class="level2">
-<h2 class="anchored" data-anchor-id="lets-try-some-bar-graphs">Let’s try some bar graphs:</h2>
 <p>What I did here was to prepare a separate bar graph for each evaluation date: before the application of the insecticides, 7 days post-application (DPA), 14 DPA, 21 DPA, 28 DPA, and 35 DPA. Upon examining the graphs, the weevil population appears to remain quite low even at 35 DPA. A specific color was selected for each treatment and maintained as a color code for all the graphs.</p>
 <div class="cell">
 <details>
@@ -332,7 +325,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,7 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> “Let's try some bar graphs and basic data viz for an insecticide trial”</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> “Bar graphs and basic data viz for an insecticide trial”</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>What I did here was to prepare a separate bar graph for each evaluation date: before the application of the insecticides, 7 days post-application (DPA), 14 DPA, 21 DPA, 28 DPA, and 35 DPA. Upon examining the graphs, the weevil population appears to remain quite low even at 35 DPA. A specific color was selected for each treatment and maintained as a color code for all the graphs.</span>
@@ -651,7 +643,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AVG =</span> <span class="fu">mean</span>(Before),</span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">AVG1 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">7 dpa</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">AVG2 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">14 dpa</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">AVG3 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">21 dpa</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">AVG4 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">28 dpa</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">AVG5 =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">35 dpa</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) )</span>
 <span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Example with a custom color palette</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"cyan"</span>, <span class="st">"blue"</span>, <span class="st">"darkblue"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>)</span>
 <span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Bmeans, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Insecticide Name</span><span class="st">`</span>, <span class="at">y =</span> AVG, <span class="at">fill =</span> <span class="st">`</span><span class="at">Insecticide Name</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>

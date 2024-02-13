@@ -15,7 +15,7 @@ code-fold: true
 
 code-tools: true
 
-description: “Let's try some bar graphs and basic data viz for an insecticide trial”
+description: “Bar graphs and basic data viz for an insecticide trial”
 ---
 
 What I did here was to prepare a separate bar graph for each evaluation date: before the application of the insecticides, 7 days post-application (DPA), 14 DPA, 21 DPA, 28 DPA, and 35 DPA. Upon examining the graphs, the weevil population appears to remain quite low even at 35 DPA. A specific color was selected for each treatment and maintained as a color code for all the graphs.
@@ -30,7 +30,7 @@ Bmeans <-Weevils %>%
   summarise(AVG = mean(Before),
             AVG1 = mean(`7 dpa`, na.rm = TRUE), AVG2 = mean(`14 dpa`, na.rm = TRUE), AVG3 = mean(`21 dpa`, na.rm = TRUE), AVG4 = mean(`28 dpa`, na.rm = TRUE), AVG5 = mean(`35 dpa`, na.rm = TRUE) )
 library(ggplot2)
-# Example with a custom color palette
+
 my_colors <- c("green", "cyan", "blue", "darkblue", "gold", "black")
 ggplot(Bmeans, aes(x = `Insecticide Name`, y = AVG, fill = `Insecticide Name`)) +
   geom_bar(stat = "identity") +
