@@ -1,10 +1,14 @@
 ---
 title: "Welcome to Lucas' GitHub!"
-image: profile.jpg
+image: lucas.jpeg
 about:
   template: jolla
   links:
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://lripa.github.io/BCB520GitHub/
 ---
+
+# Hi, welcome to Lucas Ripa's GitHub.
+
+I'm an agricultural engineer from Chile who came to the US to pursue an MSc in entomology and made the decision to continue pursuing a PhD in entomology. I guess I like insects... My goal is to improve agricultural practices, finding ways to reduce inputs and maximize yields (lowering pests populations).
