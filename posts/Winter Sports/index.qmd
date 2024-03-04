@@ -144,17 +144,7 @@ library(dplyr)
 
 
 
-ggplot(draft2018, aes(x=factor(round), y=NHLgames, fill=factor(round))) +
-  geom_violin(trim=FALSE) +
-  stat_summary(fun=mean, geom="point", color="red", size=3, shape=17, aes(group=1)) 
-  geom_line(data=mean_points, aes(x=round_numeric, y=mean_NHLgames, group=1), color="red", size=1) 
-  labs(title = "NHL Games by Draft Round",
-       x = "Draft Round",
-       y = "NHL Games") +
-  theme_light() +
-  scale_fill_brewer(palette="Pastel1") +
-  theme(axis.text.x = element_text(angle=0, hjust=1)) +
-  coord_cartesian(ylim = c(0, NA))  
+
 
 ```
 
