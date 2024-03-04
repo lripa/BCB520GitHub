@@ -966,42 +966,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>NHLDraft<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"NHLDraft.csv"</span>)</span>
 <span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>NHLDictionary<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"NHLDictionary.xlsx"</span>)</span>
-<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NHLDraft)</span>
-<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(NHLDictionary)</span>
-<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a>In this case, we have a dataframe with all the drafted players from 2000-2018, their position, their draft year and position, and then rows for each season since being drafted (<span class="in">`postdraft`</span>). The key variable here is <span class="in">`NHLgames`</span>, which tells us how many games they played in the NHL each season since being drafted. Whether drafted players even make the NHL, and how many games they play, might be a good proxy to understand the value of a draft pick we just traded away.</span>
-<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## SIMPLE SCATTERPLOT</span></span>
-<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a>One thing to realize about professional hockey is that it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA for a bit to further develop.</span>
-<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a>Let's use a scatterplot to visualize this phenomenon with the most recent draft classes.</span>
-<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a>draft2022<span class="ot">&lt;-</span>NHLDraft<span class="sc">%&gt;%</span></span>
-<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(draftyear<span class="sc">==</span><span class="dv">2022</span> <span class="sc">&amp;</span> postdraft<span class="sc">==</span><span class="dv">0</span>)</span>
-<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>NHLStats<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"NHLdraftstats.csv"</span>)</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NHLDraft)</span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(NHLDictionary)</span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a>In this case, we have a dataframe with all the drafted players from 2000-2018, their position, their draft year and position, and then rows for each season since being drafted (<span class="in">`postdraft`</span>). The key variable here is <span class="in">`NHLgames`</span>, which tells us how many games they played in the NHL each season since being drafted. Whether drafted players even make the NHL, and how many games they play, might be a good proxy to understand the value of a draft pick we just traded away.</span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## SIMPLE SCATTERPLOT</span></span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a>One thing to realize about professional hockey is that it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA for a bit to further develop.</span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a>Let's use a scatterplot to visualize this phenomenon with the most recent draft classes.</span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>draft2022<span class="ot">&lt;-</span>NHLDraft<span class="sc">%&gt;%</span></span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(draftyear<span class="sc">==</span><span class="dv">2022</span> <span class="sc">&amp;</span> postdraft<span class="sc">==</span><span class="dv">0</span>)</span>
 <span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2022, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>NHLgames))<span class="sc">+</span></span>
-<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb33-76"><a href="#cb33-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a>As you can see, the players drafted in June of 2022 didn't play much last season. There are few things wrong with this visualization, however:</span>
-<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help? **Violin plots could work or jitter plots (see examples below). Also colors will help to separate.**</span>
-<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming draft2022 has the variables round, NHLgames, and player_count</span></span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2022, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>NHLgames))<span class="sc">+</span></span>
+<span id="cb33-76"><a href="#cb33-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>As you can see, the players drafted in June of 2022 didn't play much last season. There are few things wrong with this visualization, however:</span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help? **Violin plots could work or jitter plots (see examples below). Also, colors will aid separate rounds.**</span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2022, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(round), <span class="at">y=</span>NHLgames, <span class="at">fill=</span><span class="fu">factor</span>(round))) <span class="sc">+</span></span>
 <span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of NHL Games by Draft Round"</span>,</span>
+<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NHL Games by Draft Round"</span>,</span>
 <span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Draft Round"</span>,</span>
 <span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"NHL Games"</span>) <span class="sc">+</span></span>
 <span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
@@ -1011,32 +1011,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-100"><a href="#cb33-100" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2022, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(round), <span class="at">y=</span>NHLgames, <span class="at">color=</span><span class="fu">factor</span>(round))) <span class="sc">+</span></span>
-<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NHL Games by Draft Round (Jitter Plot)"</span>,</span>
 <span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Draft Round"</span>,</span>
 <span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"NHL Games"</span>) <span class="sc">+</span></span>
 <span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
 <span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">"Set3"</span>) <span class="sc">+</span> </span>
-<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span>
+<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span>
 <span id="cb33-108"><a href="#cb33-108" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-109"><a href="#cb33-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-110"><a href="#cb33-110" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-112"><a href="#cb33-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used. **Y axis label: Number of NHL games played, X: Draft Round, channels color and shape**</span>
+<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used. **Y axis label: Number of NHL games played, X: Draft Round, channels color and shape.**</span>
 <span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a>    <span class="in">```{r}</span></span>
 <span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(ggplot2)</span>
 <span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(draft2022, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(round), <span class="at">y=</span>NHLgames, <span class="at">color=</span><span class="fu">factor</span>(round), <span class="at">shape=</span><span class="fu">factor</span>(round))) <span class="sc">+</span></span>
-<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NHL Games by Draft Round (Jitter Plot)"</span>,</span>
 <span id="cb33-121"><a href="#cb33-121" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">"Draft Round Number"</span>,</span>
 <span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">"Number of NHL games played"</span>) <span class="sc">+</span></span>
 <span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_light</span>() <span class="sc">+</span></span>
 <span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">"Set3"</span>) <span class="sc">+</span></span>
-<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)) <span class="sc">+</span> <span class="co"># Manually specify shapes if needed</span></span>
-<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)) <span class="sc">+</span> </span>
+<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
 <span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
 <span id="cb33-129"><a href="#cb33-129" aria-hidden="true" tabindex="-1"></a></span>
@@ -1055,239 +1055,146 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-144"><a href="#cb33-144" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2018, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>NHLgames))<span class="sc">+</span></span>
 <span id="cb33-145"><a href="#cb33-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a>Hmmm... in addition to the problem of overplotting, we've got an additional issue here. We actually have two keys and one attribute. The attribute is <span class="in">`NHLgames`</span>, and the keys are <span class="in">`round`</span> and <span class="in">`postdraft`</span>, but we are only using round.</span>
-<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a>Postdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.</span>
+<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-152"><a href="#cb33-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a>For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted.</span>
-<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a>drafttot2018<span class="ot">&lt;-</span> draft2018<span class="sc">%&gt;%</span></span>
-<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerId, round, overall, position, name)<span class="sc">%&gt;%</span></span>
-<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">totgames=</span><span class="fu">sum</span>(NHLgames))</span>
-<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
-<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-166"><a href="#cb33-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-167"><a href="#cb33-167" aria-hidden="true" tabindex="-1"></a>Look closely at the two graphs above. How are they different?</span>
-<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## STOP AND REFLECT</span></span>
-<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a>I've been a bit sneaky up to this point. You've probably been focusing primarily on my (crappy) visualizations. That's fine, but let's think about the manipulations to the <span class="co">[</span><span class="ot">TABULAR DATA</span><span class="co">]</span>{.red} I've had to perform.</span>
-<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a>I'm using the <span class="co">[</span><span class="ot">Tidyverse</span><span class="co">](https://www.tidyverse.org)</span> to do these manipulations. I set up the original data frame to conform to the tidy data principles (every column is a variable, every row is an observation), which is pretty much the base form of how we've discussed <span class="co">[</span><span class="ot">Tabular Data</span><span class="co">](../L6-TabularData1)</span> in class.</span>
-<span id="cb33-174"><a href="#cb33-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-175"><a href="#cb33-175" aria-hidden="true" tabindex="-1"></a>I've snuck in some functions that have allowed me to FILTER, GROUP, and SUMMARIZE the data, often creating new dataframes as I do so. Hey, look! <span class="co">[</span><span class="ot">A handy cheatsheet for data transformation using the tidyverse!</span><span class="co">](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)</span></span>
-<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a>These functions come from the <span class="co">[</span><span class="ot">dplyr package</span><span class="co">](https://dplyr.tidyverse.org)</span> that gets installed as part of the tidyverse. The basic categories of actions are:</span>
-<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>mutate() adds new variables that are functions of existing variables</span>
-<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>select() picks variables based on their names.</span>
-<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>filter() picks cases based on their values.</span>
-<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>summarise() reduces multiple values down to a single summary.</span>
-<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>arrange() changes the ordering of the rows.</span>
-<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a>All of these work with group_by() so you can perform whichever operation on the groups that might be present in your data set.</span>
-<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a>Let's get back to improving our understanding of the relative value of NHL draft picks. The figure above considers a single draft class (2018), and shows the total number of NHL games all the players have accumulated, separating each draft round on an ordinal x axis.</span>
-<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a>Fine, I guess, but we still have to deal with overplotting, and think about whether a scatterplot really helps us accomplish our task. For this figure do the following:</span>
-<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Overplotting.** All those points on the y=0 line represent about 32 players each. Can you you think of a way that adding extra channels might help?</span>
-<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used.</span>
-<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Key-Value pairs:** Looks like we are using "round" as a continuous variable. Can we change this to an ordered factor?</span>
-<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a><span class="fu">## SCATTERPLOT WITH OVERALL DRAFT POSITION</span></span>
-<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a>This approach might yield a better match with the scatterplot idiom. What if we ignore draft round, and use the player's overall draft position instead? It also might help us focus on our motivating question! What is the potential value of pick 31, and how does Elias Lindholm compare to that value?</span>
-<span id="cb33-198"><a href="#cb33-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>overall, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
-<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a>For this figure, address the following:</span>
-<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>We are trying to address the notion of trading pick 31. How might you facilitate the task of evaluating picks in that range?</span>
-<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Create a caption and better axis labels for this figure.</span>
-<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>What if we wanted to use more than just the 2018 draft class?</span>
-<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## SCATTERPLOT SUMMARY</span></span>
-<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a>We seem to be running into an issue in terms of overplotting. Scatterplots are great, but they work best for two quantitative attributes, and we have a situation with one or two keys and one quantitative attribute. The thing is, scatterplots can be very useful when part of our workflow involves modeling the data in some way. We'll cover this kind of thing in future assignments, but just a bit of foreshadowing here:</span>
-<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-219"><a href="#cb33-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-220"><a href="#cb33-220" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
-<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2018, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(round), <span class="at">y=</span>NHLgames, <span class="at">fill=</span><span class="fu">factor</span>(round))) <span class="sc">+</span></span>
+<span id="cb33-155"><a href="#cb33-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb33-156"><a href="#cb33-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun=</span>mean, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">shape=</span><span class="dv">17</span>, <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>)) </span>
+<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>mean_points, <span class="fu">aes</span>(<span class="at">x=</span>round_numeric, <span class="at">y=</span>mean_NHLgames, <span class="at">group=</span><span class="dv">1</span>), <span class="at">color=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">1</span>) </span>
+<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NHL Games by Draft Round"</span>,</span>
+<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Draft Round"</span>,</span>
+<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"NHL Games"</span>) <span class="sc">+</span></span>
+<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Pastel1"</span>) <span class="sc">+</span></span>
+<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))  </span>
+<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-166"><a href="#cb33-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-167"><a href="#cb33-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a>Hmmm... in addition to the problem of overplotting, we've got an additional issue here. We actually have two keys and one attribute. The attribute is <span class="in">`NHLgames`</span>, and the keys are <span class="in">`round`</span> and <span class="in">`postdraft`</span>, but we are only using round.</span>
+<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a>Postdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.</span>
+<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a>For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted.</span>
+<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a>drafttot2018<span class="ot">&lt;-</span> draft2018<span class="sc">%&gt;%</span></span>
+<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerId, round, overall, position, name)<span class="sc">%&gt;%</span></span>
+<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">totgames=</span><span class="fu">sum</span>(NHLgames))</span>
+<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
+<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a>Look closely at the two graphs above. How are they different?</span>
+<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## STOP AND REFLECT</span></span>
+<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a>I've been a bit sneaky up to this point. You've probably been focusing primarily on my (crappy) visualizations. That's fine, but let's think about the manipulations to the <span class="co">[</span><span class="ot">TABULAR DATA</span><span class="co">]</span>{.red} I've had to perform.</span>
+<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a>I'm using the <span class="co">[</span><span class="ot">Tidyverse</span><span class="co">](https://www.tidyverse.org)</span> to do these manipulations. I set up the original data frame to conform to the tidy data principles (every column is a variable, every row is an observation), which is pretty much the base form of how we've discussed <span class="co">[</span><span class="ot">Tabular Data</span><span class="co">](../L6-TabularData1)</span> in class.</span>
+<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a>I've snuck in some functions that have allowed me to FILTER, GROUP, and SUMMARIZE the data, often creating new dataframes as I do so. Hey, look! <span class="co">[</span><span class="ot">A handy cheatsheet for data transformation using the tidyverse!</span><span class="co">](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)</span></span>
+<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a>These functions come from the <span class="co">[</span><span class="ot">dplyr package</span><span class="co">](https://dplyr.tidyverse.org)</span> that gets installed as part of the tidyverse. The basic categories of actions are:</span>
+<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-198"><a href="#cb33-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>mutate() adds new variables that are functions of existing variables</span>
+<span id="cb33-199"><a href="#cb33-199" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>select() picks variables based on their names.</span>
+<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>filter() picks cases based on their values.</span>
+<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>summarise() reduces multiple values down to a single summary.</span>
+<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>arrange() changes the ordering of the rows.</span>
+<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a>All of these work with group_by() so you can perform whichever operation on the groups that might be present in your data set.</span>
+<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a>Let's get back to improving our understanding of the relative value of NHL draft picks. The figure above considers a single draft class (2018), and shows the total number of NHL games all the players have accumulated, separating each draft round on an ordinal x axis.</span>
+<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a>Fine, I guess, but we still have to deal with overplotting, and think about whether a scatterplot really helps us accomplish our task. For this figure do the following:</span>
+<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Overplotting.** All those points on the y=0 line represent about 32 players each. Can you you think of a way that adding extra channels might help?</span>
+<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used.</span>
+<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Key-Value pairs:** Looks like we are using "round" as a continuous variable. Can we change this to an ordered factor?</span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a><span class="fu">## SCATTERPLOT WITH OVERALL DRAFT POSITION</span></span>
+<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a>This approach might yield a better match with the scatterplot idiom. What if we ignore draft round, and use the player's overall draft position instead? It also might help us focus on our motivating question! What is the potential value of pick 31, and how does Elias Lindholm compare to that value?</span>
+<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-220"><a href="#cb33-220" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>overall, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
+<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb33-223"><a href="#cb33-223" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-224"><a href="#cb33-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb33-225"><a href="#cb33-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a>Adding the smoothed line doesn't eliminate the overplotting problem, but it does indicate that it exists. We'll cover other potential solutions (such as box plots and violin plots) to this issue later in the course, when we get to the notions of faceting and data reduction.</span>
+<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a>For this figure, address the following:</span>
 <span id="cb33-227"><a href="#cb33-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a>Why not include all the data? A scatter plot with that many players (4775) isn't going to be great. But we could plot some sort of polynomial model to get a sense of the relationship between draft position and NHL games. We'll filter to the first 8 years of their career.</span>
-<span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a>drafttot<span class="ot">&lt;-</span> NHLDraft<span class="sc">%&gt;%</span></span>
-<span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(postdraft<span class="sc">&lt;</span><span class="dv">8</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerId, round, overall, position, name)<span class="sc">%&gt;%</span></span>
-<span id="cb33-236"><a href="#cb33-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">totgames=</span><span class="fu">sum</span>(NHLgames))</span>
-<span id="cb33-237"><a href="#cb33-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-238"><a href="#cb33-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-239"><a href="#cb33-239" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot, <span class="fu">aes</span>(<span class="at">x=</span>overall, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
-<span id="cb33-240"><a href="#cb33-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb33-241"><a href="#cb33-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-242"><a href="#cb33-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-243"><a href="#cb33-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-244"><a href="#cb33-244" aria-hidden="true" tabindex="-1"></a>Or we could visualize the average number of games played as a function of time since being drafted.</span>
-<span id="cb33-245"><a href="#cb33-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-248"><a href="#cb33-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-249"><a href="#cb33-249" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NHLDraft, <span class="fu">aes</span>(<span class="at">x=</span>postdraft, <span class="at">y=</span>NHLgames))<span class="sc">+</span></span>
-<span id="cb33-250"><a href="#cb33-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(round)))</span>
-<span id="cb33-251"><a href="#cb33-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-252"><a href="#cb33-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-253"><a href="#cb33-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## DIVERGENCE</span></span>
-<span id="cb33-254"><a href="#cb33-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-255"><a href="#cb33-255" aria-hidden="true" tabindex="-1"></a>Enough esoteric wandering. The original version of this assignment focused on the relative value of draft picks in the NHL. This version has a more specific question. What might picks in the range of pick 31 conceivably yield? How often do picks in that range yield players of Elias Lindholm's value?</span>
-<span id="cb33-256"><a href="#cb33-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-257"><a href="#cb33-257" aria-hidden="true" tabindex="-1"></a>I guess we'd better figure out what Elias Lindholm brings to the table.</span>
+<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>We are trying to address the notion of trading pick 31. How might you facilitate the task of evaluating picks in that range?</span>
+<span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Create a caption and better axis labels for this figure.</span>
+<span id="cb33-230"><a href="#cb33-230" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>What if we wanted to use more than just the 2018 draft class?</span>
+<span id="cb33-231"><a href="#cb33-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## SCATTERPLOT SUMMARY</span></span>
+<span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a>We seem to be running into an issue in terms of overplotting. Scatterplots are great, but they work best for two quantitative attributes, and we have a situation with one or two keys and one quantitative attribute. The thing is, scatterplots can be very useful when part of our workflow involves modeling the data in some way. We'll cover this kind of thing in future assignments, but just a bit of foreshadowing here:</span>
+<span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-238"><a href="#cb33-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-239"><a href="#cb33-239" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x=</span>round, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
+<span id="cb33-240"><a href="#cb33-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb33-241"><a href="#cb33-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb33-242"><a href="#cb33-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-243"><a href="#cb33-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-244"><a href="#cb33-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-245"><a href="#cb33-245" aria-hidden="true" tabindex="-1"></a>Adding the smoothed line doesn't eliminate the overplotting problem, but it does indicate that it exists. We'll cover other potential solutions (such as box plots and violin plots) to this issue later in the course, when we get to the notions of faceting and data reduction.</span>
+<span id="cb33-246"><a href="#cb33-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-247"><a href="#cb33-247" aria-hidden="true" tabindex="-1"></a>Why not include all the data? A scatter plot with that many players (4775) isn't going to be great. But we could plot some sort of polynomial model to get a sense of the relationship between draft position and NHL games. We'll filter to the first 8 years of their career.</span>
+<span id="cb33-248"><a href="#cb33-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-251"><a href="#cb33-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-252"><a href="#cb33-252" aria-hidden="true" tabindex="-1"></a>NHLdraftstats <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"NHLdraftstats.csv"</span>)</span>
+<span id="cb33-253"><a href="#cb33-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-254"><a href="#cb33-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-255"><a href="#cb33-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-256"><a href="#cb33-256" aria-hidden="true" tabindex="-1"></a>Elias <span class="ot">&lt;-</span> NHLdraftstats <span class="sc">%&gt;%</span></span>
+<span id="cb33-257"><a href="#cb33-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Elias Lindholm"</span>)</span>
 <span id="cb33-258"><a href="#cb33-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-259"><a href="#cb33-259" aria-hidden="true" tabindex="-1"></a>Can you find him in our existing data? Can you think of a way to highlight him in the context of number of games played? What other kinds of data might we need to fairly evaluate Lindholm and pick 31?</span>
-<span id="cb33-260"><a href="#cb33-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-261"><a href="#cb33-261" aria-hidden="true" tabindex="-1"></a>You will be surprised how these seemingly simple questions force you to explore the nuances of working with and visualizing tabular data.</span>
-<span id="cb33-262"><a href="#cb33-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-263"><a href="#cb33-263" aria-hidden="true" tabindex="-1"></a><span class="fu"># APPENDIX</span></span>
-<span id="cb33-264"><a href="#cb33-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-265"><a href="#cb33-265" aria-hidden="true" tabindex="-1"></a>The following examples and code were used in last year's assignment. They might be useful for the current version or for future assigments.</span>
-<span id="cb33-266"><a href="#cb33-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-267"><a href="#cb33-267" aria-hidden="true" tabindex="-1"></a><span class="fu">## SIMPLE BAR CHART</span></span>
+<span id="cb33-259"><a href="#cb33-259" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NHLDraft, <span class="fu">aes</span>(<span class="at">x=</span>postdraft, <span class="at">y=</span>NHLgames)) <span class="sc">+</span></span>
+<span id="cb33-260"><a href="#cb33-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(round)), <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span>  </span>
+<span id="cb33-261"><a href="#cb33-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> Elias, <span class="fu">aes</span>(<span class="at">x=</span>postdraft, <span class="at">y=</span>NHLgames), <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">size=</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb33-262"><a href="#cb33-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NHL Games by Post-Draft Position + Elias Performance (in orange)"</span>,</span>
+<span id="cb33-263"><a href="#cb33-263" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Post-Draft Position"</span>,</span>
+<span id="cb33-264"><a href="#cb33-264" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"NHL Games"</span>,</span>
+<span id="cb33-265"><a href="#cb33-265" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Round"</span>) <span class="sc">+</span></span>
+<span id="cb33-266"><a href="#cb33-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb33-267"><a href="#cb33-267" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-268"><a href="#cb33-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-269"><a href="#cb33-269" aria-hidden="true" tabindex="-1"></a>One of the best ways to deal with overplotting is to use our keys to SEPARATE and ORDER our data. Let's do that now. I'll stick with the summarized data for the 2018 draft year for now.</span>
+<span id="cb33-269"><a href="#cb33-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-270"><a href="#cb33-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-273"><a href="#cb33-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-274"><a href="#cb33-274" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drafttot2018, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y=</span>totgames))<span class="sc">+</span></span>
-<span id="cb33-275"><a href="#cb33-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb33-271"><a href="#cb33-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-272"><a href="#cb33-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-273"><a href="#cb33-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-274"><a href="#cb33-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-275"><a href="#cb33-275" aria-hidden="true" tabindex="-1"></a><span class="fu">## DIVERGENCE</span></span>
 <span id="cb33-276"><a href="#cb33-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-277"><a href="#cb33-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-277"><a href="#cb33-277" aria-hidden="true" tabindex="-1"></a>Enough esoteric wandering. The original version of this assignment focused on the relative value of draft picks in the NHL. This version has a more specific question. What might picks in the range of pick 31 conceivably yield? How often do picks in that range yield players of Elias Lindholm's value?</span>
 <span id="cb33-278"><a href="#cb33-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-279"><a href="#cb33-279" aria-hidden="true" tabindex="-1"></a>Epic. We now have a bar (column, really) chart with the key being player <span class="in">`name`</span>, and the attribute being the total number of games played. We've SEPARATED the data using the spatial x-axis position channel, and aligned to that axis as well. But this visualization clearly sucks. You need to make it better by:</span>
+<span id="cb33-279"><a href="#cb33-279" aria-hidden="true" tabindex="-1"></a>I guess we'd better figure out what Elias Lindholm brings to the table.</span>
 <span id="cb33-280"><a href="#cb33-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Adding a visual channel indicating draft round.</span>
-<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Fixing the order of the x axis.</span>
-<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Making a caption and better axis labels.</span>
-<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Fixing the values of the x axis labels so they aren't such a mess.</span>
-<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a><span class="fu">## STACKED BAR?</span></span>
-<span id="cb33-287"><a href="#cb33-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a>Stacked bar charts use two keys and one value. Can we leverage this idiom? Perhaps if we used both <span class="in">`round`</span> and <span class="in">`postdraft`</span> as our keys and NHLgames as our value...</span>
+<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a>Can you find him in our existing data? Can you think of a way to highlight him in the context of number of games played? What other kinds of data might we need to fairly evaluate Lindholm and pick 31?</span>
+<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a>You will be surprised how these seemingly simple questions force you to explore the nuances of working with and visualizing tabular data.</span>
+<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a><span class="fu">## OTHER STUFF TO CONSIDER</span></span>
+<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-287"><a href="#cb33-287" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Do these visualizations change as a function of player position?</span>
+<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Is the number of NHL games played really the best metric to use?</span>
 <span id="cb33-289"><a href="#cb33-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-290"><a href="#cb33-290" aria-hidden="true" tabindex="-1"></a>The idea here is that we might be able to get a sense of the temporal pattern of NHL games after a player is drafted. Do first round picks join the NHL earlier? Do they stay in the NHL longer? That kind of thing.</span>
+<span id="cb33-290"><a href="#cb33-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## CONCLUSION</span></span>
 <span id="cb33-291"><a href="#cb33-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-295"><a href="#cb33-295" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2018, <span class="fu">aes</span>(<span class="at">x =</span> postdraft, <span class="at">y=</span>NHLgames, <span class="at">fill=</span><span class="fu">as.factor</span>(<span class="sc">-</span>round)))<span class="sc">+</span></span>
-<span id="cb33-296"><a href="#cb33-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span>
-<span id="cb33-297"><a href="#cb33-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a>NHLDraft <span class="ot">&lt;-</span>NHLDraft <span class="sc">%&gt;%</span></span>
-<span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">descround =</span> <span class="fu">desc</span>(<span class="fu">as.factor</span>(round)))</span>
-<span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a>rounds<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"darkred"</span>,<span class="st">"red"</span>,<span class="st">"pink"</span>, <span class="st">"violet"</span>, <span class="st">"lightblue"</span>,<span class="st">"blue"</span>, <span class="st">"darkblue"</span>)</span>
-<span id="cb33-302"><a href="#cb33-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-303"><a href="#cb33-303" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NHLDraft, <span class="fu">aes</span>(<span class="at">x =</span> postdraft, <span class="at">y=</span>NHLgames, <span class="at">fill=</span><span class="fu">as.factor</span>(<span class="sc">-</span>round), </span>
-<span id="cb33-304"><a href="#cb33-304" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha =</span> <span class="fu">as.factor</span>(<span class="sc">-</span>round)))<span class="sc">+</span></span>
-<span id="cb33-305"><a href="#cb33-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>)<span class="sc">+</span></span>
-<span id="cb33-306"><a href="#cb33-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb33-307"><a href="#cb33-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-308"><a href="#cb33-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-309"><a href="#cb33-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-310"><a href="#cb33-310" aria-hidden="true" tabindex="-1"></a>This seems like it has some potential, but it definitely needs some work (by you):</span>
-<span id="cb33-311"><a href="#cb33-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-312"><a href="#cb33-312" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>You know the drill by now. Caption! Labels!</span>
-<span id="cb33-313"><a href="#cb33-313" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Improve the color palette.</span>
-<span id="cb33-314"><a href="#cb33-314" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Do we really only want data from the 2018 draft class?</span>
-<span id="cb33-315"><a href="#cb33-315" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Consider the order of rounds within the stack (glyph). Which round is most important? Change the order within the glyphs to reflect this.</span>
-<span id="cb33-316"><a href="#cb33-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-317"><a href="#cb33-317" aria-hidden="true" tabindex="-1"></a><span class="fu">## PIE CHARTS / NORMALIZED BAR CHARTS</span></span>
-<span id="cb33-318"><a href="#cb33-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-319"><a href="#cb33-319" aria-hidden="true" tabindex="-1"></a>We all know that Pie Charts are rarely a good choice, but let's look at how to make one here. I'll eliminate all the players drafted in 2018 who never played an NHL game, leaving us 80 players drafted in that year who made "THE SHOW". Let's look at how those 80 players were drafted:</span>
-<span id="cb33-320"><a href="#cb33-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-323"><a href="#cb33-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-324"><a href="#cb33-324" aria-hidden="true" tabindex="-1"></a>playedNHL2018 <span class="ot">&lt;-</span> drafttot2018<span class="sc">%&gt;%</span></span>
-<span id="cb33-325"><a href="#cb33-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(totgames<span class="sc">&gt;</span><span class="dv">0</span>)</span>
-<span id="cb33-326"><a href="#cb33-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-327"><a href="#cb33-327" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(playedNHL2018, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="fu">factor</span>(round))) <span class="sc">+</span></span>
-<span id="cb33-328"><a href="#cb33-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb33-329"><a href="#cb33-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span>
-<span id="cb33-330"><a href="#cb33-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-331"><a href="#cb33-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-332"><a href="#cb33-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-333"><a href="#cb33-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-334"><a href="#cb33-334" aria-hidden="true" tabindex="-1"></a>Obviously this isn't great, but can you state why? Write a little critique of this visualizaiton that:</span>
-<span id="cb33-335"><a href="#cb33-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-336"><a href="#cb33-336" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Considers a player who played hundreds of games over their first five years vs a player who played one game in five years.</span>
-<span id="cb33-337"><a href="#cb33-337" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Evaluates the relative value of a second round pick and a third round pick.</span>
-<span id="cb33-338"><a href="#cb33-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-339"><a href="#cb33-339" aria-hidden="true" tabindex="-1"></a>Now let's change this to account for the various years post draft:</span>
-<span id="cb33-340"><a href="#cb33-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-343"><a href="#cb33-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-344"><a href="#cb33-344" aria-hidden="true" tabindex="-1"></a>seasonplayedNHL2018 <span class="ot">&lt;-</span> draft2018<span class="sc">%&gt;%</span></span>
-<span id="cb33-345"><a href="#cb33-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NHLgames<span class="sc">&gt;</span><span class="dv">0</span>)</span>
-<span id="cb33-346"><a href="#cb33-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-347"><a href="#cb33-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-348"><a href="#cb33-348" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(seasonplayedNHL2018, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="fu">factor</span>(round))) <span class="sc">+</span></span>
-<span id="cb33-349"><a href="#cb33-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb33-350"><a href="#cb33-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)<span class="sc">+</span></span>
-<span id="cb33-351"><a href="#cb33-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>postdraft)</span>
-<span id="cb33-352"><a href="#cb33-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-353"><a href="#cb33-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-354"><a href="#cb33-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-355"><a href="#cb33-355" aria-hidden="true" tabindex="-1"></a>Seems like there is something to work with here, but let's compare this to a normalized bar chart:</span>
-<span id="cb33-356"><a href="#cb33-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-359"><a href="#cb33-359" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-360"><a href="#cb33-360" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2018, <span class="fu">aes</span>(<span class="at">x =</span> postdraft, <span class="at">y=</span>NHLgames, <span class="at">fill=</span><span class="fu">as.factor</span>(round)))<span class="sc">+</span></span>
-<span id="cb33-361"><a href="#cb33-361" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span>
-<span id="cb33-362"><a href="#cb33-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-363"><a href="#cb33-363" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(draft2018, <span class="fu">aes</span>(<span class="at">x =</span> postdraft, <span class="at">y=</span>NHLgames, <span class="at">fill=</span>overall))<span class="sc">+</span></span>
-<span id="cb33-364"><a href="#cb33-364" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span>
-<span id="cb33-365"><a href="#cb33-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-366"><a href="#cb33-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-367"><a href="#cb33-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-368"><a href="#cb33-368" aria-hidden="true" tabindex="-1"></a>Can you work with this to make it a useful visualization for your friend, Cassandra Canuck?</span>
-<span id="cb33-369"><a href="#cb33-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-370"><a href="#cb33-370" aria-hidden="true" tabindex="-1"></a><span class="fu">## HEATMAP?</span></span>
-<span id="cb33-371"><a href="#cb33-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-372"><a href="#cb33-372" aria-hidden="true" tabindex="-1"></a>Could this be useful?</span>
-<span id="cb33-373"><a href="#cb33-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-376"><a href="#cb33-376" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-377"><a href="#cb33-377" aria-hidden="true" tabindex="-1"></a>round1<span class="ot">&lt;-</span>NHLDraft<span class="sc">%&gt;%</span></span>
-<span id="cb33-378"><a href="#cb33-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(round<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb33-379"><a href="#cb33-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-380"><a href="#cb33-380" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NHLDraft, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(name, overall), <span class="at">x =</span> postdraft, <span class="at">fill =</span> NHLgames)) <span class="sc">+</span></span>
-<span id="cb33-381"><a href="#cb33-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">width =</span> .<span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb33-382"><a href="#cb33-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="st">"cm"</span>),</span>
-<span id="cb33-383"><a href="#cb33-383" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb33-384"><a href="#cb33-384" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb33-385"><a href="#cb33-385" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb33-386"><a href="#cb33-386" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb33-387"><a href="#cb33-387" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
-<span id="cb33-388"><a href="#cb33-388" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">high =</span> <span class="st">"red"</span>)</span>
-<span id="cb33-389"><a href="#cb33-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-390"><a href="#cb33-390" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NHLDraft, <span class="fu">aes</span>(<span class="at">y =</span> overall, <span class="at">x =</span> postdraft, <span class="at">z=</span>NHLgames)) <span class="sc">+</span> </span>
-<span id="cb33-391"><a href="#cb33-391" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>NHLgames)) </span>
-<span id="cb33-392"><a href="#cb33-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-393"><a href="#cb33-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-394"><a href="#cb33-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## OTHER STUFF TO CONSIDER</span></span>
-<span id="cb33-395"><a href="#cb33-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-396"><a href="#cb33-396" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Do these visualizations change as a function of player position?</span>
-<span id="cb33-397"><a href="#cb33-397" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Is the number of NHL games played really the best metric to use?</span>
-<span id="cb33-398"><a href="#cb33-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-399"><a href="#cb33-399" aria-hidden="true" tabindex="-1"></a><span class="fu">## CONCLUSION</span></span>
-<span id="cb33-400"><a href="#cb33-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-401"><a href="#cb33-401" aria-hidden="true" tabindex="-1"></a>Based on your visualizations, what would you advise regarding this trade proposal? Why?</span>
+<span id="cb33-292"><a href="#cb33-292" aria-hidden="true" tabindex="-1"></a>Based on your visualizations, what would you advise regarding this trade proposal? Why?</span>
+<span id="cb33-293"><a href="#cb33-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a>**Clearly, Elias Lindholm is an above average player, as shown it the graph above (NHL Games by Post-Draft Position + Elias Performance (in orange)). His rental should provide an immediate boost to the Canucks, considering his performance and experience. The trade seems favorable in the present. It's important to consider that the chances for a pick 31 player to be extraordinary are extremely slim, so this supports the trade in favor of the Canucks.**</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
