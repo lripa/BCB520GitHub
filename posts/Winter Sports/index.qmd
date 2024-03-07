@@ -35,7 +35,7 @@ Can we make some visualizations that help us answer this question?
 
 How can we evaluate whether trading a first round pick for a rental player is a good idea? One approach is to look at the historical performance of players from various draft positions.
 
-```{r include=FALSE}
+```{r }
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
@@ -44,7 +44,7 @@ library(readxl)
 
 ```
 
-```{r}
+```{r }
 
 NHLDraft<-read.csv("NHLDraft.csv")
 NHLDictionary<-read_excel("NHLDictionary.xlsx")
@@ -62,7 +62,7 @@ One thing to realize about professional hockey is that it is pretty rare for a p
 
 Let's use a scatterplot to visualize this phenomenon with the most recent draft classes.
 
-```{r}
+```{r }
 draft2022<-NHLDraft%>%
   filter(draftyear==2022 & postdraft==0)
 
@@ -78,7 +78,7 @@ As you can see, the players drafted in June of 2022 didn't play much last season
 
 1.  **Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help? **Violin plots could work or jitter plots (see examples below). Also, colors will aid separate rounds.**
 
-```{r}
+```{r }
 library(ggplot2)
 
 ggplot(draft2022, aes(x=factor(round), y=NHLgames, fill=factor(round))) +
@@ -107,7 +107,7 @@ ggplot(draft2022, aes(x=factor(round), y=NHLgames, color=factor(round))) +
 
 1.  **Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used. **Y axis label: Number of NHL games played, X: Draft Round, channels color and shape.**
 
-    ```{r}
+    ```{r }
     library(ggplot2)
 
     ggplot(draft2022, aes(x=factor(round), y=NHLgames, color=factor(round), shape=factor(round))) +
@@ -128,7 +128,7 @@ ggplot(draft2022, aes(x=factor(round), y=NHLgames, color=factor(round))) +
 
 The data from the most recent drafts aren't really helpful for our question. Let's go back in time and use a draft year that has had some time to develop and reach their potential. How about 2018?
 
-```{r}
+```{r }
 draft2018<-NHLDraft%>%
   filter(draftyear==2018 & postdraft<6) 
 
@@ -154,7 +154,7 @@ Postdraft indicates the number of seasons after being drafted. We have several c
 
 For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted.
 
-```{r}
+```{r }
 drafttot2018<- draft2018%>%
   group_by(playerId, round, overall, position, name)%>%
   summarise(totgames=sum(NHLgames))
@@ -196,7 +196,7 @@ Fine, I guess, but we still have to deal with overplotting, and think about whet
 
 This approach might yield a better match with the scatterplot idiom. What if we ignore draft round, and use the player's overall draft position instead? It also might help us focus on our motivating question! What is the potential value of pick 31, and how does Elias Lindholm compare to that value?
 
-```{r}
+```{r }
 
 ggplot(drafttot2018, aes(x=overall, y=totgames))+
   geom_point()
@@ -213,7 +213,7 @@ For this figure, address the following:
 
 We seem to be running into an issue in terms of overplotting. Scatterplots are great, but they work best for two quantitative attributes, and we have a situation with one or two keys and one quantitative attribute. The thing is, scatterplots can be very useful when part of our workflow involves modeling the data in some way. We'll cover this kind of thing in future assignments, but just a bit of foreshadowing here:
 
-```{r}
+```{r }
 
 ggplot(drafttot2018, aes(x=round, y=totgames))+
   geom_point()+
@@ -225,7 +225,9 @@ Adding the smoothed line doesn't eliminate the overplotting problem, but it does
 
 Why not include all the data? A scatter plot with that many players (4775) isn't going to be great. But we could plot some sort of polynomial model to get a sense of the relationship between draft position and NHL games. We'll filter to the first 8 years of their career.
 
-```{r}
+## **Conclusive Figure**
+
+```{r }
 
 NHLdraftstats <- read.csv("NHLdraftstats.csv")
 
@@ -236,7 +238,7 @@ Elias <- NHLdraftstats %>%
 
 ggplot(NHLDraft, aes(x=postdraft, y=NHLgames)) +
   geom_smooth(aes(color=as.factor(round)), se=FALSE, linetype="dashed") +  
-  geom_smooth(data = Elias, aes(x=postdraft, y=NHLgames), se=FALSE, linetype="solid", size=2, color="orange") +
+  geom_smooth(data = Elias, aes(x=postdraft, y=NHLgames), se=FALSE, linetype="solid", linewidth=2, color="orange") +
   labs(title = "NHL Games by Post-Draft Position + Elias Performance (in orange)",
        x = "Post-Draft Position",
        y = "NHL Games",
@@ -259,11 +261,6 @@ I guess we'd better figure out what Elias Lindholm brings to the table.
 Can you find him in our existing data? Can you think of a way to highlight him in the context of number of games played? What other kinds of data might we need to fairly evaluate Lindholm and pick 31?
 
 You will be surprised how these seemingly simple questions force you to explore the nuances of working with and visualizing tabular data.
-
-## OTHER STUFF TO CONSIDER
-
-1.  Do these visualizations change as a function of player position?
-2.  Is the number of NHL games played really the best metric to use?
 
 ## CONCLUSION
 
