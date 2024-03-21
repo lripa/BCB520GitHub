@@ -1,0 +1,333 @@
+---
+title: “BCB 520 - Midterm Portfolio Post”
+
+subtitle: “Midterm Assginments”
+
+author: “Lucas”
+
+date: March 18, 2024  
+
+image: "Grants.png" 
+
+categories: [Midtem, DataViz]
+
+code-fold: true
+
+code-tools: true
+
+description: “Midterm 1, finding out how well/bad are we doing with grants”
+---
+
+## Preamble
+
+The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how we compare to other geographically close universities. The funding agencies are; The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.
+
+We were provided with several data sets from 4 different funding agencies. A quick overview for each funding agency is provided below:
+
+1.- Department of Energy (DOE)
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+try({
+  DOE <- read_xlsx("DOEawards.xlsx")
+  
+  DOE_UI <- DOE %>% 
+    dplyr::filter(Institution == 'Regents of the University of Idaho')
+  
+  DOE_UIFiltered <- DOE_UI %>%
+    select(Title, Institution, PI, Status, `Program Office`, `Start Date`, `End Date`, `Amount Awarded to Date`)
+  
+  # Display the table
+  knitr::kable(head(DOE_UIFiltered))
+}, silent = TRUE)
+
+```
+
+2.- The National Institutes of Health (NIH)
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+
+# Attempt to read the Excel file and process it
+try({
+  # Read the Excel file into a data frame
+  NIH <- read_xlsx("NIH.xlsx")
+  
+  # Filter and select specific columns from the NSF data frame
+  NIH_Filtered <- NIH %>%
+    select(contact_pi_name, award_amount, budget_start)
+  
+  # Display the table using knitr::kable
+  knitr::kable(head(NIH_Filtered))
+}, silent = TRUE)
+
+```
+
+3.- Department of Agriculture (NIFA)
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(knitr)
+USDA_UI  <- read.csv("USDAtoUI.csv")
+knitr::kable(head(USDA_UI))
+```
+
+4.- The National Science Foundation (NSF)
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+
+# Attempt to read the Excel file and process it
+try({
+  # Read the Excel file into a data frame
+  NSF <- read_xlsx("NSFtoUI.xlsx")
+  
+  # Filter and select specific columns from the NSF data frame
+  NSF_Filtered <- NSF %>%
+    select(pdPIName, startDate, expDate, estimatedTotalAmt)
+  
+  # Display the table using knitr::kable
+  knitr::kable(head(NSF_Filtered))
+}, silent = TRUE)
+
+
+```
+
+## Data Dictionary table 
+
+In general all the data sets shares the same variables with different names. The most commonly used ones are summarized in the table below:
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(knitr)
+datatable  <- read_xlsx("DataDictionary.xlsx")
+knitr::kable(head(datatable))
+```
+
+## QUESTION 1:
+
+Provide a visualization that shows our active awards from each sponsor. I need to see their start date and end date, the amount of the award, and the name of the Principal Investigator. I’m really interested in seeing how far into the future our current portfolio will exist. Are there a bunch of awards about to expire? Are there a bunch that just got funded and will be active for a while? Does this vary across sponsors?
+
+```{r}
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+funding_data <- read_xlsx("UIawards.xlsx")
+
+# Count the unique PIs per agency
+pi_count_per_agency <- funding_data %>%
+  group_by(Agency) %>%
+  summarise(PI_Count = n_distinct(PI))
+
+# Filter for the specific agencies if the dataset contains more agencies
+pi_count_per_agency <- pi_count_per_agency %>%
+  filter(Agency %in% c("NSF", "NIH", "USDA", "DOE"))
+
+# Create the bar chart
+ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Number of PIs Per Agency",
+       x = "Agency",
+       y = "Number of PIs") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+
+
+
+```
+
+In general NSF seems to be the funding agency with the most PIs in UofI history. USDA and DOE seems to fund always the same PIs.
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+# Read data from an Excel file
+USDA10 <- read_xlsx("USDA10UI.xlsx")
+
+# Convert start to Date objects
+USDA10$start <- as.Date(USDA10$start, format = "%m/%d/%Y")
+
+# Handle end date: Assuming you have only the year, create a Date object for December 31st of that year
+USDA10$end <- as.Date(paste0(USDA10$end, "-12-31"), format = "%Y-%m-%d")
+
+# Create the Gantt chart
+ggplot(USDA10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
+  geom_segment(size = 10, color = "green") + # Adjust the size as needed
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
+  labs(title = "10 years of active USDA funding",
+       x = "Timeline",
+       y = "Agency") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+```
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Read data from an Excel file
+DOE10 <- read_xlsx("DOE10UI.xlsx")
+
+# Convert start and end to Date objects
+# Assuming your Excel file has columns named 'start' and 'end'
+DOE10$start <- as.Date(DOE10$start, format = "%m/%d/%Y")
+DOE10$end <- as.Date(DOE10$end, format = "%m/%d/%Y")
+
+# Create the Gantt chart
+ggplot(DOE10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
+  geom_segment(size = 20, color = "black") + # Use linewidth instead of size
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
+  labs(title = "10 years of active DOE funding",
+       x = "Timeline",
+       y = "Agency") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+```
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Read data from an Excel file
+NSF10 <- read_xlsx("NSF10UI.xlsx")
+
+# Convert start and end to Date objects
+# Assuming your Excel file has columns named 'start' and 'end'
+NSF10$start <- as.Date(NSF10$start, format = "%m/%d/%Y")
+NSF10$end <- as.Date(NSF10$end, format = "%m/%d/%Y")
+
+# Create the Gantt chart
+ggplot(NSF10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
+  geom_segment(size = 20, color = "red") + # Use linewidth instead of size
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
+  labs(title = "10 years of active NSF funding",
+       x = "Timeline",
+       y = "Agency") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+```
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Read data from an Excel file
+NIH10 <- read_xlsx("NIH10UI.xlsx")
+
+# Convert start and end to Date objects
+# Assuming your Excel file has columns named 'start' and 'end'
+NIH10$start <- as.Date(NIH10$start, format = "%m/%d/%Y")
+NIH10$end <- as.Date(NIH10$end, format = "%m/%d/%Y")
+
+# Create the Gantt chart
+ggplot(NIH10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
+  geom_segment(size = 20, color = "blue") + # Use linewidth instead of size
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
+  labs(title = "10 years of NIH funding",
+       x = "Timeline",
+       y = "Agency") +
+  theme_minimal() +
+  theme(legend.position = "bottom"
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+
+df <- read_xlsx("UIawards.xlsx")
+# Assuming your dataset is named df
+# Clean 'Agency' data (remove leading/trailing spaces, check for case sensitivity)
+df$Agency <- as.character(trimws(df$Agency))
+
+# Convert 'start' and 'end' columns to Date format
+df$start <- as.Date(df$start, format = "%Y-%m-%d")
+df$end <- as.Date(df$end, format = "%Y-%m-%d")
+
+# Create a timeline that spans 10 years back and 10 years forward from today
+timeline_start <- Sys.Date() - years(10)
+timeline_end <- Sys.Date() + years(10)
+
+# Plotting
+ggplot(df, aes(y = factor(Agency, levels = unique(Agency)), x = start, xend = end, yend = factor(Agency, levels = unique(Agency)))) +
+  geom_segment(size = 20, color = "blue") +  # Adjust size and color as needed
+  scale_x_date(limits = c(timeline_start, timeline_end), date_breaks = "1 year", date_labels = "%Y") +
+  labs(title = "Project Timeline",
+       x = "Year",
+       y = "Agency") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 7),
+        panel.grid.major.x = element_line(color = "grey80"),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
+
+```
+
+According to the plotted data, NSF and NIH appear to have secured grants into the furthest future, (2028-2029).
+
+## QUESTION 2:
+
+What is the proportional representation of new awards to the UI from these various sources over the past 5 to 10 years? Are there any trends that are encouraging or discouraging?
+
+## QUESTION 3:
+
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+BU <- read_xlsx("NIH.xlsx")
+
+# Use 'BU' instead of 'df' for operations
+selected_universities <- BU %>%
+  filter(organization.org_name %in% c("BOISE STATE UNIVERSITY", "UNIVERSITY OF IDAHO")) %>%
+  group_by(organization.org_name) %>%
+  summarise(total_award_amount = sum(award_amount, na.rm = TRUE))
+
+# Create the bar chart
+ggplot(selected_universities, aes(x = organization.org_name, y = total_award_amount, fill = organization.org_name)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Total Award Amount by University NIH",
+       x = "University",
+       y = "Total Award Amount NIH") +
+  theme_minimal() +
+  scale_fill_manual(values = c("BOISE STATE UNIVERSITY" = "blue", "UNIVERSITY OF IDAHO" = "gold"))
+
+```
+
+How is UI performing with these sponsors when compared to the following peer institutions?
+
+Boise State University Idaho State University Montana State University University of Montana Washington State University Note that “performing” can mean a variety of different things. You must choose your metrics of performance and justify them.
+
+## Conclusions
+
+Summary Summarize your results. What new questions have emerged as a result of your visualizations? What interesting next steps have emerged?
