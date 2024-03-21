@@ -143,7 +143,7 @@ pi_count_per_agency <- pi_count_per_agency %>%
 # Create the bar chart
 ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Number of PIs Per Agency",
+  labs(title = "Total number of PIs Per Agency in UofI recent history",
        x = "Agency",
        y = "Number of PIs") +
   theme_minimal() +
@@ -154,6 +154,9 @@ ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
 ```
 
 In general NSF seems to be the funding agency with the most PIs in UofI history. USDA and DOE seems to fund always the same PIs.
+
+```{}
+```
 
 ```{r}
 library(readxl)
@@ -205,6 +208,26 @@ ggplot(DOE10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
        y = "Agency") +
   theme_minimal() +
   theme(legend.position = "bottom")
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(RColorBrewer)
+
+
+# Aggregate data to get the total amount per PI and filter out amounts smaller than 200000
+total_amount_per_PI <- DOE10 %>%
+  group_by(PI) %>%
+  summarise(TotalAmount = sum(Amount, na.rm = TRUE)) %>%
+  filter(TotalAmount >= 200000) %>%  # Filter step added here
+  arrange(desc(TotalAmount))
+
+ggplot(total_amount_per_PI, aes(x = PI, y = TotalAmount / 1e6)) +
+  geom_bar(stat = "identity") +
+  labs(title = "DOE Total Funding per PI in the Last 10 Years",
+       y = "Total Funding Amount (USD Millions)",
+       x = "Principal Investigator") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate X-axis labels for readability
 
 ```
 
@@ -231,6 +254,28 @@ ggplot(NSF10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   theme_minimal() +
   theme(legend.position = "bottom")
 
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(RColorBrewer)
+
+NSF10 <- read_xlsx("NSF10UI.xlsx")
+
+# Aggregate data to get the total amount per PI and filter out amounts smaller than 200000
+total_amount_per_PI <- NSF10 %>%
+  group_by(PI) %>%
+  summarise(TotalAmount = sum(Amount, na.rm = TRUE)) %>%
+  filter(TotalAmount >= 200000) %>%  # Filter step added here
+  arrange(desc(TotalAmount))
+
+ggplot(total_amount_per_PI, aes(x = PI, y = TotalAmount / 1e6)) +
+  geom_bar(stat = "identity") +
+  labs(title = "NSF Total Funding per PI in the Last 10 Years",
+       y = "Total Funding Amount (USD Millions)",
+       x = "Principal Investigator") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate X-axis labels for readability
 
 ```
 
@@ -265,6 +310,28 @@ ggplot(df, aes(y = factor(Agency, levels = unique(Agency)), x = start, xend = en
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank())
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(RColorBrewer)
+
+NIH10 <- read_xlsx("NIH10UI.xlsx")
+
+# Aggregate data to get the total amount per PI and filter out amounts smaller than 200000
+total_amount_per_PI <- NIH10 %>%
+  group_by(PI) %>%
+  summarise(TotalAmount = sum(Amount, na.rm = TRUE)) %>%
+  filter(TotalAmount >= 200000) %>%  # Filter step added here
+  arrange(desc(TotalAmount))
+
+ggplot(total_amount_per_PI, aes(x = PI, y = TotalAmount / 1e6)) +
+  geom_bar(stat = "identity") +
+  labs(title = "NIH Total Funding per PI in the Last 10 Years",
+       y = "Total Funding Amount (USD Millions)",
+       x = "Principal Investigator") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate X-axis labels for readability
 
 ```
 
