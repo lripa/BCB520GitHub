@@ -138,7 +138,7 @@ pi_count_per_agency <- funding_data %>%
 
 # Filter for the specific agencies if the dataset contains more agencies
 pi_count_per_agency <- pi_count_per_agency %>%
-  filter(Agency %in% c("NSF", "NIH", "USDA", "DOE"))
+  filter(Agency %in% c("NSF", "NIH", "DOE"))
 
 # Create the bar chart
 ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +

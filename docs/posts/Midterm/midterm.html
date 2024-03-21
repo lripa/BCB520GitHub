@@ -1412,7 +1412,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb41-149"><a href="#cb41-149" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for the specific agencies if the dataset contains more agencies</span></span>
 <span id="cb41-151"><a href="#cb41-151" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> pi_count_per_agency <span class="sc">%&gt;%</span></span>
-<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"USDA"</span>, <span class="st">"DOE"</span>))</span>
+<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"DOE"</span>))</span>
 <span id="cb41-153"><a href="#cb41-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
 <span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pi_count_per_agency, <span class="fu">aes</span>(<span class="at">x =</span> Agency, <span class="at">y =</span> PI_Count, <span class="at">fill =</span> Agency)) <span class="sc">+</span></span>
