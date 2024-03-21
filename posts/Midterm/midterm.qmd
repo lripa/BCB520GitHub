@@ -103,7 +103,7 @@ try({
 
 ```
 
-## Data Dictionary table 
+## Data Dictionary table
 
 In general all the data sets shares the same variables with different names. The most commonly used ones are summarized in the table below:
 
@@ -232,30 +232,6 @@ ggplot(NSF10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   theme(legend.position = "bottom")
 
 
-```
-
-```{r}
-library(readxl)
-library(dplyr)
-library(ggplot2)
-
-# Read data from an Excel file
-NIH10 <- read_xlsx("NIH10UI.xlsx")
-
-# Convert start and end to Date objects
-# Assuming your Excel file has columns named 'start' and 'end'
-NIH10$start <- as.Date(NIH10$start, format = "%m/%d/%Y")
-NIH10$end <- as.Date(NIH10$end, format = "%m/%d/%Y")
-
-# Create the Gantt chart
-ggplot(NIH10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
-  geom_segment(size = 20, color = "blue") + # Use linewidth instead of size
-  scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of NIH funding",
-       x = "Timeline",
-       y = "Agency") +
-  theme_minimal() +
-  theme(legend.position = "bottom"
 ```
 
 ```{r}
