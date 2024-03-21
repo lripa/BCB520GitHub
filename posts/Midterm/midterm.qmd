@@ -177,7 +177,7 @@ USDA10$end <- as.Date(paste0(USDA10$end, "-12-31"), format = "%Y-%m-%d")
 ggplot(USDA10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 10, color = "green") + # Adjust the size as needed
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of active USDA funding",
+  labs(title = "10 years of  USDA funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -203,7 +203,7 @@ DOE10$end <- as.Date(DOE10$end, format = "%m/%d/%Y")
 ggplot(DOE10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 20, color = "black") + # Use linewidth instead of size
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of active DOE funding",
+  labs(title = "10 years of  DOE funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -248,7 +248,7 @@ NSF10$end <- as.Date(NSF10$end, format = "%m/%d/%Y")
 ggplot(NSF10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 20, color = "red") + # Use linewidth instead of size
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of active NSF funding",
+  labs(title = "10 years of  NSF funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -301,7 +301,7 @@ timeline_end <- Sys.Date() + years(10)
 ggplot(df, aes(y = factor(Agency, levels = unique(Agency)), x = start, xend = end, yend = factor(Agency, levels = unique(Agency)))) +
   geom_segment(size = 20, color = "blue") +  # Adjust size and color as needed
   scale_x_date(limits = c(timeline_start, timeline_end), date_breaks = "1 year", date_labels = "%Y") +
-  labs(title = "Project Timeline",
+  labs(title = "10 years Timeline",
        x = "Year",
        y = "Agency") +
   theme_minimal() +
