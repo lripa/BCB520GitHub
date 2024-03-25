@@ -153,9 +153,9 @@ ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
 
 ```
 
-In general NSF seems to be the funding agency with the most PIs in UofI history. USDA and DOE seems to fund always the same PIs.
+In general NSF seems to be the funding agency with the most PIs in UofI history. DOE is the area where UofI can grow the most, and more effort should be invested into.
 
-```{}
+```         
 ```
 
 ```{r}
@@ -365,6 +365,51 @@ ggplot(selected_universities, aes(x = organization.org_name, y = total_award_amo
   theme_minimal() +
   scale_fill_manual(values = c("BOISE STATE UNIVERSITY" = "blue", "UNIVERSITY OF IDAHO" = "gold"))
 
+```
+
+```{r}
+# Load necessary libraries
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+# Read the CSV file
+data <- read_csv("USDAallU.csv")
+
+# Convert 'Award Date' to Date object using correct format and filter data from 2014 to 2024
+data <- data %>%
+  mutate(AwardDate = mdy(`Award Date`)) %>%
+  filter(AwardDate >= as.Date("2014-01-01") & AwardDate <= as.Date("2024-12-31"))
+
+# Aggregate data to get the total Award Dollars for each Grantee Name
+total_award_per_grantee <- data %>%
+  group_by(`Grantee Name`) %>%
+  summarise(TotalAwardDollars = sum(`Award Dollars`, na.rm = TRUE)) %>%
+  arrange(desc(TotalAwardDollars)) # Optional: arrange in descending order of total award dollars
+# Assuming total_award_per_grantee is already created from previous steps
+
+# Convert Grantee Name to a factor (if not already)
+total_award_per_grantee$`Grantee Name` <- factor(total_award_per_grantee$`Grantee Name`)
+
+# Assuming custom_colors is correctly mapped to your Grantee Names
+custom_colors <- c("Boise State University" = "blue", 
+                   "University of Idaho" = "gold", 
+                   "Washington State University" = "red", 
+                   "University of Montana" = "tan")
+
+
+ggplot(total_award_per_grantee, aes(x = reorder(`Grantee Name`, TotalAwardDollars), y = TotalAwardDollars / 1e6, fill = `Grantee Name`)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Boise State University" = "blue", 
+                   "University of Idaho" = "gold", 
+                   "Washington State University" = "red", 
+                   "University of Montana" = "tan")) +
+  labs(title = "USDA Total Award Dollars per University (2014-2024)",
+       x = "Grantee Name",
+       y = "Total Award Dollars (Millions USD)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))  # For better readability of Grantee Names
 ```
 
 How is UI performing with these sponsors when compared to the following peer institutions?

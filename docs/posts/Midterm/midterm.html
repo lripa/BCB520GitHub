@@ -657,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for the specific agencies if the dataset contains more agencies</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> pi_count_per_agency <span class="sc">%&gt;%</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"USDA"</span>, <span class="st">"DOE"</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"DOE"</span>))</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pi_count_per_agency, <span class="fu">aes</span>(<span class="at">x =</span> Agency, <span class="at">y =</span> PI_Count, <span class="at">fill =</span> Agency)) <span class="sc">+</span></span>
@@ -672,7 +672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="midterm_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>In general NSF seems to be the funding agency with the most PIs in UofI history. USDA and DOE seems to fund always the same PIs.</p>
+<p>In general NSF seems to be the funding agency with the most PIs in UofI history. DOE is the area where UofI can grow the most, and more effort should be invested into.</p>
 <pre><code></code></pre>
 <div class="cell">
 <details>
@@ -702,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USDA10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span> <span class="co"># Adjust the size as needed</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of active USDA funding"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  USDA funding"</span>,</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -745,7 +745,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DOE10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of active DOE funding"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  DOE funding"</span>,</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -775,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NSF Total Funding per PI in the Last 10 Years"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DOE Total Funding per PI in the Last 10 Years"</span>,</span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
 <span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
 <span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -810,7 +810,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NSF10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of active NSF funding"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  NSF funding"</span>,</span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -889,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)), <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)))) <span class="sc">+</span></span>
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Adjust size and color as needed</span></span>
 <span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">limits =</span> <span class="fu">c</span>(timeline_start, timeline_end), <span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Project Timeline"</span>,</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years Timeline"</span>,</span>
 <span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
 <span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -931,7 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NSF Total Funding per PI in the Last 10 Years"</span>,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NIH Total Funding per PI in the Last 10 Years"</span>,</span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -974,6 +974,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output-display">
 <p><img src="midterm_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"USDAallU.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2314 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): Award Date, Grant Number, Proposal Number, Grant Title, State Name,...
+dbl (1): Award Dollars
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Award Date' to Date object using correct format and filter data from 2014 to 2024</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AwardDate =</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">Award Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(AwardDate <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>) <span class="sc">&amp;</span> AwardDate <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total Award Dollars for each Grantee Name</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>total_award_per_grantee <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAwardDollars =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Award Dollars</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAwardDollars)) <span class="co"># Optional: arrange in descending order of total award dollars</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming total_award_per_grantee is already created from previous steps</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Grantee Name to a factor (if not already)</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>total_award_per_grantee<span class="sc">$</span><span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">factor</span>(total_award_per_grantee<span class="sc">$</span><span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>)</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming custom_colors is correctly mapped to your Grantee Names</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Boise State University"</span> <span class="ot">=</span> <span class="st">"blue"</span>, </span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Idaho"</span> <span class="ot">=</span> <span class="st">"gold"</span>, </span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Washington State University"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Montana"</span> <span class="ot">=</span> <span class="st">"tan"</span>)</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_award_per_grantee, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>, TotalAwardDollars), <span class="at">y =</span> TotalAwardDollars <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Boise State University"</span> <span class="ot">=</span> <span class="st">"blue"</span>, </span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Idaho"</span> <span class="ot">=</span> <span class="st">"gold"</span>, </span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Washington State University"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Montana"</span> <span class="ot">=</span> <span class="st">"tan"</span>)) <span class="sc">+</span></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"USDA Total Award Dollars per University (2014-2024)"</span>,</span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grantee Name"</span>,</span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Award Dollars (Millions USD)"</span>) <span class="sc">+</span></span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))  <span class="co"># For better readability of Grantee Names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="midterm_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>How is UI performing with these sponsors when compared to the following peer institutions?</p>
@@ -1273,381 +1335,426 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> “BCB 520 - Midterm Portfolio Post”</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> “Midterm Assginments”</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> “Lucas”</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> March 18, 2024  </span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "Grants.png" </span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Midtem, DataViz]</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> “Midterm 1, finding out how well/bad are we doing with grants”</span></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preamble</span></span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how we compare to other geographically close universities. The funding agencies are; The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>We were provided with several data sets from 4 different funding agencies. A quick overview for each funding agency is provided below:</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>1.- Department of Energy (DOE)</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>  DOE <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DOEawards.xlsx"</span>)</span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>  DOE_UI <span class="ot">&lt;-</span> DOE <span class="sc">%&gt;%</span> </span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(Institution <span class="sc">==</span> <span class="st">'Regents of the University of Idaho'</span>)</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>  DOE_UIFiltered <span class="ot">&lt;-</span> DOE_UI <span class="sc">%&gt;%</span></span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Title, Institution, PI, Status, <span class="st">`</span><span class="at">Program Office</span><span class="st">`</span>, <span class="st">`</span><span class="at">Start Date</span><span class="st">`</span>, <span class="st">`</span><span class="at">End Date</span><span class="st">`</span>, <span class="st">`</span><span class="at">Amount Awarded to Date</span><span class="st">`</span>)</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table</span></span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(DOE_UIFiltered))</span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>2.- The National Institutes of Health (NIH)</span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Attempt to read the Excel file and process it</span></span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the Excel file into a data frame</span></span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a>  NIH <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH.xlsx"</span>)</span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and select specific columns from the NSF data frame</span></span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>  NIH_Filtered <span class="ot">&lt;-</span> NIH <span class="sc">%&gt;%</span></span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(contact_pi_name, award_amount, budget_start)</span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table using knitr::kable</span></span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(NIH_Filtered))</span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a>3.- Department of Agriculture (NIFA)</span>
-<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a>USDA_UI  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"USDAtoUI.csv"</span>)</span>
-<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(USDA_UI))</span>
-<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a>4.- The National Science Foundation (NSF)</span>
-<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-93"><a href="#cb41-93" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-94"><a href="#cb41-94" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-95"><a href="#cb41-95" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-96"><a href="#cb41-96" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb41-97"><a href="#cb41-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Attempt to read the Excel file and process it</span></span>
-<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
-<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the Excel file into a data frame</span></span>
-<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a>  NSF <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSFtoUI.xlsx"</span>)</span>
-<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and select specific columns from the NSF data frame</span></span>
-<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a>  NSF_Filtered <span class="ot">&lt;-</span> NSF <span class="sc">%&gt;%</span></span>
-<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(pdPIName, startDate, expDate, estimatedTotalAmt)</span>
-<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table using knitr::kable</span></span>
-<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(NSF_Filtered))</span>
-<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-112"><a href="#cb41-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-113"><a href="#cb41-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Dictionary table</span></span>
-<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a>In general all the data sets shares the same variables with different names. The most commonly used ones are summarized in the table below:</span>
-<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-120"><a href="#cb41-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-121"><a href="#cb41-121" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-122"><a href="#cb41-122" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-123"><a href="#cb41-123" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb41-124"><a href="#cb41-124" aria-hidden="true" tabindex="-1"></a>datatable  <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DataDictionary.xlsx"</span>)</span>
-<span id="cb41-125"><a href="#cb41-125" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(datatable))</span>
-<span id="cb41-126"><a href="#cb41-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-127"><a href="#cb41-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-128"><a href="#cb41-128" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 1:</span></span>
-<span id="cb41-129"><a href="#cb41-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-130"><a href="#cb41-130" aria-hidden="true" tabindex="-1"></a>Provide a visualization that shows our active awards from each sponsor. I need to see their start date and end date, the amount of the award, and the name of the Principal Investigator. I’m really interested in seeing how far into the future our current portfolio will exist. Are there a bunch of awards about to expire? Are there a bunch that just got funded and will be active for a while? Does this vary across sponsors?</span>
-<span id="cb41-131"><a href="#cb41-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-134"><a href="#cb41-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-135"><a href="#cb41-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-136"><a href="#cb41-136" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-137"><a href="#cb41-137" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-138"><a href="#cb41-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-139"><a href="#cb41-139" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-140"><a href="#cb41-140" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-141"><a href="#cb41-141" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-142"><a href="#cb41-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-143"><a href="#cb41-143" aria-hidden="true" tabindex="-1"></a>funding_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"UIawards.xlsx"</span>)</span>
-<span id="cb41-144"><a href="#cb41-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-145"><a href="#cb41-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the unique PIs per agency</span></span>
-<span id="cb41-146"><a href="#cb41-146" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> funding_data <span class="sc">%&gt;%</span></span>
-<span id="cb41-147"><a href="#cb41-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Agency) <span class="sc">%&gt;%</span></span>
-<span id="cb41-148"><a href="#cb41-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">PI_Count =</span> <span class="fu">n_distinct</span>(PI))</span>
-<span id="cb41-149"><a href="#cb41-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for the specific agencies if the dataset contains more agencies</span></span>
-<span id="cb41-151"><a href="#cb41-151" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> pi_count_per_agency <span class="sc">%&gt;%</span></span>
-<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"DOE"</span>))</span>
-<span id="cb41-153"><a href="#cb41-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
-<span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pi_count_per_agency, <span class="fu">aes</span>(<span class="at">x =</span> Agency, <span class="at">y =</span> PI_Count, <span class="at">fill =</span> Agency)) <span class="sc">+</span></span>
-<span id="cb41-156"><a href="#cb41-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb41-157"><a href="#cb41-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total number of PIs Per Agency in UofI recent history"</span>,</span>
-<span id="cb41-158"><a href="#cb41-158" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Agency"</span>,</span>
-<span id="cb41-159"><a href="#cb41-159" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of PIs"</span>) <span class="sc">+</span></span>
-<span id="cb41-160"><a href="#cb41-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-161"><a href="#cb41-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span>
-<span id="cb41-162"><a href="#cb41-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-163"><a href="#cb41-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-164"><a href="#cb41-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-165"><a href="#cb41-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-166"><a href="#cb41-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-167"><a href="#cb41-167" aria-hidden="true" tabindex="-1"></a>In general NSF seems to be the funding agency with the most PIs in UofI history. USDA and DOE seems to fund always the same PIs.</span>
-<span id="cb41-168"><a href="#cb41-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-169"><a href="#cb41-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-170"><a href="#cb41-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-171"><a href="#cb41-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-174"><a href="#cb41-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-175"><a href="#cb41-175" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-176"><a href="#cb41-176" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-177"><a href="#cb41-177" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-178"><a href="#cb41-178" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-179"><a href="#cb41-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-180"><a href="#cb41-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
-<span id="cb41-181"><a href="#cb41-181" aria-hidden="true" tabindex="-1"></a>USDA10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"USDA10UI.xlsx"</span>)</span>
-<span id="cb41-182"><a href="#cb41-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-183"><a href="#cb41-183" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start to Date objects</span></span>
-<span id="cb41-184"><a href="#cb41-184" aria-hidden="true" tabindex="-1"></a>USDA10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(USDA10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb41-185"><a href="#cb41-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-186"><a href="#cb41-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle end date: Assuming you have only the year, create a Date object for December 31st of that year</span></span>
-<span id="cb41-187"><a href="#cb41-187" aria-hidden="true" tabindex="-1"></a>USDA10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(USDA10<span class="sc">$</span>end, <span class="st">"-12-31"</span>), <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
-<span id="cb41-188"><a href="#cb41-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-189"><a href="#cb41-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
-<span id="cb41-190"><a href="#cb41-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USDA10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
-<span id="cb41-191"><a href="#cb41-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span> <span class="co"># Adjust the size as needed</span></span>
-<span id="cb41-192"><a href="#cb41-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb41-193"><a href="#cb41-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  USDA funding"</span>,</span>
-<span id="cb41-194"><a href="#cb41-194" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
-<span id="cb41-195"><a href="#cb41-195" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
-<span id="cb41-196"><a href="#cb41-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-197"><a href="#cb41-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb41-198"><a href="#cb41-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-199"><a href="#cb41-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-200"><a href="#cb41-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-201"><a href="#cb41-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-204"><a href="#cb41-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-205"><a href="#cb41-205" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-206"><a href="#cb41-206" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-207"><a href="#cb41-207" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-208"><a href="#cb41-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-209"><a href="#cb41-209" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
-<span id="cb41-210"><a href="#cb41-210" aria-hidden="true" tabindex="-1"></a>DOE10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DOE10UI.xlsx"</span>)</span>
-<span id="cb41-211"><a href="#cb41-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-212"><a href="#cb41-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start and end to Date objects</span></span>
-<span id="cb41-213"><a href="#cb41-213" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your Excel file has columns named 'start' and 'end'</span></span>
-<span id="cb41-214"><a href="#cb41-214" aria-hidden="true" tabindex="-1"></a>DOE10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOE10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb41-215"><a href="#cb41-215" aria-hidden="true" tabindex="-1"></a>DOE10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOE10<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb41-216"><a href="#cb41-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-217"><a href="#cb41-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
-<span id="cb41-218"><a href="#cb41-218" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DOE10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
-<span id="cb41-219"><a href="#cb41-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
-<span id="cb41-220"><a href="#cb41-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb41-221"><a href="#cb41-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  DOE funding"</span>,</span>
-<span id="cb41-222"><a href="#cb41-222" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
-<span id="cb41-223"><a href="#cb41-223" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
-<span id="cb41-224"><a href="#cb41-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-225"><a href="#cb41-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb41-226"><a href="#cb41-226" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-227"><a href="#cb41-227" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-228"><a href="#cb41-228" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-229"><a href="#cb41-229" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-230"><a href="#cb41-230" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb41-231"><a href="#cb41-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-232"><a href="#cb41-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-233"><a href="#cb41-233" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
-<span id="cb41-234"><a href="#cb41-234" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> DOE10 <span class="sc">%&gt;%</span></span>
-<span id="cb41-235"><a href="#cb41-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
-<span id="cb41-236"><a href="#cb41-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-237"><a href="#cb41-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
-<span id="cb41-238"><a href="#cb41-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
-<span id="cb41-239"><a href="#cb41-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-240"><a href="#cb41-240" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
-<span id="cb41-241"><a href="#cb41-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb41-242"><a href="#cb41-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DOE Total Funding per PI in the Last 10 Years"</span>,</span>
-<span id="cb41-243"><a href="#cb41-243" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
-<span id="cb41-244"><a href="#cb41-244" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
-<span id="cb41-245"><a href="#cb41-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
-<span id="cb41-246"><a href="#cb41-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-247"><a href="#cb41-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-248"><a href="#cb41-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-251"><a href="#cb41-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-252"><a href="#cb41-252" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-253"><a href="#cb41-253" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-254"><a href="#cb41-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-255"><a href="#cb41-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-256"><a href="#cb41-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
-<span id="cb41-257"><a href="#cb41-257" aria-hidden="true" tabindex="-1"></a>NSF10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSF10UI.xlsx"</span>)</span>
-<span id="cb41-258"><a href="#cb41-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-259"><a href="#cb41-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start and end to Date objects</span></span>
-<span id="cb41-260"><a href="#cb41-260" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your Excel file has columns named 'start' and 'end'</span></span>
-<span id="cb41-261"><a href="#cb41-261" aria-hidden="true" tabindex="-1"></a>NSF10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb41-262"><a href="#cb41-262" aria-hidden="true" tabindex="-1"></a>NSF10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF10<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb41-263"><a href="#cb41-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-264"><a href="#cb41-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
-<span id="cb41-265"><a href="#cb41-265" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NSF10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
-<span id="cb41-266"><a href="#cb41-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
-<span id="cb41-267"><a href="#cb41-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
-<span id="cb41-268"><a href="#cb41-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  NSF funding"</span>,</span>
-<span id="cb41-269"><a href="#cb41-269" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
-<span id="cb41-270"><a href="#cb41-270" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
-<span id="cb41-271"><a href="#cb41-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-272"><a href="#cb41-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb41-273"><a href="#cb41-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-274"><a href="#cb41-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-275"><a href="#cb41-275" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-276"><a href="#cb41-276" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-277"><a href="#cb41-277" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-278"><a href="#cb41-278" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-279"><a href="#cb41-279" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb41-280"><a href="#cb41-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-281"><a href="#cb41-281" aria-hidden="true" tabindex="-1"></a>NSF10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSF10UI.xlsx"</span>)</span>
-<span id="cb41-282"><a href="#cb41-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-283"><a href="#cb41-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
-<span id="cb41-284"><a href="#cb41-284" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> NSF10 <span class="sc">%&gt;%</span></span>
-<span id="cb41-285"><a href="#cb41-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
-<span id="cb41-286"><a href="#cb41-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-287"><a href="#cb41-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
-<span id="cb41-288"><a href="#cb41-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
-<span id="cb41-289"><a href="#cb41-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-290"><a href="#cb41-290" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
-<span id="cb41-291"><a href="#cb41-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb41-292"><a href="#cb41-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NSF Total Funding per PI in the Last 10 Years"</span>,</span>
-<span id="cb41-293"><a href="#cb41-293" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
-<span id="cb41-294"><a href="#cb41-294" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
-<span id="cb41-295"><a href="#cb41-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
-<span id="cb41-296"><a href="#cb41-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-297"><a href="#cb41-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-298"><a href="#cb41-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-301"><a href="#cb41-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-302"><a href="#cb41-302" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-303"><a href="#cb41-303" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-304"><a href="#cb41-304" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-305"><a href="#cb41-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-306"><a href="#cb41-306" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"UIawards.xlsx"</span>)</span>
-<span id="cb41-307"><a href="#cb41-307" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named df</span></span>
-<span id="cb41-308"><a href="#cb41-308" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean 'Agency' data (remove leading/trailing spaces, check for case sensitivity)</span></span>
-<span id="cb41-309"><a href="#cb41-309" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Agency <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">trimws</span>(df<span class="sc">$</span>Agency))</span>
-<span id="cb41-310"><a href="#cb41-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-311"><a href="#cb41-311" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'start' and 'end' columns to Date format</span></span>
-<span id="cb41-312"><a href="#cb41-312" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
-<span id="cb41-313"><a href="#cb41-313" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
-<span id="cb41-314"><a href="#cb41-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-315"><a href="#cb41-315" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a timeline that spans 10 years back and 10 years forward from today</span></span>
-<span id="cb41-316"><a href="#cb41-316" aria-hidden="true" tabindex="-1"></a>timeline_start <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>() <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">10</span>)</span>
-<span id="cb41-317"><a href="#cb41-317" aria-hidden="true" tabindex="-1"></a>timeline_end <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">10</span>)</span>
-<span id="cb41-318"><a href="#cb41-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-319"><a href="#cb41-319" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb41-320"><a href="#cb41-320" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)), <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)))) <span class="sc">+</span></span>
-<span id="cb41-321"><a href="#cb41-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Adjust size and color as needed</span></span>
-<span id="cb41-322"><a href="#cb41-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">limits =</span> <span class="fu">c</span>(timeline_start, timeline_end), <span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
-<span id="cb41-323"><a href="#cb41-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years Timeline"</span>,</span>
-<span id="cb41-324"><a href="#cb41-324" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb41-325"><a href="#cb41-325" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
-<span id="cb41-326"><a href="#cb41-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-327"><a href="#cb41-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
-<span id="cb41-328"><a href="#cb41-328" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey80"</span>),</span>
-<span id="cb41-329"><a href="#cb41-329" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb41-330"><a href="#cb41-330" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb41-331"><a href="#cb41-331" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb41-332"><a href="#cb41-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-333"><a href="#cb41-333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-334"><a href="#cb41-334" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-335"><a href="#cb41-335" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-336"><a href="#cb41-336" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-339"><a href="#cb41-339" aria-hidden="true" tabindex="-1"></a>NIH10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH10UI.xlsx"</span>)</span>
-<span id="cb41-340"><a href="#cb41-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-341"><a href="#cb41-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
-<span id="cb41-342"><a href="#cb41-342" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> NIH10 <span class="sc">%&gt;%</span></span>
-<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
-<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
-<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
-<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
-<span id="cb41-349"><a href="#cb41-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NIH Total Funding per PI in the Last 10 Years"</span>,</span>
-<span id="cb41-351"><a href="#cb41-351" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
-<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
-<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
-<span id="cb41-354"><a href="#cb41-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-355"><a href="#cb41-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-356"><a href="#cb41-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-357"><a href="#cb41-357" aria-hidden="true" tabindex="-1"></a>According to the plotted data, NSF and NIH appear to have secured grants into the furthest future, (2028-2029).</span>
-<span id="cb41-358"><a href="#cb41-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 2:</span></span>
-<span id="cb41-360"><a href="#cb41-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-361"><a href="#cb41-361" aria-hidden="true" tabindex="-1"></a>What is the proportional representation of new awards to the UI from these various sources over the past 5 to 10 years? Are there any trends that are encouraging or discouraging?</span>
-<span id="cb41-362"><a href="#cb41-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-363"><a href="#cb41-363" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 3:</span></span>
-<span id="cb41-364"><a href="#cb41-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-367"><a href="#cb41-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-368"><a href="#cb41-368" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb41-369"><a href="#cb41-369" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-370"><a href="#cb41-370" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-372"><a href="#cb41-372" aria-hidden="true" tabindex="-1"></a>BU <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH.xlsx"</span>)</span>
-<span id="cb41-373"><a href="#cb41-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-374"><a href="#cb41-374" aria-hidden="true" tabindex="-1"></a><span class="co"># Use 'BU' instead of 'df' for operations</span></span>
-<span id="cb41-375"><a href="#cb41-375" aria-hidden="true" tabindex="-1"></a>selected_universities <span class="ot">&lt;-</span> BU <span class="sc">%&gt;%</span></span>
-<span id="cb41-376"><a href="#cb41-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(organization.org_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BOISE STATE UNIVERSITY"</span>, <span class="st">"UNIVERSITY OF IDAHO"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(organization.org_name) <span class="sc">%&gt;%</span></span>
-<span id="cb41-378"><a href="#cb41-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_award_amount =</span> <span class="fu">sum</span>(award_amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-380"><a href="#cb41-380" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
-<span id="cb41-381"><a href="#cb41-381" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(selected_universities, <span class="fu">aes</span>(<span class="at">x =</span> organization.org_name, <span class="at">y =</span> total_award_amount, <span class="at">fill =</span> organization.org_name)) <span class="sc">+</span></span>
-<span id="cb41-382"><a href="#cb41-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb41-383"><a href="#cb41-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total Award Amount by University NIH"</span>,</span>
-<span id="cb41-384"><a href="#cb41-384" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"University"</span>,</span>
-<span id="cb41-385"><a href="#cb41-385" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Award Amount NIH"</span>) <span class="sc">+</span></span>
-<span id="cb41-386"><a href="#cb41-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-387"><a href="#cb41-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"BOISE STATE UNIVERSITY"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"UNIVERSITY OF IDAHO"</span> <span class="ot">=</span> <span class="st">"gold"</span>))</span>
-<span id="cb41-388"><a href="#cb41-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-389"><a href="#cb41-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-390"><a href="#cb41-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-391"><a href="#cb41-391" aria-hidden="true" tabindex="-1"></a>How is UI performing with these sponsors when compared to the following peer institutions?</span>
-<span id="cb41-392"><a href="#cb41-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-393"><a href="#cb41-393" aria-hidden="true" tabindex="-1"></a>Boise State University Idaho State University Montana State University University of Montana Washington State University Note that “performing” can mean a variety of different things. You must choose your metrics of performance and justify them.</span>
-<span id="cb41-394"><a href="#cb41-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-395"><a href="#cb41-395" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusions</span></span>
-<span id="cb41-396"><a href="#cb41-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-397"><a href="#cb41-397" aria-hidden="true" tabindex="-1"></a>Summary Summarize your results. What new questions have emerged as a result of your visualizations? What interesting next steps have emerged?</span>
+<div class="sourceCode" id="cb44" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> “BCB 520 - Midterm Portfolio Post”</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> “Midterm Assginments”</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> “Lucas”</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> March 18, 2024  </span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "Grants.png" </span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Midtem, DataViz]</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> “Midterm 1, finding out how well/bad are we doing with grants”</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preamble</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how we compare to other geographically close universities. The funding agencies are; The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>We were provided with several data sets from 4 different funding agencies. A quick overview for each funding agency is provided below:</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>1.- Department of Energy (DOE)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>  DOE <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DOEawards.xlsx"</span>)</span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a>  DOE_UI <span class="ot">&lt;-</span> DOE <span class="sc">%&gt;%</span> </span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(Institution <span class="sc">==</span> <span class="st">'Regents of the University of Idaho'</span>)</span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>  DOE_UIFiltered <span class="ot">&lt;-</span> DOE_UI <span class="sc">%&gt;%</span></span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Title, Institution, PI, Status, <span class="st">`</span><span class="at">Program Office</span><span class="st">`</span>, <span class="st">`</span><span class="at">Start Date</span><span class="st">`</span>, <span class="st">`</span><span class="at">End Date</span><span class="st">`</span>, <span class="st">`</span><span class="at">Amount Awarded to Date</span><span class="st">`</span>)</span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table</span></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(DOE_UIFiltered))</span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>2.- The National Institutes of Health (NIH)</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Attempt to read the Excel file and process it</span></span>
+<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
+<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the Excel file into a data frame</span></span>
+<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a>  NIH <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH.xlsx"</span>)</span>
+<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and select specific columns from the NSF data frame</span></span>
+<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a>  NIH_Filtered <span class="ot">&lt;-</span> NIH <span class="sc">%&gt;%</span></span>
+<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(contact_pi_name, award_amount, budget_start)</span>
+<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table using knitr::kable</span></span>
+<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(NIH_Filtered))</span>
+<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a>3.- Department of Agriculture (NIFA)</span>
+<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a>USDA_UI  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"USDAtoUI.csv"</span>)</span>
+<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(USDA_UI))</span>
+<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a>4.- The National Science Foundation (NSF)</span>
+<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Attempt to read the Excel file and process it</span></span>
+<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>({</span>
+<span id="cb44-100"><a href="#cb44-100" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the Excel file into a data frame</span></span>
+<span id="cb44-101"><a href="#cb44-101" aria-hidden="true" tabindex="-1"></a>  NSF <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSFtoUI.xlsx"</span>)</span>
+<span id="cb44-102"><a href="#cb44-102" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-103"><a href="#cb44-103" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and select specific columns from the NSF data frame</span></span>
+<span id="cb44-104"><a href="#cb44-104" aria-hidden="true" tabindex="-1"></a>  NSF_Filtered <span class="ot">&lt;-</span> NSF <span class="sc">%&gt;%</span></span>
+<span id="cb44-105"><a href="#cb44-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(pdPIName, startDate, expDate, estimatedTotalAmt)</span>
+<span id="cb44-106"><a href="#cb44-106" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-107"><a href="#cb44-107" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the table using knitr::kable</span></span>
+<span id="cb44-108"><a href="#cb44-108" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(NSF_Filtered))</span>
+<span id="cb44-109"><a href="#cb44-109" aria-hidden="true" tabindex="-1"></a>}, <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-110"><a href="#cb44-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-111"><a href="#cb44-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-112"><a href="#cb44-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-113"><a href="#cb44-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-114"><a href="#cb44-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Dictionary table</span></span>
+<span id="cb44-115"><a href="#cb44-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-116"><a href="#cb44-116" aria-hidden="true" tabindex="-1"></a>In general all the data sets shares the same variables with different names. The most commonly used ones are summarized in the table below:</span>
+<span id="cb44-117"><a href="#cb44-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-120"><a href="#cb44-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-121"><a href="#cb44-121" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-122"><a href="#cb44-122" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-123"><a href="#cb44-123" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb44-124"><a href="#cb44-124" aria-hidden="true" tabindex="-1"></a>datatable  <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DataDictionary.xlsx"</span>)</span>
+<span id="cb44-125"><a href="#cb44-125" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(datatable))</span>
+<span id="cb44-126"><a href="#cb44-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-127"><a href="#cb44-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-128"><a href="#cb44-128" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 1:</span></span>
+<span id="cb44-129"><a href="#cb44-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-130"><a href="#cb44-130" aria-hidden="true" tabindex="-1"></a>Provide a visualization that shows our active awards from each sponsor. I need to see their start date and end date, the amount of the award, and the name of the Principal Investigator. I’m really interested in seeing how far into the future our current portfolio will exist. Are there a bunch of awards about to expire? Are there a bunch that just got funded and will be active for a while? Does this vary across sponsors?</span>
+<span id="cb44-131"><a href="#cb44-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-134"><a href="#cb44-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-135"><a href="#cb44-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-136"><a href="#cb44-136" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-137"><a href="#cb44-137" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-138"><a href="#cb44-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-139"><a href="#cb44-139" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-140"><a href="#cb44-140" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-141"><a href="#cb44-141" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-142"><a href="#cb44-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-143"><a href="#cb44-143" aria-hidden="true" tabindex="-1"></a>funding_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"UIawards.xlsx"</span>)</span>
+<span id="cb44-144"><a href="#cb44-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-145"><a href="#cb44-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the unique PIs per agency</span></span>
+<span id="cb44-146"><a href="#cb44-146" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> funding_data <span class="sc">%&gt;%</span></span>
+<span id="cb44-147"><a href="#cb44-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Agency) <span class="sc">%&gt;%</span></span>
+<span id="cb44-148"><a href="#cb44-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">PI_Count =</span> <span class="fu">n_distinct</span>(PI))</span>
+<span id="cb44-149"><a href="#cb44-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-150"><a href="#cb44-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for the specific agencies if the dataset contains more agencies</span></span>
+<span id="cb44-151"><a href="#cb44-151" aria-hidden="true" tabindex="-1"></a>pi_count_per_agency <span class="ot">&lt;-</span> pi_count_per_agency <span class="sc">%&gt;%</span></span>
+<span id="cb44-152"><a href="#cb44-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Agency <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NSF"</span>, <span class="st">"NIH"</span>, <span class="st">"DOE"</span>))</span>
+<span id="cb44-153"><a href="#cb44-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-154"><a href="#cb44-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
+<span id="cb44-155"><a href="#cb44-155" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pi_count_per_agency, <span class="fu">aes</span>(<span class="at">x =</span> Agency, <span class="at">y =</span> PI_Count, <span class="at">fill =</span> Agency)) <span class="sc">+</span></span>
+<span id="cb44-156"><a href="#cb44-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb44-157"><a href="#cb44-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total number of PIs Per Agency in UofI recent history"</span>,</span>
+<span id="cb44-158"><a href="#cb44-158" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Agency"</span>,</span>
+<span id="cb44-159"><a href="#cb44-159" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of PIs"</span>) <span class="sc">+</span></span>
+<span id="cb44-160"><a href="#cb44-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-161"><a href="#cb44-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span>
+<span id="cb44-162"><a href="#cb44-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-163"><a href="#cb44-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-164"><a href="#cb44-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-165"><a href="#cb44-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-166"><a href="#cb44-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-167"><a href="#cb44-167" aria-hidden="true" tabindex="-1"></a>In general NSF seems to be the funding agency with the most PIs in UofI history. DOE is the area where UofI can grow the most, and more effort should be invested into.</span>
+<span id="cb44-168"><a href="#cb44-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-169"><a href="#cb44-169" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb44-170"><a href="#cb44-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-171"><a href="#cb44-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-174"><a href="#cb44-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-175"><a href="#cb44-175" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-176"><a href="#cb44-176" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-177"><a href="#cb44-177" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-178"><a href="#cb44-178" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-179"><a href="#cb44-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-180"><a href="#cb44-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
+<span id="cb44-181"><a href="#cb44-181" aria-hidden="true" tabindex="-1"></a>USDA10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"USDA10UI.xlsx"</span>)</span>
+<span id="cb44-182"><a href="#cb44-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-183"><a href="#cb44-183" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start to Date objects</span></span>
+<span id="cb44-184"><a href="#cb44-184" aria-hidden="true" tabindex="-1"></a>USDA10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(USDA10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb44-185"><a href="#cb44-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-186"><a href="#cb44-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle end date: Assuming you have only the year, create a Date object for December 31st of that year</span></span>
+<span id="cb44-187"><a href="#cb44-187" aria-hidden="true" tabindex="-1"></a>USDA10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(USDA10<span class="sc">$</span>end, <span class="st">"-12-31"</span>), <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
+<span id="cb44-188"><a href="#cb44-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-189"><a href="#cb44-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
+<span id="cb44-190"><a href="#cb44-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USDA10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
+<span id="cb44-191"><a href="#cb44-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span> <span class="co"># Adjust the size as needed</span></span>
+<span id="cb44-192"><a href="#cb44-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
+<span id="cb44-193"><a href="#cb44-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  USDA funding"</span>,</span>
+<span id="cb44-194"><a href="#cb44-194" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
+<span id="cb44-195"><a href="#cb44-195" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
+<span id="cb44-196"><a href="#cb44-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-197"><a href="#cb44-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb44-198"><a href="#cb44-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-199"><a href="#cb44-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-200"><a href="#cb44-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-201"><a href="#cb44-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-204"><a href="#cb44-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-205"><a href="#cb44-205" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-206"><a href="#cb44-206" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-207"><a href="#cb44-207" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-208"><a href="#cb44-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-209"><a href="#cb44-209" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
+<span id="cb44-210"><a href="#cb44-210" aria-hidden="true" tabindex="-1"></a>DOE10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"DOE10UI.xlsx"</span>)</span>
+<span id="cb44-211"><a href="#cb44-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-212"><a href="#cb44-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start and end to Date objects</span></span>
+<span id="cb44-213"><a href="#cb44-213" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your Excel file has columns named 'start' and 'end'</span></span>
+<span id="cb44-214"><a href="#cb44-214" aria-hidden="true" tabindex="-1"></a>DOE10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOE10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb44-215"><a href="#cb44-215" aria-hidden="true" tabindex="-1"></a>DOE10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOE10<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb44-216"><a href="#cb44-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-217"><a href="#cb44-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
+<span id="cb44-218"><a href="#cb44-218" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DOE10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
+<span id="cb44-219"><a href="#cb44-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
+<span id="cb44-220"><a href="#cb44-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
+<span id="cb44-221"><a href="#cb44-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  DOE funding"</span>,</span>
+<span id="cb44-222"><a href="#cb44-222" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
+<span id="cb44-223"><a href="#cb44-223" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
+<span id="cb44-224"><a href="#cb44-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-225"><a href="#cb44-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb44-226"><a href="#cb44-226" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-227"><a href="#cb44-227" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-228"><a href="#cb44-228" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-229"><a href="#cb44-229" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-230"><a href="#cb44-230" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb44-231"><a href="#cb44-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-232"><a href="#cb44-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-233"><a href="#cb44-233" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
+<span id="cb44-234"><a href="#cb44-234" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> DOE10 <span class="sc">%&gt;%</span></span>
+<span id="cb44-235"><a href="#cb44-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
+<span id="cb44-236"><a href="#cb44-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-237"><a href="#cb44-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
+<span id="cb44-238"><a href="#cb44-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
+<span id="cb44-239"><a href="#cb44-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-240"><a href="#cb44-240" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
+<span id="cb44-241"><a href="#cb44-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-242"><a href="#cb44-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DOE Total Funding per PI in the Last 10 Years"</span>,</span>
+<span id="cb44-243"><a href="#cb44-243" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
+<span id="cb44-244"><a href="#cb44-244" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
+<span id="cb44-245"><a href="#cb44-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
+<span id="cb44-246"><a href="#cb44-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-247"><a href="#cb44-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-248"><a href="#cb44-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-251"><a href="#cb44-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-252"><a href="#cb44-252" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-253"><a href="#cb44-253" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-254"><a href="#cb44-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-255"><a href="#cb44-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-256"><a href="#cb44-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data from an Excel file</span></span>
+<span id="cb44-257"><a href="#cb44-257" aria-hidden="true" tabindex="-1"></a>NSF10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSF10UI.xlsx"</span>)</span>
+<span id="cb44-258"><a href="#cb44-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-259"><a href="#cb44-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert start and end to Date objects</span></span>
+<span id="cb44-260"><a href="#cb44-260" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your Excel file has columns named 'start' and 'end'</span></span>
+<span id="cb44-261"><a href="#cb44-261" aria-hidden="true" tabindex="-1"></a>NSF10<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF10<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb44-262"><a href="#cb44-262" aria-hidden="true" tabindex="-1"></a>NSF10<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF10<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb44-263"><a href="#cb44-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-264"><a href="#cb44-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Gantt chart</span></span>
+<span id="cb44-265"><a href="#cb44-265" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NSF10, <span class="fu">aes</span>(<span class="at">y =</span> Agency, <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> Agency)) <span class="sc">+</span></span>
+<span id="cb44-266"><a href="#cb44-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="co"># Use linewidth instead of size</span></span>
+<span id="cb44-267"><a href="#cb44-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"2021-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2029-01-01"</span>))) <span class="sc">+</span></span>
+<span id="cb44-268"><a href="#cb44-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years of  NSF funding"</span>,</span>
+<span id="cb44-269"><a href="#cb44-269" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timeline"</span>,</span>
+<span id="cb44-270"><a href="#cb44-270" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
+<span id="cb44-271"><a href="#cb44-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-272"><a href="#cb44-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb44-273"><a href="#cb44-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-274"><a href="#cb44-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-275"><a href="#cb44-275" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-276"><a href="#cb44-276" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-277"><a href="#cb44-277" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-278"><a href="#cb44-278" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-279"><a href="#cb44-279" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb44-280"><a href="#cb44-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-281"><a href="#cb44-281" aria-hidden="true" tabindex="-1"></a>NSF10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NSF10UI.xlsx"</span>)</span>
+<span id="cb44-282"><a href="#cb44-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-283"><a href="#cb44-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
+<span id="cb44-284"><a href="#cb44-284" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> NSF10 <span class="sc">%&gt;%</span></span>
+<span id="cb44-285"><a href="#cb44-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
+<span id="cb44-286"><a href="#cb44-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-287"><a href="#cb44-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
+<span id="cb44-288"><a href="#cb44-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
+<span id="cb44-289"><a href="#cb44-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-290"><a href="#cb44-290" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
+<span id="cb44-291"><a href="#cb44-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-292"><a href="#cb44-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NSF Total Funding per PI in the Last 10 Years"</span>,</span>
+<span id="cb44-293"><a href="#cb44-293" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
+<span id="cb44-294"><a href="#cb44-294" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
+<span id="cb44-295"><a href="#cb44-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
+<span id="cb44-296"><a href="#cb44-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-297"><a href="#cb44-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-298"><a href="#cb44-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-301"><a href="#cb44-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-302"><a href="#cb44-302" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-303"><a href="#cb44-303" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-304"><a href="#cb44-304" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-305"><a href="#cb44-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-306"><a href="#cb44-306" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"UIawards.xlsx"</span>)</span>
+<span id="cb44-307"><a href="#cb44-307" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named df</span></span>
+<span id="cb44-308"><a href="#cb44-308" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean 'Agency' data (remove leading/trailing spaces, check for case sensitivity)</span></span>
+<span id="cb44-309"><a href="#cb44-309" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Agency <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">trimws</span>(df<span class="sc">$</span>Agency))</span>
+<span id="cb44-310"><a href="#cb44-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-311"><a href="#cb44-311" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'start' and 'end' columns to Date format</span></span>
+<span id="cb44-312"><a href="#cb44-312" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>start, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
+<span id="cb44-313"><a href="#cb44-313" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>end, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>)</span>
+<span id="cb44-314"><a href="#cb44-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-315"><a href="#cb44-315" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a timeline that spans 10 years back and 10 years forward from today</span></span>
+<span id="cb44-316"><a href="#cb44-316" aria-hidden="true" tabindex="-1"></a>timeline_start <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>() <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">10</span>)</span>
+<span id="cb44-317"><a href="#cb44-317" aria-hidden="true" tabindex="-1"></a>timeline_end <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>() <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">10</span>)</span>
+<span id="cb44-318"><a href="#cb44-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-319"><a href="#cb44-319" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb44-320"><a href="#cb44-320" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)), <span class="at">x =</span> start, <span class="at">xend =</span> end, <span class="at">yend =</span> <span class="fu">factor</span>(Agency, <span class="at">levels =</span> <span class="fu">unique</span>(Agency)))) <span class="sc">+</span></span>
+<span id="cb44-321"><a href="#cb44-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Adjust size and color as needed</span></span>
+<span id="cb44-322"><a href="#cb44-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">limits =</span> <span class="fu">c</span>(timeline_start, timeline_end), <span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
+<span id="cb44-323"><a href="#cb44-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 years Timeline"</span>,</span>
+<span id="cb44-324"><a href="#cb44-324" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb44-325"><a href="#cb44-325" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Agency"</span>) <span class="sc">+</span></span>
+<span id="cb44-326"><a href="#cb44-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-327"><a href="#cb44-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb44-328"><a href="#cb44-328" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey80"</span>),</span>
+<span id="cb44-329"><a href="#cb44-329" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-330"><a href="#cb44-330" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-331"><a href="#cb44-331" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb44-332"><a href="#cb44-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-333"><a href="#cb44-333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-334"><a href="#cb44-334" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-335"><a href="#cb44-335" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-336"><a href="#cb44-336" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-337"><a href="#cb44-337" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb44-338"><a href="#cb44-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-339"><a href="#cb44-339" aria-hidden="true" tabindex="-1"></a>NIH10 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH10UI.xlsx"</span>)</span>
+<span id="cb44-340"><a href="#cb44-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-341"><a href="#cb44-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total amount per PI and filter out amounts smaller than 200000</span></span>
+<span id="cb44-342"><a href="#cb44-342" aria-hidden="true" tabindex="-1"></a>total_amount_per_PI <span class="ot">&lt;-</span> NIH10 <span class="sc">%&gt;%</span></span>
+<span id="cb44-343"><a href="#cb44-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PI) <span class="sc">%&gt;%</span></span>
+<span id="cb44-344"><a href="#cb44-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAmount =</span> <span class="fu">sum</span>(Amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-345"><a href="#cb44-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalAmount <span class="sc">&gt;=</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span>  <span class="co"># Filter step added here</span></span>
+<span id="cb44-346"><a href="#cb44-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAmount))</span>
+<span id="cb44-347"><a href="#cb44-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-348"><a href="#cb44-348" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_amount_per_PI, <span class="fu">aes</span>(<span class="at">x =</span> PI, <span class="at">y =</span> TotalAmount <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
+<span id="cb44-349"><a href="#cb44-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-350"><a href="#cb44-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NIH Total Funding per PI in the Last 10 Years"</span>,</span>
+<span id="cb44-351"><a href="#cb44-351" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Funding Amount (USD Millions)"</span>,</span>
+<span id="cb44-352"><a href="#cb44-352" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Investigator"</span>) <span class="sc">+</span></span>
+<span id="cb44-353"><a href="#cb44-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Rotate X-axis labels for readability</span></span>
+<span id="cb44-354"><a href="#cb44-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-355"><a href="#cb44-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-356"><a href="#cb44-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-357"><a href="#cb44-357" aria-hidden="true" tabindex="-1"></a>According to the plotted data, NSF and NIH appear to have secured grants into the furthest future, (2028-2029).</span>
+<span id="cb44-358"><a href="#cb44-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-359"><a href="#cb44-359" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 2:</span></span>
+<span id="cb44-360"><a href="#cb44-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-361"><a href="#cb44-361" aria-hidden="true" tabindex="-1"></a>What is the proportional representation of new awards to the UI from these various sources over the past 5 to 10 years? Are there any trends that are encouraging or discouraging?</span>
+<span id="cb44-362"><a href="#cb44-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-363"><a href="#cb44-363" aria-hidden="true" tabindex="-1"></a><span class="fu">## QUESTION 3:</span></span>
+<span id="cb44-364"><a href="#cb44-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-367"><a href="#cb44-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-368"><a href="#cb44-368" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-369"><a href="#cb44-369" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-370"><a href="#cb44-370" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-371"><a href="#cb44-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-372"><a href="#cb44-372" aria-hidden="true" tabindex="-1"></a>BU <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"NIH.xlsx"</span>)</span>
+<span id="cb44-373"><a href="#cb44-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-374"><a href="#cb44-374" aria-hidden="true" tabindex="-1"></a><span class="co"># Use 'BU' instead of 'df' for operations</span></span>
+<span id="cb44-375"><a href="#cb44-375" aria-hidden="true" tabindex="-1"></a>selected_universities <span class="ot">&lt;-</span> BU <span class="sc">%&gt;%</span></span>
+<span id="cb44-376"><a href="#cb44-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(organization.org_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BOISE STATE UNIVERSITY"</span>, <span class="st">"UNIVERSITY OF IDAHO"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-377"><a href="#cb44-377" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(organization.org_name) <span class="sc">%&gt;%</span></span>
+<span id="cb44-378"><a href="#cb44-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_award_amount =</span> <span class="fu">sum</span>(award_amount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb44-379"><a href="#cb44-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-380"><a href="#cb44-380" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
+<span id="cb44-381"><a href="#cb44-381" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(selected_universities, <span class="fu">aes</span>(<span class="at">x =</span> organization.org_name, <span class="at">y =</span> total_award_amount, <span class="at">fill =</span> organization.org_name)) <span class="sc">+</span></span>
+<span id="cb44-382"><a href="#cb44-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb44-383"><a href="#cb44-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total Award Amount by University NIH"</span>,</span>
+<span id="cb44-384"><a href="#cb44-384" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"University"</span>,</span>
+<span id="cb44-385"><a href="#cb44-385" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Award Amount NIH"</span>) <span class="sc">+</span></span>
+<span id="cb44-386"><a href="#cb44-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-387"><a href="#cb44-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"BOISE STATE UNIVERSITY"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"UNIVERSITY OF IDAHO"</span> <span class="ot">=</span> <span class="st">"gold"</span>))</span>
+<span id="cb44-388"><a href="#cb44-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-389"><a href="#cb44-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-390"><a href="#cb44-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-393"><a href="#cb44-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-394"><a href="#cb44-394" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb44-395"><a href="#cb44-395" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb44-396"><a href="#cb44-396" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-397"><a href="#cb44-397" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-398"><a href="#cb44-398" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb44-399"><a href="#cb44-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-400"><a href="#cb44-400" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file</span></span>
+<span id="cb44-401"><a href="#cb44-401" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"USDAallU.csv"</span>)</span>
+<span id="cb44-402"><a href="#cb44-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-403"><a href="#cb44-403" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Award Date' to Date object using correct format and filter data from 2014 to 2024</span></span>
+<span id="cb44-404"><a href="#cb44-404" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb44-405"><a href="#cb44-405" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AwardDate =</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">Award Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-406"><a href="#cb44-406" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(AwardDate <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>) <span class="sc">&amp;</span> AwardDate <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>))</span>
+<span id="cb44-407"><a href="#cb44-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-408"><a href="#cb44-408" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate data to get the total Award Dollars for each Grantee Name</span></span>
+<span id="cb44-409"><a href="#cb44-409" aria-hidden="true" tabindex="-1"></a>total_award_per_grantee <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb44-410"><a href="#cb44-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-411"><a href="#cb44-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalAwardDollars =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Award Dollars</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-412"><a href="#cb44-412" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(TotalAwardDollars)) <span class="co"># Optional: arrange in descending order of total award dollars</span></span>
+<span id="cb44-413"><a href="#cb44-413" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming total_award_per_grantee is already created from previous steps</span></span>
+<span id="cb44-414"><a href="#cb44-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-415"><a href="#cb44-415" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Grantee Name to a factor (if not already)</span></span>
+<span id="cb44-416"><a href="#cb44-416" aria-hidden="true" tabindex="-1"></a>total_award_per_grantee<span class="sc">$</span><span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">factor</span>(total_award_per_grantee<span class="sc">$</span><span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>)</span>
+<span id="cb44-417"><a href="#cb44-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-418"><a href="#cb44-418" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming custom_colors is correctly mapped to your Grantee Names</span></span>
+<span id="cb44-419"><a href="#cb44-419" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Boise State University"</span> <span class="ot">=</span> <span class="st">"blue"</span>, </span>
+<span id="cb44-420"><a href="#cb44-420" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Idaho"</span> <span class="ot">=</span> <span class="st">"gold"</span>, </span>
+<span id="cb44-421"><a href="#cb44-421" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Washington State University"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
+<span id="cb44-422"><a href="#cb44-422" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Montana"</span> <span class="ot">=</span> <span class="st">"tan"</span>)</span>
+<span id="cb44-423"><a href="#cb44-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-424"><a href="#cb44-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-425"><a href="#cb44-425" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(total_award_per_grantee, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>, TotalAwardDollars), <span class="at">y =</span> TotalAwardDollars <span class="sc">/</span> <span class="fl">1e6</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Grantee Name</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb44-426"><a href="#cb44-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb44-427"><a href="#cb44-427" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Boise State University"</span> <span class="ot">=</span> <span class="st">"blue"</span>, </span>
+<span id="cb44-428"><a href="#cb44-428" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Idaho"</span> <span class="ot">=</span> <span class="st">"gold"</span>, </span>
+<span id="cb44-429"><a href="#cb44-429" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Washington State University"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
+<span id="cb44-430"><a href="#cb44-430" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"University of Montana"</span> <span class="ot">=</span> <span class="st">"tan"</span>)) <span class="sc">+</span></span>
+<span id="cb44-431"><a href="#cb44-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"USDA Total Award Dollars per University (2014-2024)"</span>,</span>
+<span id="cb44-432"><a href="#cb44-432" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grantee Name"</span>,</span>
+<span id="cb44-433"><a href="#cb44-433" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Award Dollars (Millions USD)"</span>) <span class="sc">+</span></span>
+<span id="cb44-434"><a href="#cb44-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-435"><a href="#cb44-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))  <span class="co"># For better readability of Grantee Names</span></span>
+<span id="cb44-436"><a href="#cb44-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-437"><a href="#cb44-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-438"><a href="#cb44-438" aria-hidden="true" tabindex="-1"></a>How is UI performing with these sponsors when compared to the following peer institutions?</span>
+<span id="cb44-439"><a href="#cb44-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-440"><a href="#cb44-440" aria-hidden="true" tabindex="-1"></a>Boise State University Idaho State University Montana State University University of Montana Washington State University Note that “performing” can mean a variety of different things. You must choose your metrics of performance and justify them.</span>
+<span id="cb44-441"><a href="#cb44-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-442"><a href="#cb44-442" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusions</span></span>
+<span id="cb44-443"><a href="#cb44-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-444"><a href="#cb44-444" aria-hidden="true" tabindex="-1"></a>Summary Summarize your results. What new questions have emerged as a result of your visualizations? What interesting next steps have emerged?</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
