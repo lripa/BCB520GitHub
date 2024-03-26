@@ -20,11 +20,11 @@ description: “Midterm 1, finding out how well/bad are we doing with grants”
 
 ## Preamble
 
-The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how we compare to other geographically close universities. The funding agencies are; The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.
+The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how it compares to other geographically close universities. The funding agencies are: The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.
 
-We were provided with several data sets from 4 different funding agencies. A quick overview for each funding agency is provided below:
+We have been provided with several data sets from four different funding agencies. A quick overview of each funding agency is provided below:
 
-1.- Department of Energy (DOE)
+**1.- Department of Energy (DOE)**
 
 ```{r}
 library(tidyverse)
@@ -46,7 +46,7 @@ try({
 
 ```
 
-2.- The National Institutes of Health (NIH)
+**2.- The National Institutes of Health (NIH)**
 
 ```{r}
 library(tidyverse)
@@ -69,7 +69,7 @@ try({
 
 ```
 
-3.- Department of Agriculture (NIFA)
+**3.- Department of Agriculture (NIFA)**
 
 ```{r}
 library(tidyverse)
@@ -79,7 +79,7 @@ USDA_UI  <- read.csv("USDAtoUI.csv")
 knitr::kable(head(USDA_UI))
 ```
 
-4.- The National Science Foundation (NSF)
+**4.- The National Science Foundation (NSF)**
 
 ```{r}
 library(tidyverse)
@@ -153,7 +153,7 @@ ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
 
 ```
 
-In general NSF seems to be the funding agency with the most PIs in UofI history. DOE is the area where UofI can grow the most, and more effort should be invested into.
+**In general NSF seems to be the funding agency with the most PIs in UofI history. DOE is the area where UofI can grow the most, and more effort should be invested into.**
 
 ```         
 ```
@@ -177,7 +177,7 @@ USDA10$end <- as.Date(paste0(USDA10$end, "-12-31"), format = "%Y-%m-%d")
 ggplot(USDA10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 10, color = "green") + # Adjust the size as needed
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of  USDA funding",
+  labs(title = "10 years of active USDA funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -203,7 +203,7 @@ DOE10$end <- as.Date(DOE10$end, format = "%m/%d/%Y")
 ggplot(DOE10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 20, color = "black") + # Use linewidth instead of size
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of  DOE funding",
+  labs(title = "10 years of active DOE funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -248,7 +248,7 @@ NSF10$end <- as.Date(NSF10$end, format = "%m/%d/%Y")
 ggplot(NSF10, aes(y = Agency, x = start, xend = end, yend = Agency)) +
   geom_segment(size = 20, color = "red") + # Use linewidth instead of size
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", limits = c(as.Date("2021-01-01"), as.Date("2029-01-01"))) +
-  labs(title = "10 years of  NSF funding",
+  labs(title = "10 years of active NSF funding",
        x = "Timeline",
        y = "Agency") +
   theme_minimal() +
@@ -335,11 +335,7 @@ ggplot(total_amount_per_PI, aes(x = PI, y = TotalAmount / 1e6)) +
 
 ```
 
-According to the plotted data, NSF and NIH appear to have secured grants into the furthest future, (2028-2029).
-
-## QUESTION 2:
-
-What is the proportional representation of new awards to the UI from these various sources over the past 5 to 10 years? Are there any trends that are encouraging or discouraging?
+**According to the plotted data, NSF and NIH appear to have secured grants into the furthest future, (2028-2029). DOE has the largest grow potential, since just 4 PIs have grants.**
 
 ## QUESTION 3:
 
