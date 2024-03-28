@@ -5,7 +5,7 @@ subtitle: “Midterm Assginments”
 
 author: “Lucas”
 
-date: March 18, 2024  
+date: March 28, 2024  
 
 image: "Grants.png" 
 
@@ -20,9 +20,9 @@ description: “Midterm 1, finding out how well/bad are we doing with grants”
 
 ## Preamble
 
-The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how it compares to other geographically close universities. The funding agencies are: The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.
+**The main goal of this midterm is to assess the University of Idaho's performance regarding awarded grants and how it compares to other geographically close universities. The funding agencies are: The National Science Foundation, The National Institutes of Health, The Department of Energy, and The US Department of Agriculture.**
 
-We have been provided with several data sets from four different funding agencies. A quick overview of each funding agency is provided below:
+**We have been provided with several data sets from four different funding agencies. A quick overview of each funding agency is provided below:**
 
 **1.- Department of Energy (DOE)**
 
@@ -119,6 +119,8 @@ knitr::kable(head(datatable))
 
 Provide a visualization that shows our active awards from each sponsor. I need to see their start date and end date, the amount of the award, and the name of the Principal Investigator. I’m really interested in seeing how far into the future our current portfolio will exist. Are there a bunch of awards about to expire? Are there a bunch that just got funded and will be active for a while? Does this vary across sponsors?
 
+**Lets take a look at historical data:**
+
 ```{r}
 
 library(readxl)
@@ -129,7 +131,7 @@ library(readxl)
 library(dplyr)
 library(ggplot2)
 
-funding_data <- read_xlsx("UIawards.xlsx")
+funding_data <- read_xlsx("UIawards2.xlsx")
 
 # Count the unique PIs per agency
 pi_count_per_agency <- funding_data %>%
@@ -143,7 +145,7 @@ pi_count_per_agency <- pi_count_per_agency %>%
 # Create the bar chart
 ggplot(pi_count_per_agency, aes(x = Agency, y = PI_Count, fill = Agency)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Total number of PIs Per Agency in UofI recent history",
+  labs(title = "Total number of PIs Per Funding Agency in UofI recent history",
        x = "Agency",
        y = "Number of PIs") +
   theme_minimal() +
@@ -301,7 +303,7 @@ timeline_end <- Sys.Date() + years(10)
 ggplot(df, aes(y = factor(Agency, levels = unique(Agency)), x = start, xend = end, yend = factor(Agency, levels = unique(Agency)))) +
   geom_segment(size = 20, color = "blue") +  # Adjust size and color as needed
   scale_x_date(limits = c(timeline_start, timeline_end), date_breaks = "1 year", date_labels = "%Y") +
-  labs(title = "10 years Timeline",
+  labs(title = "10 years of Active NIH  Timeline",
        x = "Year",
        y = "Agency") +
   theme_minimal() +
@@ -363,6 +365,8 @@ ggplot(selected_universities, aes(x = organization.org_name, y = total_award_amo
 
 ```
 
+**Lets focus on USDA grants, since I'm in CALS, it makes sense to take a deeper look into USDA.**
+
 ```{r}
 # Load necessary libraries
 library(readr)
@@ -402,16 +406,58 @@ ggplot(total_award_per_grantee, aes(x = reorder(`Grantee Name`, TotalAwardDollar
                    "Washington State University" = "red", 
                    "University of Montana" = "tan")) +
   labs(title = "USDA Total Award Dollars per University (2014-2024)",
-       x = "Grantee Name",
+       x = "Univeristy",
        y = "Total Award Dollars (Millions USD)") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))  # For better readability of Grantee Names
+
+
+
 ```
 
-How is UI performing with these sponsors when compared to the following peer institutions?
+```{r}
+# Load necessary libraries
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
 
-Boise State University Idaho State University Montana State University University of Montana Washington State University Note that “performing” can mean a variety of different things. You must choose your metrics of performance and justify them.
+# Read the data
+data <- read_csv("USDAallU.csv")
+
+# Prepare the data by grouping and summarising
+grants_per_grantee <- data %>%
+  group_by(`Grantee Name`) %>%
+  summarise(NumberOfGrants = n()) %>%
+  arrange(desc(NumberOfGrants))  # Optional: arrange in descending order of number of grants
+
+# Define custom colors for specific Grantee Names
+custom_colors <- c("Boise State University" = "blue", 
+                   "University of Idaho" = "gold", 
+                   "Washington State University" = "red", 
+                   "University of Montana" = "tan")
+
+# Create the bar graph with custom colors
+ggplot(grants_per_grantee, aes(x = reorder(`Grantee Name`, NumberOfGrants), y = NumberOfGrants, fill = `Grantee Name`)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = custom_colors) +  # Apply custom colors
+  labs(title = "Number of Grants per Grantee",
+       x = "Grantee Name",
+       y = "Number of Grants") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))  # Rotate X-axis labels for better readability
+
+
+```
 
 ## Conclusions
 
-Summary Summarize your results. What new questions have emerged as a result of your visualizations? What interesting next steps have emerged?
+**Let me start by saying that the 80/20 rule is completely accurate. I probably spent more than 80% of the time cleaning, merging, and generally preparing the appropriate data sets to produce these few data visualizations. There’s no convention among funding agencies on how they report their data; this would make things way easier for universities and institutions to have an idea of how they are doing in comparison to the rest.**
+
+**DOE shows the largest growing potential, with just 4 PIs; there’s a big opportunity to grow.**
+
+**UofI has a solid funding history with NIH with a few anchor PIs that got large total amounts.**
+
+**In general, UofI is doing well, especially with USDA. Considering its size (around 12,000 students), UofI is comparable to Montana State (10,000 students), and the data shows it; numbers are similar for USDA. WSU (23,000 students) is significantly larger and it makes sense that it got more USDA projects. Boise State (23,000 students) is not an agricultural sciences-based university, but it is as large as WSU, so if they were to get into agricultural sciences, they would certainly be a threat to UofI’s USDA funding.**
+
+**What I learned is that these types of analyses are way more complicated than they look. Choosing the right variables and presenting the data in a meaningful way is critical to arriving at the right conclusions. Also, since there’s a significant amount of data wrangling involved, the chances of making a mistake can’t be overlooked, so a quality assessment is mandatory to double-check for any possible mistakes.**
