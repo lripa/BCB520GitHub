@@ -1,11 +1,11 @@
 ---
-title: "Practice with Network Data"
+title: "Network Data"
 subtitle: "Nodes and Links and edges and vertices..."
 format:
   html:
     toc: false
     echo: true
-author: "Barrie Robison"
+author: "Lucas"
 date: "2024-04-04"
 categories: [Portfolio, DataViz, Network, iGraph, Assignment]
 image: "wendigonetwork.png"

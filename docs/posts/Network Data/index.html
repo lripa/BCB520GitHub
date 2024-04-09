@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Barrie Robison">
+<meta name="author" content="Lucas">
 <meta name="dcterms.date" content="2024-04-04">
 <meta name="description" content="iGRAPH!">
 
-<title>Lucas’ BCB520 - Practice with Network Data</title>
+<title>Lucas’ BCB520 - Network Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Practice with Network Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Network Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
             <p class="subtitle lead">Nodes and Links and edges and vertices…</p>
                   <div>
         <div class="description">
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Barrie Robison </p>
+               <p>Lucas </p>
             </div>
     </div>
       
@@ -254,8 +254,8 @@ Attaching package: 'igraph'</code></pre>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH b7cbb0b U--- 10 2 -- 
-+ edges from b7cbb0b:
+<pre><code>IGRAPH 09d3ab8 U--- 10 2 -- 
++ edges from 09d3ab8:
 [1] 1--2 1--5</code></pre>
 </div>
 </div>
@@ -279,7 +279,7 @@ Note
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH b7cbb0b U--- 10 2 -- </code></pre>
+<pre><code>IGRAPH 09d3ab8 U--- 10 2 -- </code></pre>
 </div>
 </div>
 <p>The same function <code>make_graph</code> can create some notable graphs by just specifying their name. For example you can create the graph that represents the social network of Zachary’s karate club, that shows the friendship between 34 members of a karate club at a US university in the 1970s:</p>
@@ -340,9 +340,9 @@ Note
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH f4510b4 U--- 40 86 -- Zachary
+<pre><code>IGRAPH 6fe9877 U--- 40 86 -- Zachary
 + attr: name (g/c)
-+ edges from f4510b4:
++ edges from 6fe9877:
  [1]  1-- 2  1-- 3  1-- 4  1-- 5  1-- 6  1-- 7  1-- 8  1-- 9  1--11  1--12
 [11]  1--13  1--14  1--18  1--20  1--22  1--32  2-- 3  2-- 4  2-- 8  2--14
 [21]  2--18  2--20  2--22  2--31  3-- 4  3-- 8  3--28  3--29  3--33  3--10
@@ -411,7 +411,7 @@ Note
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH c1c45e3 U--- 127 126 -- Tree
+<pre><code>IGRAPH 9debfcf U--- 127 126 -- Tree
 + attr: name (g/c), children (g/n), mode (g/c)</code></pre>
 </div>
 <details>
@@ -446,7 +446,7 @@ Note
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 8240dcb U--- 100 508 -- Geometric random graph
+<pre><code>IGRAPH a53bac7 U--- 100 512 -- Geometric random graph
 + attr: name (g/c), radius (g/n), torus (g/l)</code></pre>
 </div>
 <details>
@@ -508,7 +508,7 @@ Note
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 4e6132e UN-- 7 9 -- 
+<pre><code>IGRAPH 7e5588e UN-- 7 9 -- 
 + attr: name (v/c), age (v/n), gender (v/c), is_formal (e/l)</code></pre>
 </div>
 </div>
@@ -571,7 +571,7 @@ Note
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 7/7 vertices, named, from 4e6132e:
+<pre><code>+ 7/7 vertices, named, from 7e5588e:
 [1] Alejandra Bruno     Carmina   Frank     Dennis    Esther    George   </code></pre>
 </div>
 </div>
@@ -708,7 +708,7 @@ Note
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 3/10 vertices, from a1fdf44:
+<pre><code>+ 3/10 vertices, from 6b919ae:
 [1] 2 3 7</code></pre>
 </div>
 </div>
@@ -719,7 +719,7 @@ Note
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 2/10 vertices, from a1fdf44:
+<pre><code>+ 2/10 vertices, from 6b919ae:
 [1] 2 7</code></pre>
 </div>
 </div>
@@ -744,8 +744,8 @@ Note
 <p>Of course, <code>&lt;</code> is not the only boolean operator that can be used for this. Other possibilities include the following:</p>
 <table class="table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -822,7 +822,7 @@ Note
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 4/9 edges from 4e6132e (vertex names):
+<pre><code>+ 4/9 edges from 7e5588e (vertex names):
 [1] Alejandra--Carmina Carmina  --Frank   Carmina  --Dennis  Carmina  --Esther </code></pre>
 </div>
 </div>
@@ -833,7 +833,7 @@ Note
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="st">"Carmina"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 4/9 edges from 4e6132e (vertex names):
+<pre><code>+ 4/9 edges from 7e5588e (vertex names):
 [1] Alejandra--Carmina Carmina  --Frank   Carmina  --Dennis  Carmina  --Esther </code></pre>
 </div>
 </div>
@@ -845,7 +845,7 @@ Note
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g) [ <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">%--%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 3/9 edges from 4e6132e (vertex names):
+<pre><code>+ 3/9 edges from 7e5588e (vertex names):
 [1] Carmina--Dennis Carmina--Esther Dennis --Esther</code></pre>
 </div>
 </div>
@@ -882,7 +882,7 @@ Note
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[men <span class="sc">%--%</span> women]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 5/9 edges from 4e6132e (vertex names):
+<pre><code>+ 5/9 edges from 7e5588e (vertex names):
 [1] Alejandra--Bruno  Alejandra--Frank  Carmina  --Frank  Carmina  --Dennis
 [5] Dennis   --Esther</code></pre>
 </div>
@@ -923,8 +923,8 @@ George            .     .       .     1      1      .      .</code></pre>
 <p>The layout functions in igraph always start with <code>layout</code>. The following table summarises them:</p>
 <table class="table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1057,9 +1057,9 @@ George            .     .       .     1      1      .      .</code></pre>
 <h3 class="anchored" data-anchor-id="vertex-attributes-controlling-graph-plots">Vertex attributes controlling graph plots</h3>
 <table class="table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 8%">
-<col style="width: 86%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1126,9 +1126,9 @@ George            .     .       .     1      1      .      .</code></pre>
 <h3 class="anchored" data-anchor-id="edge-attributes-controlling-graph-plots">Edge attributes controlling graph plots</h3>
 <table class="table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 86%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1196,8 +1196,8 @@ George            .     .       .     1      1      .      .</code></pre>
 <p>These settings can be specified as arguments to the <code>plot</code> function to control the overall appearance of the plot.</p>
 <table class="table">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1332,8 +1332,8 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </section>
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<p>After trying a few different layouts The Kamada-Kawai algorithm seems like the</p>
+<h2 class="anchored" data-anchor-id="section"><img src="images/Screenshot 2024-04-09 at 11.43.50 AM.png" class="img-fluid"></h2>
+<p><strong>After trying a few different layouts The Kamada-Kawai algorithm seems like the right layout that offers the most straightforward interpretation of the BCB520 network.</strong></p>
 
 
 <!-- -->
@@ -1627,13 +1627,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb118" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Practice with Network Data"</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Network Data"</span></span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Nodes and Links and edges and vertices..."</span></span>
 <span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
 <span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: true</span></span>
-<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Barrie Robison"</span></span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Lucas"</span></span>
 <span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-04-04"</span></span>
 <span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Portfolio, DataViz, Network, iGraph, Assignment]</span></span>
 <span id="cb118-11"><a href="#cb118-11" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "wendigonetwork.png"</span></span>
