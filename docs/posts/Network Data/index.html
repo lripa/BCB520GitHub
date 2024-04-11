@@ -254,8 +254,8 @@ Attaching package: 'igraph'</code></pre>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 1ca295c U--- 10 2 -- 
-+ edges from 1ca295c:
+<pre><code>IGRAPH 029ba61 U--- 10 2 -- 
++ edges from 029ba61:
 [1] 1--2 1--5</code></pre>
 </div>
 </div>
@@ -279,7 +279,7 @@ Note
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 1ca295c U--- 10 2 -- </code></pre>
+<pre><code>IGRAPH 029ba61 U--- 10 2 -- </code></pre>
 </div>
 </div>
 <p>The same function <code>make_graph</code> can create some notable graphs by just specifying their name. For example you can create the graph that represents the social network of Zachary’s karate club, that shows the friendship between 34 members of a karate club at a US university in the 1970s:</p>
@@ -340,9 +340,9 @@ Note
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH e7a3dc2 U--- 40 86 -- Zachary
+<pre><code>IGRAPH fcfd723 U--- 40 86 -- Zachary
 + attr: name (g/c)
-+ edges from e7a3dc2:
++ edges from fcfd723:
  [1]  1-- 2  1-- 3  1-- 4  1-- 5  1-- 6  1-- 7  1-- 8  1-- 9  1--11  1--12
 [11]  1--13  1--14  1--18  1--20  1--22  1--32  2-- 3  2-- 4  2-- 8  2--14
 [21]  2--18  2--20  2--22  2--31  3-- 4  3-- 8  3--28  3--29  3--33  3--10
@@ -411,7 +411,7 @@ Note
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 4d25f6c U--- 127 126 -- Tree
+<pre><code>IGRAPH 44785af U--- 127 126 -- Tree
 + attr: name (g/c), children (g/n), mode (g/c)</code></pre>
 </div>
 <details>
@@ -446,7 +446,7 @@ Note
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH c1fa1e5 U--- 100 495 -- Geometric random graph
+<pre><code>IGRAPH 42831f1 U--- 100 501 -- Geometric random graph
 + attr: name (g/c), radius (g/n), torus (g/l)</code></pre>
 </div>
 <details>
@@ -508,7 +508,7 @@ Note
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH ff1dc4b UN-- 7 9 -- 
+<pre><code>IGRAPH 11d581b UN-- 7 9 -- 
 + attr: name (v/c), age (v/n), gender (v/c), is_formal (e/l)</code></pre>
 </div>
 </div>
@@ -571,7 +571,7 @@ Note
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 7/7 vertices, named, from ff1dc4b:
+<pre><code>+ 7/7 vertices, named, from 11d581b:
 [1] Alejandra Bruno     Carmina   Frank     Dennis    Esther    George   </code></pre>
 </div>
 </div>
@@ -708,7 +708,7 @@ Note
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 3/10 vertices, from 3b15be4:
+<pre><code>+ 3/10 vertices, from 17b5282:
 [1] 2 3 7</code></pre>
 </div>
 </div>
@@ -719,7 +719,7 @@ Note
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 2/10 vertices, from 3b15be4:
+<pre><code>+ 2/10 vertices, from 17b5282:
 [1] 2 7</code></pre>
 </div>
 </div>
@@ -744,8 +744,8 @@ Note
 <p>Of course, <code>&lt;</code> is not the only boolean operator that can be used for this. Other possibilities include the following:</p>
 <table class="table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -822,7 +822,7 @@ Note
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 4/9 edges from ff1dc4b (vertex names):
+<pre><code>+ 4/9 edges from 11d581b (vertex names):
 [1] Alejandra--Carmina Carmina  --Frank   Carmina  --Dennis  Carmina  --Esther </code></pre>
 </div>
 </div>
@@ -833,7 +833,7 @@ Note
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="st">"Carmina"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 4/9 edges from ff1dc4b (vertex names):
+<pre><code>+ 4/9 edges from 11d581b (vertex names):
 [1] Alejandra--Carmina Carmina  --Frank   Carmina  --Dennis  Carmina  --Esther </code></pre>
 </div>
 </div>
@@ -845,7 +845,7 @@ Note
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g) [ <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">%--%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 3/9 edges from ff1dc4b (vertex names):
+<pre><code>+ 3/9 edges from 11d581b (vertex names):
 [1] Carmina--Dennis Carmina--Esther Dennis --Esther</code></pre>
 </div>
 </div>
@@ -882,7 +882,7 @@ Note
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[men <span class="sc">%--%</span> women]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>+ 5/9 edges from ff1dc4b (vertex names):
+<pre><code>+ 5/9 edges from 11d581b (vertex names):
 [1] Alejandra--Bruno  Alejandra--Frank  Carmina  --Frank  Carmina  --Dennis
 [5] Dennis   --Esther</code></pre>
 </div>
@@ -923,8 +923,8 @@ George            .     .       .     1      1      .      .</code></pre>
 <p>The layout functions in igraph always start with <code>layout</code>. The following table summarises them:</p>
 <table class="table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1057,9 +1057,9 @@ George            .     .       .     1      1      .      .</code></pre>
 <h3 class="anchored" data-anchor-id="vertex-attributes-controlling-graph-plots">Vertex attributes controlling graph plots</h3>
 <table class="table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 8%">
-<col style="width: 86%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1126,9 +1126,9 @@ George            .     .       .     1      1      .      .</code></pre>
 <h3 class="anchored" data-anchor-id="edge-attributes-controlling-graph-plots">Edge attributes controlling graph plots</h3>
 <table class="table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 86%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1196,8 +1196,8 @@ George            .     .       .     1      1      .      .</code></pre>
 <p>These settings can be specified as arguments to the <code>plot</code> function to control the overall appearance of the plot.</p>
 <table class="table">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1303,7 +1303,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb116-21"><a href="#cb116-21" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">E</span>(g)<span class="sc">$</span>Advisor <span class="sc">==</span> <span class="st">"TRUE"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>)</span>
 <span id="cb116-22"><a href="#cb116-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb116-23"><a href="#cb116-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette for the departments</span></span>
-<span id="cb116-24"><a href="#cb116-24" aria-hidden="true" tabindex="-1"></a>department_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"cyan"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"pink"</span>, <span class="st">"lightblue"</span>),</span>
+<span id="cb116-24"><a href="#cb116-24" aria-hidden="true" tabindex="-1"></a>department_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"cyan"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"pink"</span>, <span class="st">"lightblue"</span>),</span>
 <span id="cb116-25"><a href="#cb116-25" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">"Biology"</span>, <span class="st">"EPPN"</span>, <span class="st">"FCS1"</span>, <span class="st">"CNR"</span>, <span class="st">"FCS2"</span>, <span class="st">"PlantSci"</span>, <span class="st">"Math"</span>))</span>
 <span id="cb116-26"><a href="#cb116-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb116-27"><a href="#cb116-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the department of each vertex in the graph to the corresponding color</span></span>
@@ -1986,7 +1986,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-375"><a href="#cb117-375" aria-hidden="true" tabindex="-1"></a>Of course, <span class="in">`&lt;`</span> is not the only boolean operator that can be used for this. Other possibilities include the following:</span>
 <span id="cb117-376"><a href="#cb117-376" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-377"><a href="#cb117-377" aria-hidden="true" tabindex="-1"></a>| Operator | Meaning                                                         |</span>
-<span id="cb117-378"><a href="#cb117-378" aria-hidden="true" tabindex="-1"></a>|----------|-----------------------------------------------------------------|</span>
+<span id="cb117-378"><a href="#cb117-378" aria-hidden="true" tabindex="-1"></a>|---------------|---------------------------------------------------------|</span>
 <span id="cb117-379"><a href="#cb117-379" aria-hidden="true" tabindex="-1"></a>| <span class="in">`==`</span>     | The attribute/property value must be *equal to*                 |</span>
 <span id="cb117-380"><a href="#cb117-380" aria-hidden="true" tabindex="-1"></a>| <span class="in">`!=`</span>     | The attribute/property value must *not be equal to*             |</span>
 <span id="cb117-381"><a href="#cb117-381" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&lt;`</span>      | The attribute/property value must be *less than*                |</span>
@@ -2075,7 +2075,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-466"><a href="#cb117-466" aria-hidden="true" tabindex="-1"></a>The layout functions in igraph always start with <span class="in">`layout`</span>. The following table summarises them:</span>
 <span id="cb117-467"><a href="#cb117-467" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-468"><a href="#cb117-468" aria-hidden="true" tabindex="-1"></a>| Method name        | Algorithm description                                                                                          |</span>
-<span id="cb117-469"><a href="#cb117-469" aria-hidden="true" tabindex="-1"></a>|--------------------|----------------------------------------------------------------------------------------------------------------|</span>
+<span id="cb117-469"><a href="#cb117-469" aria-hidden="true" tabindex="-1"></a>|---------------|---------------------------------------------------------|</span>
 <span id="cb117-470"><a href="#cb117-470" aria-hidden="true" tabindex="-1"></a>| <span class="in">`layout_randomly`</span>  | Places the vertices completely randomly                                                                        |</span>
 <span id="cb117-471"><a href="#cb117-471" aria-hidden="true" tabindex="-1"></a>| <span class="in">`layout_in_circle`</span> | Deterministic layout that places the vertices on a circle                                                      |</span>
 <span id="cb117-472"><a href="#cb117-472" aria-hidden="true" tabindex="-1"></a>| <span class="in">`layout_on_sphere`</span> | Deterministic layout that places the vertices evenly on the surface of a sphere                                |</span>
@@ -2148,7 +2148,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-555"><a href="#cb117-555" aria-hidden="true" tabindex="-1"></a><span class="fu">### Vertex attributes controlling graph plots</span></span>
 <span id="cb117-556"><a href="#cb117-556" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-557"><a href="#cb117-557" aria-hidden="true" tabindex="-1"></a>| Attribute name | Keyword argument      | Purpose                                                                                                                                                                                                                                        |</span>
-<span id="cb117-558"><a href="#cb117-558" aria-hidden="true" tabindex="-1"></a>|----------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|</span>
+<span id="cb117-558"><a href="#cb117-558" aria-hidden="true" tabindex="-1"></a>|----------|----------|----------------------------------------------------|</span>
 <span id="cb117-559"><a href="#cb117-559" aria-hidden="true" tabindex="-1"></a>| <span class="in">`color`</span>        | <span class="in">`vertex.color`</span>        | Color of the vertex                                                                                                                                                                                                                            |</span>
 <span id="cb117-560"><a href="#cb117-560" aria-hidden="true" tabindex="-1"></a>| <span class="in">`label`</span>        | <span class="in">`vertex.label`</span>        | Label of the vertex. They will be converted to character. Specify NA to omit vertex labels. The default vertex labels are the vertex ids.                                                                                                      |</span>
 <span id="cb117-561"><a href="#cb117-561" aria-hidden="true" tabindex="-1"></a>| <span class="in">`label.cex`</span>    | <span class="in">`vertex.label.cex`</span>    | Font size of the vertex label, interpreted as a multiplicative factor, similarly to R's <span class="in">`text`</span> function                                                                                                                                        |</span>
@@ -2163,7 +2163,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-570"><a href="#cb117-570" aria-hidden="true" tabindex="-1"></a><span class="fu">### Edge attributes controlling graph plots</span></span>
 <span id="cb117-571"><a href="#cb117-571" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-572"><a href="#cb117-572" aria-hidden="true" tabindex="-1"></a>| Attribute name | Keyword argument    | Purpose                                                                                                                                                                                                                                     |</span>
-<span id="cb117-573"><a href="#cb117-573" aria-hidden="true" tabindex="-1"></a>|----------------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|</span>
+<span id="cb117-573"><a href="#cb117-573" aria-hidden="true" tabindex="-1"></a>|----------|----------|----------------------------------------------------|</span>
 <span id="cb117-574"><a href="#cb117-574" aria-hidden="true" tabindex="-1"></a>| <span class="in">`color`</span>        | <span class="in">`edge.color`</span>        | Color of the edge                                                                                                                                                                                                                           |</span>
 <span id="cb117-575"><a href="#cb117-575" aria-hidden="true" tabindex="-1"></a>| <span class="in">`curved`</span>       | <span class="in">`edge.curved`</span>       | A numeric value specifies the curvature of the edge; zero curvature means straight edges, negative values means the edge bends clockwise, positive values the opposite. TRUE means curvature 0.5, FALSE means curvature zero                |</span>
 <span id="cb117-576"><a href="#cb117-576" aria-hidden="true" tabindex="-1"></a>| <span class="in">`arrow.size`</span>   | <span class="in">`edge.arrow.size`</span>   | Currently this is a constant, so it is the same for every edge. If a vector is submitted then only the first element is used, ie. if this is taken from an edge attribute then only the attribute of the first edge is used for all arrows. |</span>
@@ -2180,7 +2180,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-587"><a href="#cb117-587" aria-hidden="true" tabindex="-1"></a>These settings can be specified as arguments to the <span class="in">`plot`</span> function to control the overall appearance of the plot.</span>
 <span id="cb117-588"><a href="#cb117-588" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-589"><a href="#cb117-589" aria-hidden="true" tabindex="-1"></a>| Keyword argument | Purpose                                                                                                                                                                                                                                                           |</span>
-<span id="cb117-590"><a href="#cb117-590" aria-hidden="true" tabindex="-1"></a>|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|</span>
+<span id="cb117-590"><a href="#cb117-590" aria-hidden="true" tabindex="-1"></a>|------------|------------------------------------------------------------|</span>
 <span id="cb117-591"><a href="#cb117-591" aria-hidden="true" tabindex="-1"></a>| <span class="in">`layout`</span>         | The layout to be used. It can be an instance of <span class="in">`Layout`</span>, a list of tuples containing X-Y coordinates, or the name of a layout algorithm. The default is <span class="in">`auto`</span>, which selects a layout algorithm automatically based on the size and connectedness of the graph. |</span>
 <span id="cb117-592"><a href="#cb117-592" aria-hidden="true" tabindex="-1"></a>| <span class="in">`margin`</span>         | The amount of empty space below, over, at the left and right of the plot, it is a numeric vector of length four.                                                                                                                                                  |</span>
 <span id="cb117-593"><a href="#cb117-593" aria-hidden="true" tabindex="-1"></a></span>
@@ -2241,7 +2241,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-652"><a href="#cb117-652" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">E</span>(g)<span class="sc">$</span>Advisor <span class="sc">==</span> <span class="st">"TRUE"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>)</span>
 <span id="cb117-653"><a href="#cb117-653" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-654"><a href="#cb117-654" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette for the departments</span></span>
-<span id="cb117-655"><a href="#cb117-655" aria-hidden="true" tabindex="-1"></a>department_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"cyan"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"pink"</span>, <span class="st">"lightblue"</span>),</span>
+<span id="cb117-655"><a href="#cb117-655" aria-hidden="true" tabindex="-1"></a>department_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"cyan"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"pink"</span>, <span class="st">"lightblue"</span>),</span>
 <span id="cb117-656"><a href="#cb117-656" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">"Biology"</span>, <span class="st">"EPPN"</span>, <span class="st">"FCS1"</span>, <span class="st">"CNR"</span>, <span class="st">"FCS2"</span>, <span class="st">"PlantSci"</span>, <span class="st">"Math"</span>))</span>
 <span id="cb117-657"><a href="#cb117-657" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-658"><a href="#cb117-658" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the department of each vertex in the graph to the corresponding color</span></span>
