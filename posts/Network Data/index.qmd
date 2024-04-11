@@ -8,7 +8,7 @@ format:
 author: "Lucas"
 date: "2024-04-04"
 categories: [Portfolio, DataViz, Network, iGraph, Assignment]
-image: "wendigonetwork.png"
+image: "networks.jpeg"
 description: "iGRAPH!"
 code-fold: true
 code-tools: true
@@ -357,7 +357,7 @@ V(g)[age < 30]$name
 Of course, `<` is not the only boolean operator that can be used for this. Other possibilities include the following:
 
 | Operator | Meaning                                                         |
-|---------------|---------------------------------------------------------|
+|----------|-----------------------------------------------------------------|
 | `==`     | The attribute/property value must be *equal to*                 |
 | `!=`     | The attribute/property value must *not be equal to*             |
 | `<`      | The attribute/property value must be *less than*                |
@@ -446,7 +446,7 @@ A graph is an abstract mathematical object without a specific representation in 
 The layout functions in igraph always start with `layout`. The following table summarises them:
 
 | Method name        | Algorithm description                                                                                          |
-|---------------|---------------------------------------------------------|
+|--------------------|----------------------------------------------------------------------------------------------------------------|
 | `layout_randomly`  | Places the vertices completely randomly                                                                        |
 | `layout_in_circle` | Deterministic layout that places the vertices on a circle                                                      |
 | `layout_on_sphere` | Deterministic layout that places the vertices evenly on the surface of a sphere                                |
@@ -519,7 +519,7 @@ In summary, there are special vertex and edge properties that correspond to the 
 ### Vertex attributes controlling graph plots
 
 | Attribute name | Keyword argument      | Purpose                                                                                                                                                                                                                                        |
-|----------|----------|----------------------------------------------------|
+|----------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `color`        | `vertex.color`        | Color of the vertex                                                                                                                                                                                                                            |
 | `label`        | `vertex.label`        | Label of the vertex. They will be converted to character. Specify NA to omit vertex labels. The default vertex labels are the vertex ids.                                                                                                      |
 | `label.cex`    | `vertex.label.cex`    | Font size of the vertex label, interpreted as a multiplicative factor, similarly to R's `text` function                                                                                                                                        |
@@ -534,7 +534,7 @@ In summary, there are special vertex and edge properties that correspond to the 
 ### Edge attributes controlling graph plots
 
 | Attribute name | Keyword argument    | Purpose                                                                                                                                                                                                                                     |
-|----------|----------|----------------------------------------------------|
+|----------------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `color`        | `edge.color`        | Color of the edge                                                                                                                                                                                                                           |
 | `curved`       | `edge.curved`       | A numeric value specifies the curvature of the edge; zero curvature means straight edges, negative values means the edge bends clockwise, positive values the opposite. TRUE means curvature 0.5, FALSE means curvature zero                |
 | `arrow.size`   | `edge.arrow.size`   | Currently this is a constant, so it is the same for every edge. If a vector is submitted then only the first element is used, ie. if this is taken from an edge attribute then only the attribute of the first edge is used for all arrows. |
@@ -551,7 +551,7 @@ In summary, there are special vertex and edge properties that correspond to the 
 These settings can be specified as arguments to the `plot` function to control the overall appearance of the plot.
 
 | Keyword argument | Purpose                                                                                                                                                                                                                                                           |
-|------------|------------------------------------------------------------|
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `layout`         | The layout to be used. It can be an instance of `Layout`, a list of tuples containing X-Y coordinates, or the name of a layout algorithm. The default is `auto`, which selects a layout algorithm automatically based on the size and connectedness of the graph. |
 | `margin`         | The amount of empty space below, over, at the left and right of the plot, it is a numeric vector of length four.                                                                                                                                                  |
 
@@ -563,7 +563,7 @@ library(readxl)
 people<-read_xlsx("Networks.xlsx", sheet = "People")
 relations<-read_xlsx("Networks.xlsx", sheet ="Relations")
 
-g <- graph_from_data_frame(relations, directed=FALSE, vertices=people)
+f <- graph_from_data_frame(relations, directed=FALSE, vertices=people)
 
 
 plot(g)
@@ -591,53 +591,55 @@ Improve the network above by:
 library(dplyr)
 library(igraph)
 
+# Assuming 'people' and 'relations' dataframes are defined somewhere above this code
 
-# Assign colors to edges based on 'Advisor' or 'BCB520' relationship
-E(g)$color <- ifelse(E(g)$Advisor == "TRUE", "blue", "red")  # Example: blue for Advisor, red for BCB520
+BCB <- people %>%
+  filter(BCB520 == "TRUE") %>%
+  select(name, BCB520)
+
+edgelist <- combn(BCB$name, 2)
+edgelist_df <- as.data.frame(t(edgelist))
+colnames(edgelist_df) <- c("from", "to")
+edgelist_df$BCB520 <- "TRUE"
+edgelist_df$Advisor <- "FALSE"
+
+relations$BCB520 <- "FALSE"
+relations3 <- rbind(relations, edgelist_df)
+
+g <- graph_from_data_frame(relations3, directed = FALSE, vertices = people)
+
+# Correcting the edge color assignment
+E(g)$color <- ifelse(E(g)$Advisor == "TRUE", "blue", "red")
 
 # Create a color palette for the departments
-department_colors <- setNames(c("red", "cyan", "green", "yellow", "orange", "pink", "lightblue"), c("Biology", "EPPN", "FCS", "CNR", "FCS", "PlantSci", "Math"))
+department_colors <- setNames(c("red", "cyan", "green", "yellow", "orange", "pink", "lightblue"),
+                              c("Biology", "EPPN", "FCS1", "CNR", "FCS2", "PlantSci", "Math"))
 
 # Map the department of each vertex in the graph to the corresponding color
 V(g)$color <- department_colors[people$department[match(V(g)$name, people$name)]]
+
+# Plot the graph
 plot(g, 
      layout = layout_with_kk(g), 
      vertex.color = V(g)$color, 
-     vertex.size = 35, # Adjusts the size of the nodes. Increase or decrease as needed.
-     vertex.label.cex = 0.6,  # Adjusts the font size of the labels.
-     vertex.label.color = "black",  # Sets the label color to black.
-     vertex.label.font = 2)  # Sets the font style to bold.
+     vertex.size = 35,
+     vertex.label.cex = 0.6,
+     vertex.label.color = "black",
+     vertex.label.font = 2)
 
 # Adding a legend for departments manually
-legend("topright",           # Position of the legend
-       legend = names(department_colors),  # Names of the departments
-       col = department_colors,            # Colors used for each department
-       pch = 20,                           # Type of point to use
-       cex = 0.8,                          # Font size of the legend text
-       title = "Department",               # Title of the legend
-       bty = "n")  
-BCB<-people%>%
-  filter(BCB520 == "TRUE")%>%
-  select(name, BCB520)
-
-edgelist<- combn(BCB$name, 2)
-edgelist_df <- as.data.frame(t(edgelist))
-colnames(edgelist_df) <- c("from", "to")
-edgelist_df$BCB520<-"TRUE"
-edgelist_df$Advisor<-"FALSE"
-
-relations$BCB520 <- "FALSE"
-
-relations3<-rbind(relations, edgelist_df)
-
-g <- graph_from_data_frame(relations3, directed=FALSE, vertices=people)
-
-
+legend("topright",
+       legend = names(department_colors),
+       col = department_colors,
+       pch = 20,
+       cex = 0.8,
+       title = "Department",
+       bty = "n")
 
 
 
 ```
 
-## ![](images/Screenshot 2024-04-09 at 11.43.50 AM.png)
+## 
 
 **After trying a few different layouts The Kamada-Kawai algorithm seems like the right layout that offers the most straightforward interpretation of the BCB520 network.**
