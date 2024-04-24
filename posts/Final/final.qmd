@@ -16,7 +16,7 @@ code-tools: true
 
 # **Preamble**
 
-Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).**
+Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years.
 
 ![Institute for Health in the Human Ecosystem (IHHE) logo.](ihhe.png){fig-align="center" width="300"}
 
@@ -56,6 +56,115 @@ ggplot(data = participants_with_centroids) +
   theme_minimal() +
   labs(title = "Participants by Country and Year", x = "Longitude", y = "Latitude", color = "Year", shape = "Year") +
   theme(legend.position = "bottom")
+
+# Assuming 'participants' has a 'Country' column
+# Count the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n())
+
+# Join with world data to include geometry
+world_with_applicants <- world %>%
+  left_join(applicants_summary, by = c("name" = "Country"))
+
+# Plot with a gradient fill based on the number of applicants
+ggplot(data = world_with_applicants) +
+  geom_sf(aes(fill = Applicants), color = "white") +
+  scale_fill_viridis_c(name = "Number of Applicants", na.value = "lightgrey", 
+                       limits = c(1, 150), oob = scales::squish) +  # Set the range from 1 to 150
+  labs(title = "Global Distribution of Applicants") +
+  theme_minimal()
+
+```
+
+Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.
+
+```{r}
+library(readxl)
+library(dplyr)
+library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(viridis)
+
+# Assuming your dataset is loaded into `participants`
+# participants <- readxl::read_excel("path/to/your/file.xlsx")
+
+# Count the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n()) %>%
+  ungroup()
+
+# Get world countries' spatial data
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Merge applicants data with spatial data
+world_with_applicants <- world %>%
+  left_join(applicants_summary, by = c("name" = "Country"))
+
+# Define a color palette function based on the number of applicants
+# This uses a continuous scale since we're dealing with counts
+qpal <- colorNumeric(palette = "viridis", domain = world_with_applicants$Applicants, na.color = "lightgrey")
+
+# Create the leaflet map
+leaflet(world_with_applicants) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(fillColor = ~qpal(Applicants),
+              color = "#2b2b2b",
+              fillOpacity = 0.7,
+              weight = 0.5,
+              popup = ~paste(name, "<br>", "Applicants: ", Applicants)) %>%
+  addLegend(pal = qpal, values = ~Applicants,
+            title = "Number of Applicants",
+            position = "bottomright") %>%
+  setView(lat = 0, lng = 0, zoom = 2)
+
+
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+library(countrycode)
+
+# Assuming 'participants' is your dataset loaded from an Excel file
+# participants <- readxl::read_excel("path/to/your/file.xlsx")
+
+# Aggregating the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n()) %>%
+  ungroup()
+
+# Adding ISO country codes to 'applicants_summary' for Plotly
+applicants_summary$CODE <- countrycode(applicants_summary$Country, "country.name", "iso3c")
+
+# Handling missing or incorrect country names
+applicants_summary <- na.omit(applicants_summary)
+
+# Specify map projection and options
+g <- list(
+     showframe = FALSE,
+     showcoastlines = FALSE,
+     projection = list(type = 'orthographic'),
+     resolution = '100',
+     showcountries = TRUE,
+     countrycolor = '#d1d1d1',
+     showocean = TRUE,
+     oceancolor = '#c9d2e0',
+     showlakes = TRUE,
+     lakecolor = '#99c0db',
+     showrivers = TRUE,
+     rivercolor = '#99c0db')
+
+# Plotting with simplified trace
+p <- plot_geo(applicants_summary, locations = ~CODE, text = ~paste(Country, '<br>Applicants: ', Applicants),
+              marker = list(size = ~sqrt(Applicants) * 10, color = ~Applicants, colorscale = 'Reds', line = list(color = "#d1d1d1", width = 0.5))) %>%
+     colorbar(title = 'Number of Applicants') %>%
+     layout(title = 'Number of Applicants Per Country', geo = g)
+
+p
 
 
 ```

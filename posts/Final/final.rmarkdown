@@ -1,0 +1,175 @@
+---
+title: "Final"
+subtitle: "A worldmap for applicants to the BVBD course at UofI "
+format:
+  html:
+    toc: false
+    echo: true
+author: "Lucas"
+date: "2024-04-23"
+categories: [Portfolio, DataViz, Final]
+image: "ihhe.png"
+description: "Maps!"
+code-fold: true
+code-tools: true
+---
+
+
+# **Preamble**
+
+Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years.
+
+![Institute for Health in the Human Ecosystem (IHHE) logo.](ihhe.png){fig-align="center" width="300"}
+
+Here's a description of the Biology of Vector-borne Diseases course that's hosted at the University of Idaho every year, taken from the IHHE webpage:
+
+"The Institute for Health in the Human Ecosystem hosts the annual Biology of Vector-borne Diseases six-day course. This course provides accessible, condensed training and "knowledge networking" for advanced graduate students, postdoctoral fellows, faculty and professionals to ensure competency in basic biology, current trends and developments, and practical knowledge for U.S. and global vector-borne diseases of plants, animals and humans. We seek to train the next generation of scientists and help working professionals to more effectively address current and emerging threats with holistic approaches and a strong network of collaborators and mentors."
+
+Here's a link to the IHHE website:
+
+<https://www.uidaho.edu/research/entities/ihhe/education/vector-borne-diseases>
+
+So, as part of the organizing advisory committee, we have been considering how to examine the evolution and popularity of the course applicants over the last six years. **A suitable visualization would be a world map displaying the home countries of the applicants, year by year**.
+
+# **Data**
+
+Write a summary of the data sources you will use. Include a `Data Dictionary` table that fully describes each individual data file used. You may use your own research data or publicly available data from any source you like (with attribution). There aren’t any minimum or maximum data set size requirements, other than you need something big enough to be interesting and not so big that we don’t have a supercomputer capable of creating your visualization.
+
+**NEW REQUIREMENT: Your assignment must feature one of the two new data types we have considered since the midterm: NETWORK DATA or SPATIAL DATA.**
+
+
+```{r}
+library(rnaturalearth)
+library(ggplot2)
+library(dplyr)
+library(sf)
+library(readxl) 
+participants <- readxl::read_excel("BVBD Applicants Merged.xlsx")
+world <- ne_countries(scale = "medium", returnclass = "sf")
+world$centroid_lon <- st_coordinates(st_centroid(world$geometry))[, 1]
+world$centroid_lat <- st_coordinates(st_centroid(world$geometry))[, 2]
+participants_with_centroids <- participants %>%
+  left_join(world %>% select(name, centroid_lon, centroid_lat), by = c("Country" = "name"))
+ggplot(data = participants_with_centroids) +
+  borders("world", colour = "gray", fill = "lightgray") + # Draw the base map
+  geom_point(aes(x = centroid_lon, y = centroid_lat, color = as.factor(Year), shape = as.factor(Year)), size = 2) + # Plot points with varying colors and shapes per Year
+  scale_color_viridis_d(name = "Year") + # Use a nice color scale for colors
+  scale_shape_manual(name = "Year", values = c(16, 17, 18, 19, 15, 8)) + # Manually set shapes, adjust values as needed based on the number of years
+  theme_minimal() +
+  labs(title = "Participants by Country and Year", x = "Longitude", y = "Latitude", color = "Year", shape = "Year") +
+  theme(legend.position = "bottom")
+
+# Assuming 'participants' has a 'Country' column
+# Count the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n())
+
+# Join with world data to include geometry
+world_with_applicants <- world %>%
+  left_join(applicants_summary, by = c("name" = "Country"))
+
+# Plot with a gradient fill based on the number of applicants
+ggplot(data = world_with_applicants) +
+  geom_sf(aes(fill = Applicants), color = "white") +
+  scale_fill_viridis_c(name = "Number of Applicants", na.value = "lightgrey", 
+                       limits = c(1, 150), oob = scales::squish) +  # Set the range from 1 to 150
+  labs(title = "Global Distribution of Applicants") +
+  theme_minimal()
+
+```
+
+
+Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.
+
+
+```{r}
+library(readxl)
+library(dplyr)
+library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(viridis)
+
+# Assuming your dataset is loaded into `participants`
+# participants <- readxl::read_excel("path/to/your/file.xlsx")
+
+# Count the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n()) %>%
+  ungroup()
+
+# Get world countries' spatial data
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Merge applicants data with spatial data
+world_with_applicants <- world %>%
+  left_join(applicants_summary, by = c("name" = "Country"))
+
+# Define a color palette function based on the number of applicants
+# This uses a continuous scale since we're dealing with counts
+qpal <- colorNumeric(palette = "viridis", domain = world_with_applicants$Applicants, na.color = "lightgrey")
+
+# Create the leaflet map
+leaflet(world_with_applicants) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(fillColor = ~qpal(Applicants),
+              color = "#2b2b2b",
+              fillOpacity = 0.7,
+              weight = 0.5,
+              popup = ~paste(name, "<br>", "Applicants: ", Applicants)) %>%
+  addLegend(pal = qpal, values = ~Applicants,
+            title = "Number of Applicants",
+            position = "bottomright") %>%
+  setView(lat = 0, lng = 0, zoom = 2)
+
+
+```
+
+```{r}
+library(plotly)
+library(dplyr)
+library(countrycode)
+
+# Assuming 'participants' is your dataset loaded from an Excel file
+# participants <- readxl::read_excel("path/to/your/file.xlsx")
+
+# Aggregating the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n()) %>%
+  ungroup()
+
+# Adding ISO country codes to 'applicants_summary' for Plotly
+applicants_summary$CODE <- countrycode(applicants_summary$Country, "country.name", "iso3c")
+
+# Handling missing or incorrect country names
+applicants_summary <- na.omit(applicants_summary)
+
+# Specify map projection and options
+g <- list(
+     showframe = FALSE,
+     showcoastlines = FALSE,
+     projection = list(type = 'orthographic'),
+     resolution = '100',
+     showcountries = TRUE,
+     countrycolor = '#d1d1d1',
+     showocean = TRUE,
+     oceancolor = '#c9d2e0',
+     showlakes = TRUE,
+     lakecolor = '#99c0db',
+     showrivers = TRUE,
+     rivercolor = '#99c0db')
+
+# Plotting with simplified trace
+p <- plot_geo(applicants_summary, locations = ~CODE, text = ~paste(Country, '<br>Applicants: ', Applicants),
+              marker = list(size = ~sqrt(Applicants) * 10, color = ~Applicants, colorscale = 'Reds', line = list(color = "#d1d1d1", width = 0.5))) %>%
+     colorbar(title = 'Number of Applicants') %>%
+     layout(title = 'Number of Applicants Per Country', geo = g)
+
+p
+
+
+```
+
