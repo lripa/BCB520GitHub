@@ -16,7 +16,7 @@ code-tools: true
 
 # **Preamble**
 
-Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years.
+Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years. So, a logical idea (Barrie's) was to plot these data into a world map.
 
 ![Institute for Health in the Human Ecosystem (IHHE) logo.](ihhe.png){fig-align="center" width="300"}
 
@@ -32,9 +32,18 @@ So, as part of the organizing advisory committee, we have been considering how t
 
 # **Data**
 
-Write a summary of the data sources you will use. Include a `Data Dictionary` table that fully describes each individual data file used. You may use your own research data or publicly available data from any source you like (with attribution). There aren’t any minimum or maximum data set size requirements, other than you need something big enough to be interesting and not so big that we don’t have a supercomputer capable of creating your visualization.
+The data set contains two variables. **Year** and **Country**. **Year** is the date when the course was offered, and **Country** is where the applicant is applying from, which in the end is used as spatial data.
 
-**NEW REQUIREMENT: Your assignment must feature one of the two new data types we have considered since the midterm: NETWORK DATA or SPATIAL DATA.**
+```{r}
+library(readxl) 
+participants <- readxl::read_excel("BVBD Applicants Merged.xlsx")
+head(participants)
+
+```
+
+# Visualizations
+
+First, let's start with simple maps. As we have simple data, without geometry/coordinates, it was necessary to convert **Country data names into coordinates** in order to plot them into the map.
 
 ```{r}
 library(rnaturalearth)
@@ -54,7 +63,7 @@ ggplot(data = participants_with_centroids) +
   scale_color_viridis_d(name = "Year") + # Use a nice color scale for colors
   scale_shape_manual(name = "Year", values = c(16, 17, 18, 19, 15, 8)) + # Manually set shapes, adjust values as needed based on the number of years
   theme_minimal() +
-  labs(title = "Participants by Country and Year", x = "Longitude", y = "Latitude", color = "Year", shape = "Year") +
+  labs(title = "Applicants by Country and Year", x = "Longitude", y = "Latitude", color = "Year", shape = "Year") +
   theme(legend.position = "bottom")
 
 # Assuming 'participants' has a 'Country' column
@@ -122,6 +131,8 @@ leaflet(world_with_applicants) %>%
 
 
 ```
+
+Let's dive even further. Let's try a 3D world map.
 
 ```{r}
 library(plotly)

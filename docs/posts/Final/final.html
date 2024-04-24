@@ -787,7 +787,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Preamble**</span></span>
 <span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years.</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years. So, a logical idea (Barrie's) was to plot these data into a world map.</span>
 <span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="al">![Institute&nbsp;for Health in the Human Ecosystem (IHHE) logo.](ihhe.png)</span>{fig-align="center" width="300"}</span>
 <span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
@@ -803,142 +803,153 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Data**</span></span>
 <span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>Write a summary of the data sources you will use. Include a <span class="in">`Data Dictionary`</span> table that fully describes each individual data file used. You may use your own research data or publicly available data from any source you like (with attribution). There aren’t any minimum or maximum data set size requirements, other than you need something big enough to be interesting and not so big that we don’t have a supercomputer capable of creating your visualization.</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>The data set contains two variables. **Year** and **Country**. **Year** is the date when the course was offered, and **Country** is where the applicant is applying from, which in the end is used as spatial data.</span>
 <span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>**NEW REQUIREMENT: Your assignment must feature one of the two new data types we have considered since the midterm: NETWORK DATA or SPATIAL DATA.**</span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) </span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>participants <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"BVBD Applicants Merged.xlsx"</span>)</span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>world<span class="sc">$</span>centroid_lon <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(world<span class="sc">$</span>geometry))[, <span class="dv">1</span>]</span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>world<span class="sc">$</span>centroid_lat <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(world<span class="sc">$</span>geometry))[, <span class="dv">2</span>]</span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>participants_with_centroids <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(world <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, centroid_lon, centroid_lat), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Country"</span> <span class="ot">=</span> <span class="st">"name"</span>))</span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> participants_with_centroids) <span class="sc">+</span></span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">"world"</span>, <span class="at">colour =</span> <span class="st">"gray"</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>) <span class="sc">+</span> <span class="co"># Draw the base map</span></span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> centroid_lon, <span class="at">y =</span> centroid_lat, <span class="at">color =</span> <span class="fu">as.factor</span>(Year), <span class="at">shape =</span> <span class="fu">as.factor</span>(Year)), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># Plot points with varying colors and shapes per Year</span></span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Year"</span>) <span class="sc">+</span> <span class="co"># Use a nice color scale for colors</span></span>
-<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Year"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">15</span>, <span class="dv">8</span>)) <span class="sc">+</span> <span class="co"># Manually set shapes, adjust values as needed based on the number of years</span></span>
-<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Participants by Country and Year"</span>, <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>, <span class="at">color =</span> <span class="st">"Year"</span>, <span class="at">shape =</span> <span class="st">"Year"</span>) <span class="sc">+</span></span>
-<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'participants' has a 'Country' column</span></span>
-<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of applicants per country</span></span>
-<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
-<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
-<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>())</span>
-<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Join with world data to include geometry</span></span>
-<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>world_with_applicants <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
-<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(applicants_summary, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"Country"</span>))</span>
-<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with a gradient fill based on the number of applicants</span></span>
-<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world_with_applicants) <span class="sc">+</span></span>
-<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Applicants), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">"Number of Applicants"</span>, <span class="at">na.value =</span> <span class="st">"lightgrey"</span>, </span>
-<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">150</span>), <span class="at">oob =</span> scales<span class="sc">::</span>squish) <span class="sc">+</span>  <span class="co"># Set the range from 1 to 150</span></span>
-<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Global Distribution of Applicants"</span>) <span class="sc">+</span></span>
-<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.</span>
-<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is loaded into `participants`</span></span>
-<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a><span class="co"># participants &lt;- readxl::read_excel("path/to/your/file.xlsx")</span></span>
-<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of applicants per country</span></span>
-<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
-<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
-<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Get world countries' spatial data</span></span>
-<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
-<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge applicants data with spatial data</span></span>
-<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a>world_with_applicants <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
-<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(applicants_summary, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"Country"</span>))</span>
-<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color palette function based on the number of applicants</span></span>
-<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a><span class="co"># This uses a continuous scale since we're dealing with counts</span></span>
-<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>qpal <span class="ot">&lt;-</span> <span class="fu">colorNumeric</span>(<span class="at">palette =</span> <span class="st">"viridis"</span>, <span class="at">domain =</span> world_with_applicants<span class="sc">$</span>Applicants, <span class="at">na.color =</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) </span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>participants <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"BVBD Applicants Merged.xlsx"</span>)</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(participants)</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualizations</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>First, let's start with simple maps. As we have simple data, without geometry/coordinates, it was necessary to convert **Country data names into coordinates** in order to plot them into the map.</span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) </span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>participants <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"BVBD Applicants Merged.xlsx"</span>)</span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>world<span class="sc">$</span>centroid_lon <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(world<span class="sc">$</span>geometry))[, <span class="dv">1</span>]</span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>world<span class="sc">$</span>centroid_lat <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(world<span class="sc">$</span>geometry))[, <span class="dv">2</span>]</span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>participants_with_centroids <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(world <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, centroid_lon, centroid_lat), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Country"</span> <span class="ot">=</span> <span class="st">"name"</span>))</span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> participants_with_centroids) <span class="sc">+</span></span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="st">"world"</span>, <span class="at">colour =</span> <span class="st">"gray"</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>) <span class="sc">+</span> <span class="co"># Draw the base map</span></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> centroid_lon, <span class="at">y =</span> centroid_lat, <span class="at">color =</span> <span class="fu">as.factor</span>(Year), <span class="at">shape =</span> <span class="fu">as.factor</span>(Year)), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># Plot points with varying colors and shapes per Year</span></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Year"</span>) <span class="sc">+</span> <span class="co"># Use a nice color scale for colors</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Year"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">15</span>, <span class="dv">8</span>)) <span class="sc">+</span> <span class="co"># Manually set shapes, adjust values as needed based on the number of years</span></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Applicants by Country and Year"</span>, <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>, <span class="at">color =</span> <span class="st">"Year"</span>, <span class="at">shape =</span> <span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'participants' has a 'Country' column</span></span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of applicants per country</span></span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>())</span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Join with world data to include geometry</span></span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>world_with_applicants <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(applicants_summary, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"Country"</span>))</span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with a gradient fill based on the number of applicants</span></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world_with_applicants) <span class="sc">+</span></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Applicants), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">"Number of Applicants"</span>, <span class="at">na.value =</span> <span class="st">"lightgrey"</span>, </span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">150</span>), <span class="at">oob =</span> scales<span class="sc">::</span>squish) <span class="sc">+</span>  <span class="co"># Set the range from 1 to 150</span></span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Global Distribution of Applicants"</span>) <span class="sc">+</span></span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.</span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is loaded into `participants`</span></span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="co"># participants &lt;- readxl::read_excel("path/to/your/file.xlsx")</span></span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of applicants per country</span></span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the leaflet map</span></span>
-<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(world_with_applicants) <span class="sc">%&gt;%</span></span>
-<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>CartoDB.Positron) <span class="sc">%&gt;%</span></span>
-<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolygons</span>(<span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">qpal</span>(Applicants),</span>
-<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"#2b2b2b"</span>,</span>
-<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a>              <span class="at">fillOpacity =</span> <span class="fl">0.7</span>,</span>
-<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a>              <span class="at">weight =</span> <span class="fl">0.5</span>,</span>
-<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a>              <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(name, <span class="st">"&lt;br&gt;"</span>, <span class="st">"Applicants: "</span>, Applicants)) <span class="sc">%&gt;%</span></span>
-<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(<span class="at">pal =</span> qpal, <span class="at">values =</span> <span class="sc">~</span>Applicants,</span>
-<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Number of Applicants"</span>,</span>
-<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="st">"bottomright"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lat =</span> <span class="dv">0</span>, <span class="at">lng =</span> <span class="dv">0</span>, <span class="at">zoom =</span> <span class="dv">2</span>)</span>
-<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
-<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'participants' is your dataset loaded from an Excel file</span></span>
-<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a><span class="co"># participants &lt;- readxl::read_excel("path/to/your/file.xlsx")</span></span>
-<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregating the number of applicants per country</span></span>
-<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
-<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
-<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding ISO country codes to 'applicants_summary' for Plotly</span></span>
-<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a>applicants_summary<span class="sc">$</span>CODE <span class="ot">&lt;-</span> <span class="fu">countrycode</span>(applicants_summary<span class="sc">$</span>Country, <span class="st">"country.name"</span>, <span class="st">"iso3c"</span>)</span>
-<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling missing or incorrect country names</span></span>
-<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(applicants_summary)</span>
-<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify map projection and options</span></span>
-<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a>     <span class="at">showframe =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a>     <span class="at">showcoastlines =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a>     <span class="at">projection =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">'orthographic'</span>),</span>
-<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a>     <span class="at">resolution =</span> <span class="st">'100'</span>,</span>
-<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a>     <span class="at">showcountries =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a>     <span class="at">countrycolor =</span> <span class="st">'#d1d1d1'</span>,</span>
-<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a>     <span class="at">showocean =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a>     <span class="at">oceancolor =</span> <span class="st">'#c9d2e0'</span>,</span>
-<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a>     <span class="at">showlakes =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>     <span class="at">lakecolor =</span> <span class="st">'#99c0db'</span>,</span>
-<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a>     <span class="at">showrivers =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a>     <span class="at">rivercolor =</span> <span class="st">'#99c0db'</span>)</span>
-<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with simplified trace</span></span>
-<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot_geo</span>(applicants_summary, <span class="at">locations =</span> <span class="sc">~</span>CODE, <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(Country, <span class="st">'&lt;br&gt;Applicants: '</span>, Applicants),</span>
-<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>              <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="sc">~</span><span class="fu">sqrt</span>(Applicants) <span class="sc">*</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="sc">~</span>Applicants, <span class="at">colorscale =</span> <span class="st">'Reds'</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#d1d1d1"</span>, <span class="at">width =</span> <span class="fl">0.5</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>     <span class="fu">colorbar</span>(<span class="at">title =</span> <span class="st">'Number of Applicants'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a>     <span class="fu">layout</span>(<span class="at">title =</span> <span class="st">'Number of Applicants Per Country'</span>, <span class="at">geo =</span> g)</span>
-<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Get world countries' spatial data</span></span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge applicants data with spatial data</span></span>
+<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>world_with_applicants <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(applicants_summary, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"Country"</span>))</span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color palette function based on the number of applicants</span></span>
+<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a><span class="co"># This uses a continuous scale since we're dealing with counts</span></span>
+<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a>qpal <span class="ot">&lt;-</span> <span class="fu">colorNumeric</span>(<span class="at">palette =</span> <span class="st">"viridis"</span>, <span class="at">domain =</span> world_with_applicants<span class="sc">$</span>Applicants, <span class="at">na.color =</span> <span class="st">"lightgrey"</span>)</span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the leaflet map</span></span>
+<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(world_with_applicants) <span class="sc">%&gt;%</span></span>
+<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>CartoDB.Positron) <span class="sc">%&gt;%</span></span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolygons</span>(<span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">qpal</span>(Applicants),</span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"#2b2b2b"</span>,</span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>              <span class="at">fillOpacity =</span> <span class="fl">0.7</span>,</span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>              <span class="at">weight =</span> <span class="fl">0.5</span>,</span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>              <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(name, <span class="st">"&lt;br&gt;"</span>, <span class="st">"Applicants: "</span>, Applicants)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(<span class="at">pal =</span> qpal, <span class="at">values =</span> <span class="sc">~</span>Applicants,</span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Number of Applicants"</span>,</span>
+<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="st">"bottomright"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lat =</span> <span class="dv">0</span>, <span class="at">lng =</span> <span class="dv">0</span>, <span class="at">zoom =</span> <span class="dv">2</span>)</span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a>Let's dive even further. Let's try a 3D world map.</span>
+<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
+<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'participants' is your dataset loaded from an Excel file</span></span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a><span class="co"># participants &lt;- readxl::read_excel("path/to/your/file.xlsx")</span></span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregating the number of applicants per country</span></span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> participants <span class="sc">%&gt;%</span></span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Applicants =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding ISO country codes to 'applicants_summary' for Plotly</span></span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a>applicants_summary<span class="sc">$</span>CODE <span class="ot">&lt;-</span> <span class="fu">countrycode</span>(applicants_summary<span class="sc">$</span>Country, <span class="st">"country.name"</span>, <span class="st">"iso3c"</span>)</span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling missing or incorrect country names</span></span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>applicants_summary <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(applicants_summary)</span>
+<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify map projection and options</span></span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>     <span class="at">showframe =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>     <span class="at">showcoastlines =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>     <span class="at">projection =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">'orthographic'</span>),</span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>     <span class="at">resolution =</span> <span class="st">'100'</span>,</span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a>     <span class="at">showcountries =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a>     <span class="at">countrycolor =</span> <span class="st">'#d1d1d1'</span>,</span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a>     <span class="at">showocean =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>     <span class="at">oceancolor =</span> <span class="st">'#c9d2e0'</span>,</span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a>     <span class="at">showlakes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>     <span class="at">lakecolor =</span> <span class="st">'#99c0db'</span>,</span>
+<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a>     <span class="at">showrivers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a>     <span class="at">rivercolor =</span> <span class="st">'#99c0db'</span>)</span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with simplified trace</span></span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot_geo</span>(applicants_summary, <span class="at">locations =</span> <span class="sc">~</span>CODE, <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(Country, <span class="st">'&lt;br&gt;Applicants: '</span>, Applicants),</span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>              <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="sc">~</span><span class="fu">sqrt</span>(Applicants) <span class="sc">*</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="sc">~</span>Applicants, <span class="at">colorscale =</span> <span class="st">'Reds'</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#d1d1d1"</span>, <span class="at">width =</span> <span class="fl">0.5</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a>     <span class="fu">colorbar</span>(<span class="at">title =</span> <span class="st">'Number of Applicants'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a>     <span class="fu">layout</span>(<span class="at">title =</span> <span class="st">'Number of Applicants Per Country'</span>, <span class="at">geo =</span> g)</span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb36-187"><a href="#cb36-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-188"><a href="#cb36-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
