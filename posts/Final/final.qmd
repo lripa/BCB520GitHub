@@ -7,7 +7,7 @@ format:
     echo: true
 author: "Lucas"
 date: "2024-04-23"
-categories: [Portfolio, DataViz, Final]
+categories: [Portfolio, DataViz, Final, IHHE]
 image: "ihhe.png"
 description: "Maps!"
 code-fold: true
