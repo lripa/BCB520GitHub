@@ -94,7 +94,8 @@ library(sf)
 library(rnaturalearth)
 library(leaflet)
 library(viridis)
-library(readxl) 
+library(readxl)
+
 participants <- readxl::read_excel("BVBD Applicants Merged.xlsx")
 
 # Count the number of applicants per country
@@ -110,9 +111,14 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
 world_with_applicants <- world %>%
   left_join(applicants_summary, by = c("name" = "Country"))
 
+# Assuming the majority of your data points are in the lower range (e.g., 1-10),
+# and you want to ensure these differences are visible, adjust the domain accordingly
+# Here, we manually define the domain to ensure the lower counts are differentiated
+min_applicants <- min(world_with_applicants$Applicants, na.rm = TRUE)
+max_applicants <- max(world_with_applicants$Applicants, na.rm = TRUE)
+
 # Define a color palette function based on the number of applicants
-# This uses a continuous scale since we're dealing with counts
-qpal <- colorNumeric(palette = "viridis", domain = world_with_applicants$Applicants, na.color = "lightgrey")
+qpal <- colorNumeric(palette = "viridis", domain = c(min_applicants, max_applicants), na.color = "lightgrey")
 
 # Create the leaflet map
 leaflet(world_with_applicants) %>%
