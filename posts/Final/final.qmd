@@ -16,7 +16,7 @@ code-tools: true
 
 # **Preamble**
 
-Since 2021 I have been working as a graduate student as part of the organizing advisory committee for the **Institute for Health in the Human Ecosystem (IHHE).** I have been able to see the growth in popularity of the course and a huge increase in the number of applicants throughout the years. So, a logical idea (Barrie's) was to plot these data into a world map.
+Since 2021, I have served on the Graduate Student Advisory Committee at the **Institute for Health in the Human Ecosystem (IHHE)**. During this time, I have witnessed the course’s growing popularity and a significant increase in the number of applicants over the years. Thus, a logical idea emerged (for which I must credit Dr. Barrie Robison) to visualize these data on a world map
 
 ![Institute for Health in the Human Ecosystem (IHHE) logo.](ihhe.png){fig-align="center" width="300"}
 
@@ -89,15 +89,13 @@ ggplot(data = world_with_applicants) +
 Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.
 
 ```{r}
-library(readxl)
 library(dplyr)
 library(sf)
 library(rnaturalearth)
 library(leaflet)
 library(viridis)
-
-# Assuming your dataset is loaded into `participants`
-# participants <- readxl::read_excel("path/to/your/file.xlsx")
+library(readxl) 
+participants <- readxl::read_excel("BVBD Applicants Merged.xlsx")
 
 # Count the number of applicants per country
 applicants_summary <- participants %>%
@@ -139,9 +137,6 @@ library(plotly)
 library(dplyr)
 library(countrycode)
 
-# Assuming 'participants' is your dataset loaded from an Excel file
-# participants <- readxl::read_excel("path/to/your/file.xlsx")
-
 # Aggregating the number of applicants per country
 applicants_summary <- participants %>%
   group_by(Country) %>%
@@ -179,3 +174,5 @@ p
 
 
 ```
+
+### **Conclusions or Summary**
