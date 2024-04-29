@@ -163,41 +163,45 @@ library(plotly)
 library(dplyr)
 library(countrycode)
 
-# Assuming 'participants' and 'applicants_summary' have been prepared as per your previous code
+# Aggregating the number of applicants per country
+applicants_summary <- participants %>%
+  group_by(Country) %>%
+  summarise(Applicants = n()) %>%
+  ungroup()
+
+# Adding ISO country codes to 'applicants_summary' for Plotly
+applicants_summary$CODE <- countrycode(applicants_summary$Country, "country.name", "iso3c")
+
+# Handling missing or incorrect country names
+applicants_summary <- na.omit(applicants_summary)
 
 # Specify map projection and options
 g <- list(
-  showframe = FALSE,
-  showcoastlines = FALSE,
-  projection = list(type = 'orthographic'),
-  resolution = '100',
-  showcountries = TRUE,
-  countrycolor = '#d1d1d1',
-  showocean = TRUE,
-  oceancolor = '#c9d2e0',
-  showlakes = TRUE,
-  lakecolor = '#99c0db',
-  showrivers = TRUE,
-  rivercolor = '#99c0db'
-)
+     showframe = FALSE,
+     showcoastlines = FALSE,
+     projection = list(type = 'orthographic'),
+     resolution = '100',
+     showcountries = TRUE,
+     countrycolor = '#d1d1d1',
+     showocean = TRUE,
+     oceancolor = '#c9d2e0',
+     showlakes = TRUE,
+     lakecolor = '#99c0db',
+     showrivers = TRUE,
+     rivercolor = '#99c0db')
 
-# Adjusting the size of the circles by reducing the multiplier or changing the formula
+# Plotting with simplified trace
 p <- plot_geo(applicants_summary, locations = ~CODE, text = ~paste(Country, '<br>Applicants: ', Applicants),
-              marker = list(size = ~sqrt(Applicants) * 2,  # Reduced multiplier for smaller circles
-                            color = ~Applicants, colorscale = 'Reds', 
-                            line = list(color = "#d1d1d1", width = 0.5))) %>%
+              marker = list(size = ~sqrt(Applicants) * 2, color = ~Applicants, colorscale = 'Reds', line = list(color = "#d1d1d1", width = 0.5))) %>%
      colorbar(title = 'Number of Applicants') %>%
      layout(title = 'Number of Applicants Per Country', geo = g)
 
-# Display the plot
 p
-
-
 
 ```
 
 **Figure 4.** Interactive map (3D) of global distribution of applicants, per country.
 
-### **Conclusions or Summary**
+### **Conclusions**
 
 The type of visualization certainly depends on the purpose it is going to serve. For example, Figures 1 and 2 are best suited for a publication or poster, where interactivity is not possible. For a webpage, Figures 3 and 4 are more appealing and draw more attention from the viewer, enabling the possibility to examine specific countries with precise data presented upon request.
