@@ -33,12 +33,16 @@ So, as part of the organizing advisory committee, we have been considering how t
 
 # **Data**
 
-The data set contains two variables. **Year** and **Country**. **Year** is the date when the course was offered, and **Country** is where the applicant is applying from, which in the end is used as spatial data.
+The data set contains two variables. **Year** and **Country**. **Year** is the date when the course was offered, and **Country** is where the applicant is applying from, which in the end is used as spatial data. In the table below you can take a look at the data structure.
 
 ```{r}
-library(readxl) 
+library(readxl)
+library(dplyr)
+library(knitr)
+
 participants <- readxl::read_excel("BVBD Applicants Merged.xlsx")
-head(participants)
+knitr::kable(head(participants))
+
 
 ```
 
@@ -95,6 +99,8 @@ ggplot(data = world_with_applicants) +
 
 **Figure 2.** Global distribution of applicants.
 
+**Figure 1** uses both colors and shapes, representing two different channels, to differentiate between years. However, there’s an issue of over-plotting that could be resolved by creating one map for each year. **Figure 2** serves a different purpose; it displays the distribution of the total number of applicants over the six years that the course has been offered.
+
 Ok, let’s try **an interactive map**, using the total number of applicants for the six years that the course has been offered. This map let us zoom in, see the name of each country and number of applicants per country.
 
 ```{r}
@@ -146,7 +152,6 @@ leaflet(world_with_applicants) %>%
             position = "bottomright") %>%
   setView(lat = 0, lng = 0, zoom = 2)
 
-
 ```
 
 **Figure 3.** Interactive map of global distribution of applicants, with information per country.
@@ -158,40 +163,35 @@ library(plotly)
 library(dplyr)
 library(countrycode)
 
-# Aggregating the number of applicants per country
-applicants_summary <- participants %>%
-  group_by(Country) %>%
-  summarise(Applicants = n()) %>%
-  ungroup()
-
-# Adding ISO country codes to 'applicants_summary' for Plotly
-applicants_summary$CODE <- countrycode(applicants_summary$Country, "country.name", "iso3c")
-
-# Handling missing or incorrect country names
-applicants_summary <- na.omit(applicants_summary)
+# Assuming 'participants' and 'applicants_summary' have been prepared as per your previous code
 
 # Specify map projection and options
 g <- list(
-     showframe = FALSE,
-     showcoastlines = FALSE,
-     projection = list(type = 'orthographic'),
-     resolution = '100',
-     showcountries = TRUE,
-     countrycolor = '#d1d1d1',
-     showocean = TRUE,
-     oceancolor = '#c9d2e0',
-     showlakes = TRUE,
-     lakecolor = '#99c0db',
-     showrivers = TRUE,
-     rivercolor = '#99c0db')
+  showframe = FALSE,
+  showcoastlines = FALSE,
+  projection = list(type = 'orthographic'),
+  resolution = '100',
+  showcountries = TRUE,
+  countrycolor = '#d1d1d1',
+  showocean = TRUE,
+  oceancolor = '#c9d2e0',
+  showlakes = TRUE,
+  lakecolor = '#99c0db',
+  showrivers = TRUE,
+  rivercolor = '#99c0db'
+)
 
-# Plotting with simplified trace
+# Adjusting the size of the circles by reducing the multiplier or changing the formula
 p <- plot_geo(applicants_summary, locations = ~CODE, text = ~paste(Country, '<br>Applicants: ', Applicants),
-              marker = list(size = ~sqrt(Applicants) * 10, color = ~Applicants, colorscale = 'Reds', line = list(color = "#d1d1d1", width = 0.5))) %>%
+              marker = list(size = ~sqrt(Applicants) * 2,  # Reduced multiplier for smaller circles
+                            color = ~Applicants, colorscale = 'Reds', 
+                            line = list(color = "#d1d1d1", width = 0.5))) %>%
      colorbar(title = 'Number of Applicants') %>%
      layout(title = 'Number of Applicants Per Country', geo = g)
 
+# Display the plot
 p
+
 
 
 ```
