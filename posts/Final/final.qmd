@@ -1,5 +1,5 @@
 ---
-title: "Final"
+title: "Final Project"
 subtitle: "A worldmap for applicants to the BVBD course at UofI"
 format:
   html:
@@ -7,7 +7,7 @@ format:
     toc: false
     echo: true
 author: "Lucas"
-date: "2024-04-23"
+date: "2024-04-30"
 categories: [Portfolio, DataViz, Final, IHHE]
 image: "ihhe.png"
 description: "Maps!"
@@ -17,7 +17,7 @@ code-tools: true
 
 # **Preamble**
 
-Since 2021, I have served on at the **Institute for Health in the Human Ecosystem (IHHE) as advisory committee student representative**. During this time, I have witnessed the **Biology of Vector-borne Diseases (BVBD)** course growing popularity and a significant increase in the number of applicants over the years. Thus, a logical idea emerged (for which I must credit Dr. Barrie Robison) to visualize these data on a world map
+Since 2021, I have served on the advisory committee as a student representative at the I**nstitute for Health in the Human Ecosystem (IHHE)**. During this time, I have witnessed the growing popularity of the **Biology of Vector-borne Diseases (BVBD)** course and a significant increase in the number of applicants over the years. Thus, a logical idea emerged (for which I must credit Dr. Barrie Robison) to visualize these data on a world map.
 
 ![Institute for Health in the Human Ecosystem (IHHE) logo.](ihhe.png){fig-align="center" width="300"}
 
@@ -202,6 +202,6 @@ p
 
 **Figure 4.** Interactive map (3D) of global distribution of applicants, per country.
 
-### **Conclusions**
+# **Conclusions**
 
 The type of visualization certainly depends on the purpose it is going to serve. For example, Figures 1 and 2 are best suited for a publication or poster, where interactivity is not possible. For a webpage, Figures 3 and 4 are more appealing and draw more attention from the viewer, enabling the possibility to examine specific countries with precise data presented upon request.
