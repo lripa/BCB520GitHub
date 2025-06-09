@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -82,7 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,10 +111,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Lucas’ BCB520</span>
     </a>
@@ -119,23 +126,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">Welcome to Lucas’ GitHub!</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Welcome to Lucas’ GitHub!</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -191,6 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="overview" class="level1">
 <h1>OVERVIEW</h1>
 <p>In this assignment, we’ll consider some of the tools and techniques for visualizing network data. Network data is characterized by two unique items that are not found in tabular or spatial data - Nodes and Links. In addition, there is a sub-type of network data that we will consider - Hierarchical or Tree data. Let’s practice a few visualizations to get a feel for how these things work!</p>
@@ -205,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="igraph-in-r">igraph in R</h3>
 <p>First up, we’ll install R/igraph and load the library (note that I’ve commented out the package installation because I’ve already installed igraph on my machine):</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("igraph")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -235,21 +243,21 @@ Attaching package: 'igraph'</code></pre>
 <h2 class="anchored" data-anchor-id="creating-a-graph">Creating a graph</h2>
 <p><code>igraph</code> offers many ways to create a graph. The simplest one is the function <code>make_empty_graph</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_empty_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The most common way to create a graph is <code>make_graph</code>, which constructs a network based on specified edges. For example, to make a graph with 10 nodes (numbered <code>1</code> to <code>10</code>) and two edges connecting nodes <code>1-2</code> and <code>1-5</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="at">edges =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">5</span>), <span class="at">n=</span><span class="dv">10</span>, <span class="at">directed =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We can print the graph to get a summary of its nodes and edges:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -274,7 +282,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -284,19 +292,23 @@ Note
 </div>
 <p>The same function <code>make_graph</code> can create some notable graphs by just specifying their name. For example you can create the graph that represents the social network of Zachary’s karate club, that shows the friendship between 34 members of a karate club at a US university in the 1970s:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="st">'Zachary'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>To visualize a graph you can use <code>plot</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -310,14 +322,14 @@ Note
 <h2 class="anchored" data-anchor-id="addingdeleting-vertices-and-edges">Adding/deleting vertices and edges</h2>
 <p>Let’s continue working with the Karate club graph. To add one or more vertices to an existing graph, use <code>add_vertices</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">add_vertices</span>(g, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Similarly, to add edges you can use <code>add_edges</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">add_edges</span>(g, <span class="at">edges =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">35</span>, <span class="dv">1</span>,<span class="dv">36</span>, <span class="dv">34</span>,<span class="dv">37</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -325,7 +337,7 @@ Note
 <p>Edges are added by specifying the source and target vertex IDs for each edge. This call added three edges, one connecting vertices <code>1</code> and <code>35</code>, one connecting vertices <code>1</code> and <code>36</code>, and one connecting vertices <code>34</code> and <code>37</code>.</p>
 <p>In addition to the <code>add_vertices</code> and <code>add_edges</code> functions, the plus operator can be used to add vertices or edges to graph. The actual operation that is performed depends on the type of the right hand side argument:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">edges</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">35</span>, <span class="dv">1</span>,<span class="dv">36</span>, <span class="dv">34</span>,<span class="dv">37</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -333,7 +345,7 @@ Note
 <p>You can add a single vertex/edge at a time using <code>add_vertex</code> and <code>add_edge</code>.</p>
 <p>Let us add some more vertices and edges to our graph. In <code>igraph</code> we can use the <code>magrittr</code> package, which provides a mechanism for chaining commands with the operator <code>%\&gt;%</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> g <span class="sc">%&gt;%</span> <span class="fu">add_edges</span>(<span class="at">edges=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="fu">add_vertices</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_edges</span>(<span class="at">edges=</span><span class="fu">c</span>(<span class="dv">38</span>,<span class="dv">39</span>, <span class="dv">39</span>,<span class="dv">40</span>, <span class="dv">40</span>,<span class="dv">38</span>, <span class="dv">40</span>,<span class="dv">37</span>))</span>
@@ -353,17 +365,21 @@ Note
 [71] 29--34 30--33 30--34 31--33 31--34 32--33 32--34 33--34  1--35  1--36
 + ... omitted several edges</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We now have an undirected graph with 40 vertices and 86 edges. Vertex and edge IDs are always <em>contiguous</em>, so if you delete a vertex all subsequent vertices will be renumbered. When a vertex is renumbered, edges are <strong>not</strong> renumbered, but their source and target vertices will be. Use <code>delete_vertices</code> and <code>delete_edges</code> to perform these operations. For instance, to delete the edge connecting vertices <code>1-34</code>, get its ID and then delete it:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.edge.ids</span>(g, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -372,32 +388,40 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">delete_edges</span>(g, <span class="dv">82</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>As an example, to create a broken ring:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">delete_edges</span>(<span class="st">"10|1"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The example above shows that you can also refer to edges with strings containing the IDs of the source and target vertices, connected by a pipe symbol <code>|</code>. <code>"10|1"</code> in the above example means the edge that connects vertex 10 to vertex 1. Of course you can also use the edge IDs directly, or retrieve them with the <code>get.edge.ids</code> function:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">5</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">delete_edges</span>(g, <span class="fu">get.edge.ids</span>(g, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>, <span class="dv">4</span>,<span class="dv">5</span>)))</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -405,7 +429,7 @@ Note
 <h2 class="anchored" data-anchor-id="constructing-graphs">Constructing graphs</h2>
 <p>In addition to <code>make_empty_graph</code>, <code>make_graph</code>, and <code>make_graph_from_literal</code>, <code>igraph</code> includes many other function to construct a graph. Some are <em>deterministic</em>, i.e.&nbsp;they produce the same graph each single time, e.g.&nbsp;<code>make_tree</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>graph1 <span class="ot">&lt;-</span> <span class="fu">make_tree</span>(<span class="dv">127</span>, <span class="dv">2</span>, <span class="at">mode =</span> <span class="st">"undirected"</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -414,23 +438,27 @@ Note
 <pre><code>IGRAPH 44785af U--- 127 126 -- Tree
 + attr: name (g/c), children (g/n), mode (g/c)</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This generates a regular tree graph with 127 vertices, each vertex having two children. No matter how many times you call <code>make_tree</code>, the generated graph will always be the same if you use the same parameters:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>graph2 <span class="ot">&lt;-</span> <span class="fu">make_tree</span>(<span class="dv">127</span>, <span class="dv">2</span>, <span class="at">mode =</span> <span class="st">"undirected"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical_graphs</span>(graph1,graph2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -440,7 +468,7 @@ Note
 </div>
 <p>Other functions generate graphs <em>stochastically</em>, i.e.&nbsp;they produce a different graph each time. For instance <code>sample_grg</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>graph1 <span class="ot">&lt;-</span> <span class="fu">sample_grg</span>(<span class="dv">100</span>, <span class="fl">0.2</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -449,17 +477,21 @@ Note
 <pre><code>IGRAPH 42831f1 U--- 100 501 -- Geometric random graph
 + attr: name (g/c), radius (g/n), torus (g/l)</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This generates a geometric random graph: <em>n</em> points are chosen randomly and uniformly inside the unit square and pairs of points closer to each other than a predefined distance <em>d</em> are connected by an edge. If you generate GRGs with the same parameters, they will be different:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>graph2 <span class="ot">&lt;-</span> <span class="fu">sample_grg</span>(<span class="dv">100</span>, <span class="fl">0.2</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">identical_graphs</span>(graph1, graph2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,17 +499,21 @@ Note
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A slightly looser way to check if the graphs are equivalent is via <code>isomorphic</code>. Two graphs are said to be isomorphic if they have the same number of components (vertices and edges) and maintain a one-to-one correspondence between vertices and edges, i.e., they are connected in the same way.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isomorphic</span>(graph1, graph2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -492,7 +528,7 @@ Note
 <p>In addition to IDs, vertex and edges can have <em>attributes</em> such as a name, coordinates for plotting, metadata, and weights. The graph itself can have such attributes too (e.g.&nbsp;a name, which will show in <code>summary</code>). In a sense, every graph, vertex and edge can be used as an R namespace to store and retrieve these attributes.</p>
 <p>To demonstrate the use of attributes, let us create a simple social network:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="sc">~</span> Alice<span class="sc">-</span>Bob<span class="sc">:</span>Claire<span class="sc">:</span>Frank, Claire<span class="sc">-</span>Alice<span class="sc">:</span>Dennis<span class="sc">:</span>Frank<span class="sc">:</span>Esther,</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                George<span class="sc">-</span>Dennis<span class="sc">:</span>Frank, Dennis<span class="sc">-</span>Esther)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -500,7 +536,7 @@ Note
 </div>
 <p>Each vertex represents a person, so we want to store ages, genders and types of connection between two people (<code>is_formal</code> refers to whether a connection between one person or another is formal or informal, i.e.&nbsp;colleagues or friends). The <code>\$</code> operator is a shortcut to get and set graph attributes. It is shorter and just as readable as <code>graph_attr</code> and <code>set_graph_attr</code>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">31</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">47</span>, <span class="dv">22</span>, <span class="dv">50</span>) </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>)</span>
@@ -514,7 +550,7 @@ Note
 </div>
 <p><code>V</code> and <code>E</code> are the standard way to obtain a sequence of all vertices and edges, respectively. This assigns an attribute to <em>all</em> vertices/edges at once. Another way to generate our social network is with the use of <code>set_vertex_attr</code> and <code>set_edge_attr</code> and the operator <code>%\&gt;%</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="sc">~</span> Alice<span class="sc">-</span>Bob<span class="sc">:</span>Claire<span class="sc">:</span>Frank, Claire<span class="sc">-</span>Alice<span class="sc">:</span>Dennis<span class="sc">:</span>Frank<span class="sc">:</span>Esther,</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                George<span class="sc">-</span>Dennis<span class="sc">:</span>Frank, Dennis<span class="sc">-</span>Esther) <span class="sc">%&gt;%</span></span>
@@ -526,14 +562,14 @@ Note
 </div>
 <p>To assign or modify an attribute for a single vertex/edge:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -544,7 +580,7 @@ Note
 </div>
 <p>Attribute values can be set to any R object, but note that storing the graph in some file formats might result in the loss of complex attribute values. Vertices, edges and the graph itself can all be used to set attributes, e.g.&nbsp;to add a date to the graph:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>g<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2022-02-11"</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_attr</span>(g, <span class="st">"date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -555,7 +591,7 @@ Note
 </div>
 <p>To retrieve attributes, you can also use <code>graph_attr</code>, <code>vertex_attr</code>, and <code>edge_attr</code>. To find the ID of a vertex you can use the function <code>match</code>:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(<span class="fu">c</span>(<span class="st">"George"</span>), <span class="fu">V</span>(g)<span class="sc">$</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -565,7 +601,7 @@ Note
 </div>
 <p>To assign attributes to a subset of vertices or edges, you can use:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alejandra"</span>, <span class="st">"Bruno"</span>, <span class="st">"Carmina"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -577,7 +613,7 @@ Note
 </div>
 <p>To delete attributes:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">delete_vertex_attr</span>(g, <span class="st">"gender"</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>gender</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -593,7 +629,7 @@ Note
 <p><code>igraph</code> provides a large set of functions to calculate various structural properties of graphs. It is beyond the scope of this tutorial to document all of them, hence this section will only introduce a few of them for illustrative purposes. We will work on the small social network constructed in the previous section.</p>
 <p>Perhaps the simplest property one can think of is the <em>degree</em>. The degree of a vertex equals the number of edges adjacent to it. In case of directed networks, we can also define <em>in-degree</em> (the number of edges pointing towards the vertex) and <em>out-degree</em> (the number of edges originating from the vertex). <code>igraph</code> is able to calculate all of them using a simple syntax:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -604,7 +640,7 @@ Note
 </div>
 <p>If the graph was directed, we would have been able to calculate the in- and out-degrees separately using <code>degree(mode="in")</code> and <code>degree(mode="out")</code>. You can also pass a single vertex ID or a list of vertex IDs to <code>degree</code> if you want to calculate the degrees for only a subset of vertices:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -614,7 +650,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="at">v=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -625,7 +661,7 @@ Note
 </div>
 <p>Most functions that accept vertex IDs also accept vertex <em>names</em> (i.e.&nbsp;the values of the <code>name</code> vertex attribute) as long as the names are unique:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="at">v=</span><span class="fu">c</span>(<span class="st">"Carmina"</span>, <span class="st">"Frank"</span>, <span class="st">"Dennis"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -636,7 +672,7 @@ Note
 </div>
 <p>It also works for single vertices:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="st">"Bruno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -651,7 +687,7 @@ Note
 <hr>
 <p>Besides degree, igraph includes built-in routines to calculate many other centrality properties, including vertex and edge betweenness (<code>edge_betweenness</code>) or Google’s PageRank (<code>page_rank</code>) just to name a few. Here we just illustrate edge betweenness:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">edge_betweenness</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -661,7 +697,7 @@ Note
 </div>
 <p>Now we can also figure out which connections have the highest betweenness centrality:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>ebs <span class="ot">&lt;-</span> <span class="fu">edge_betweenness</span>(g)</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_edgelist</span>(g)[ebs <span class="sc">==</span> <span class="fu">max</span>(ebs), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -679,7 +715,7 @@ Note
 <h3 class="anchored" data-anchor-id="selecting-vertices">Selecting vertices</h3>
 <p>Imagine that in a given social network, you want to find out who has the largest degree. You can do that with the tools presented so far and the <code>which.max</code> function:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">degree</span>(g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -690,7 +726,7 @@ Note
 </div>
 <p>Another example would be to select only vertices that have only odd IDs but not even ones, using the <code>V</code> function:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">graph.full</span>(<span class="at">n=</span><span class="dv">10</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>only_odd_vertices <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">V</span>(graph)<span class="sc">%%</span><span class="dv">2</span><span class="sc">==</span><span class="dv">1</span>)</span>
@@ -702,7 +738,7 @@ Note
 </div>
 <p>Of course, it is possible to select vertices or edges by positional indices:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> <span class="fu">V</span>(graph)[<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -713,7 +749,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> seq[<span class="dv">1</span>, <span class="dv">3</span>]    <span class="co"># filtering an existing vertex set</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -725,7 +761,7 @@ Note
 </div>
 <p>Selecting a vertex that does not exist results in an error:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> <span class="fu">V</span>(graph)[<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="st">"foo"</span>, <span class="fl">3.5</span>]</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in simple_vs_index(x, ii, na_ok) : Unknown vertex selected</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -733,7 +769,7 @@ Note
 </div>
 <p>Attribute names can also be used as-is within the indexing brackets of <code>V()</code> and <code>E()</code>. This can be combined with R’s ability to use boolean vectors for indexing to obtain very concise and readable expressions to retrieve a subset of the vertex or edge set of a graph. For instance, the following command gives you the names of the individuals younger than 30 years in our social network:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)[age <span class="sc">&lt;</span> <span class="dv">30</span>]<span class="sc">$</span>name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -742,7 +778,7 @@ Note
 </div>
 </div>
 <p>Of course, <code>&lt;</code> is not the only boolean operator that can be used for this. Other possibilities include the following:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 79%">
@@ -786,14 +822,14 @@ Note
 </table>
 <p>You can also create a “not in” operator from <code>%in%</code> using the <code>Negate</code> function:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">%notin%</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">Negate</span>(<span class="st">`</span><span class="at">%in%</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>If an attribute has the same name as an <code>igraph</code> function, you should be careful as the syntax can become a little confusing. For instance, if there is an attribute named <code>degree</code> that represents the grades of an exam for each person, that should not be confused with the <code>igraph</code> function that computes the degrees of vertices in a network sense:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>degree <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B+"</span>, <span class="st">"A+"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>degree[<span class="fu">degree</span>(g) <span class="sc">==</span> <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -803,7 +839,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>name[<span class="fu">degree</span>(g) <span class="sc">==</span> <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -817,7 +853,7 @@ Note
 <p>Edges can be selected based on attributes just like vertices. As mentioned above, the standard way to get edges is <code>E</code>. Moreover, there are a few special structural properties for selecting edges.</p>
 <p>Using <code>.from</code> allows you to filter the edge sequence based on the source vertices of the edges. E.g., to select all the edges originating from Carmina (who has vertex index 3):</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -828,7 +864,7 @@ Note
 </div>
 <p>Of course it also works with vertex names:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="st">"Carmina"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -840,7 +876,7 @@ Note
 <p>Using <code>.to</code> filters edge sequences based on the target vertices. This is different from <code>.from</code> if the graph is directed, while it gives the same answer for undirected graphs. Using <code>.inc</code> selects only those edges that are incident on a single vertex or at least one of the vertices, irrespectively of the edge directions.</p>
 <p>The <code>%--%</code> operator can be used to select edges between specific groups of vertices, ignoring edge directions in directed graphs. For instance, the following expression selects all the edges between Carmina (vertex index 3), Dennis (vertex index 5) and Esther (vertex index 6):</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g) [ <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">%--%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -851,13 +887,13 @@ Note
 </div>
 <p>To make the <code>%--%</code> operator work with names, you can build string vectors containing the names and then use these vectors as operands. For instance, to select all the edges that connect men to women, we can do the following after re-adding the gender attribute that we deleted earlier:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>men <span class="ot">&lt;-</span> <span class="fu">V</span>(g)[gender <span class="sc">==</span> <span class="st">"m"</span>]<span class="sc">$</span>name</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>men</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -867,7 +903,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> <span class="fu">V</span>(g)[gender <span class="sc">==</span> <span class="st">"f"</span>]<span class="sc">$</span>name</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>women</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -877,7 +913,7 @@ Note
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[men <span class="sc">%--%</span> women]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -893,7 +929,7 @@ Note
 <h2 class="anchored" data-anchor-id="treating-a-graph-as-an-adjacency-matrix">Treating a graph as an adjacency matrix</h2>
 <p>The adjacency matrix is another way to represent a graph. In an adjacency matrix, rows and columns are labeled by graph vertices, and the elements of the matrix indicate the number of edges between vertices <em>i</em> and <em>j</em>. The adjacency matrix for the example graph is:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.adjacency</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -921,7 +957,7 @@ George            .     .       .     1      1      .      .</code></pre>
 <section id="layout-algorithms" class="level3">
 <h3 class="anchored" data-anchor-id="layout-algorithms">Layout algorithms</h3>
 <p>The layout functions in igraph always start with <code>layout</code>. The following table summarises them:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 79%">
@@ -973,14 +1009,14 @@ George            .     .       .     1      1      .      .</code></pre>
 </table>
 <p>Layout algorithms can be called directly with a graph as its first argument. They will return a matrix with two columns and as many rows as the number of vertices in the graph; each row will correspond to the position of a single vertex, ordered by vertex IDs. Some algorithms have a 3D variant; in this case they return three columns instead of 2.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>layout <span class="ot">&lt;-</span> <span class="fu">layout_with_kk</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Some layout algorithms take additional arguments; e.g., when laying out a graph as a tree, it might make sense to specify which vertex is to be placed at the root of the layout:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>layout <span class="ot">&lt;-</span> <span class="fu">layout_as_tree</span>(g, <span class="at">root =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -990,64 +1026,84 @@ George            .     .       .     1      1      .      .</code></pre>
 <h3 class="anchored" data-anchor-id="drawing-a-graph-using-a-layout">Drawing a graph using a layout</h3>
 <p>We can plot our imaginary social network with the Kamada-Kawai layout algorithm as follows:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>layout <span class="ot">&lt;-</span> <span class="fu">layout_with_kk</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g, <span class="at">layout =</span> layout, <span class="at">main =</span> <span class="st">"Social network with the Kamada-Kawai layout algorithm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This should open a new window showing a visual representation of the network. Remember that the exact placement of nodes may be different on your machine since the layout is not deterministic.</p>
 <p>The <code>layout</code> argument also accepts functions; in this case, the function will be called with the graph as its first argument. This makes it possible to just pass the name of a layout function directly, without creating a layout variable:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g, <span class="at">layout =</span> layout_with_fr,</span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Social network with the Fruchterman-Reingold layout algorithm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>To improve the visuals, a trivial addition would be to color the vertices according to the gender. We should also try to place the labels slightly outside the vertices to improve readability:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">V</span>(g)<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"m"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>)</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g, <span class="at">layout =</span> layout, <span class="at">vertex.label.dist =</span> <span class="fl">3.5</span>,</span>
 <span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Social network - with genders as colors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can also treat the <code>gender</code> attribute as a factor and provide the colors with an argument to <code>plot()</code>, which takes precedence over the <code>color</code> vertex attribute. Colors will be assigned automatically to levels of a factor:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g, <span class="at">layout=</span>layout, <span class="at">vertex.label.dist=</span><span class="fl">3.5</span>, <span class="at">vertex.color=</span><span class="fu">as.factor</span>(<span class="fu">V</span>(g)<span class="sc">$</span>gender))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>As seen above with the <code>vertex.color</code> argument, you can specify visual properties as arguments to <code>plot</code> instead of using vertex or edge attributes. The following plot shows the formal ties with thick lines while informal ones with thin lines:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g, <span class="at">layout=</span>layout, <span class="at">vertex.label.dist=</span><span class="fl">3.5</span>, <span class="at">vertex.size=</span><span class="dv">20</span>,</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">vertex.color=</span><span class="fu">ifelse</span>(<span class="fu">V</span>(g)<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"m"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>),</span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">edge.width=</span><span class="fu">ifelse</span>(<span class="fu">E</span>(g)<span class="sc">$</span>is_formal, <span class="dv">5</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This latter approach is preferred if you want to keep the properties of the visual representation of your graph separate from the graph itself.</p>
@@ -1055,7 +1111,7 @@ George            .     .       .     1      1      .      .</code></pre>
 </section>
 <section id="vertex-attributes-controlling-graph-plots" class="level3">
 <h3 class="anchored" data-anchor-id="vertex-attributes-controlling-graph-plots">Vertex attributes controlling graph plots</h3>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -1124,7 +1180,7 @@ George            .     .       .     1      1      .      .</code></pre>
 </section>
 <section id="edge-attributes-controlling-graph-plots" class="level3">
 <h3 class="anchored" data-anchor-id="edge-attributes-controlling-graph-plots">Edge attributes controlling graph plots</h3>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -1194,7 +1250,7 @@ George            .     .       .     1      1      .      .</code></pre>
 <section id="generic-arguments-of-plot" class="level3">
 <h3 class="anchored" data-anchor-id="generic-arguments-of-plot">Generic arguments of <code>plot()</code></h3>
 <p>These settings can be specified as arguments to the <code>plot</code> function to control the overall appearance of the plot.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 83%">
@@ -1222,7 +1278,7 @@ George            .     .       .     1      1      .      .</code></pre>
 <section id="a-non-boring-example" class="level1">
 <h1>A NON BORING EXAMPLE!</h1>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1235,7 +1291,11 @@ George            .     .       .     1      1      .      .</code></pre>
 <span id="cb109-9"><a href="#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Have a look at the structure of the two dataframes (<code>people</code> and <code>relations</code>). <code>igraph</code> is creating a graph object using the <code>relations</code> data frame as an edge list. The rest of the elements are attributes of the nodes or the edges that we can use for visualization.</p>
@@ -1252,7 +1312,7 @@ George            .     .       .     1      1      .      .</code></pre>
 <li>Find the best layout you can for this garbage. What a nightmare.</li>
 </ol>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -1278,7 +1338,7 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1328,7 +1388,11 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb116-46"><a href="#cb116-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1473,10 +1537,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1486,8 +1567,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1499,7 +1589,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1543,6 +1756,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1568,6 +1782,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1683,7 +1923,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-60"><a href="#cb117-60" aria-hidden="true" tabindex="-1"></a>We can print the graph to get a summary of its nodes and edges:</span>
 <span id="cb117-61"><a href="#cb117-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-62"><a href="#cb117-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-63"><a href="#cb117-63" aria-hidden="true" tabindex="-1"></a>g</span>
+<span id="cb117-63"><a href="#cb117-63" aria-hidden="true" tabindex="-1"></a><span class="in">g</span></span>
 <span id="cb117-64"><a href="#cb117-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-65"><a href="#cb117-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-66"><a href="#cb117-66" aria-hidden="true" tabindex="-1"></a>This means: **U**ndirected **N**amed graph with **10** vertices and **2** edges, with the exact edges listed out. If the graph has a <span class="in">`[name]`</span> attribute, it is printed as well.</span>
@@ -1693,13 +1933,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-70"><a href="#cb117-70" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb117-71"><a href="#cb117-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-72"><a href="#cb117-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-73"><a href="#cb117-73" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span>
+<span id="cb117-73"><a href="#cb117-73" aria-hidden="true" tabindex="-1"></a><span class="in">summary(g)</span></span>
 <span id="cb117-74"><a href="#cb117-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-75"><a href="#cb117-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-76"><a href="#cb117-76" aria-hidden="true" tabindex="-1"></a>The same function <span class="in">`make_graph`</span> can create some notable graphs by just specifying their name. For example you can create the graph that represents the social network of Zachary's karate club, that shows the friendship between 34 members of a karate club at a US university in the 1970s:</span>
 <span id="cb117-77"><a href="#cb117-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-78"><a href="#cb117-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-79"><a href="#cb117-79" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="st">'Zachary'</span>)</span>
+<span id="cb117-79"><a href="#cb117-79" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- make_graph('Zachary')</span></span>
 <span id="cb117-80"><a href="#cb117-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-81"><a href="#cb117-81" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-82"><a href="#cb117-82" aria-hidden="true" tabindex="-1"></a>To visualize a graph you can use <span class="in">`plot`</span>:</span>
@@ -1735,7 +1975,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-118"><a href="#cb117-118" aria-hidden="true" tabindex="-1"></a>In addition to the <span class="in">`add_vertices`</span> and <span class="in">`add_edges`</span> functions, the plus operator can be used to add vertices or edges to graph. The actual operation that is performed depends on the type of the right hand side argument:</span>
 <span id="cb117-119"><a href="#cb117-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-120"><a href="#cb117-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE, eval=FALSE}</span></span>
-<span id="cb117-121"><a href="#cb117-121" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">edges</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">35</span>, <span class="dv">1</span>,<span class="dv">36</span>, <span class="dv">34</span>,<span class="dv">37</span>))</span>
+<span id="cb117-121"><a href="#cb117-121" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- g + edges(c(1,35, 1,36, 34,37))</span></span>
 <span id="cb117-122"><a href="#cb117-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-123"><a href="#cb117-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-124"><a href="#cb117-124" aria-hidden="true" tabindex="-1"></a>You can add a single vertex/edge at a time using <span class="in">`add_vertex`</span> and <span class="in">`add_edge`</span>.</span>
@@ -1743,17 +1983,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-126"><a href="#cb117-126" aria-hidden="true" tabindex="-1"></a>Let us add some more vertices and edges to our graph. In <span class="in">`igraph`</span> we can use the <span class="in">`magrittr`</span> package, which provides a mechanism for chaining commands with the operator <span class="in">`%\&gt;%`</span>:</span>
 <span id="cb117-127"><a href="#cb117-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-128"><a href="#cb117-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-129"><a href="#cb117-129" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> g <span class="sc">%&gt;%</span> <span class="fu">add_edges</span>(<span class="at">edges=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>)) <span class="sc">%&gt;%</span> <span class="fu">add_vertices</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb117-130"><a href="#cb117-130" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_edges</span>(<span class="at">edges=</span><span class="fu">c</span>(<span class="dv">38</span>,<span class="dv">39</span>, <span class="dv">39</span>,<span class="dv">40</span>, <span class="dv">40</span>,<span class="dv">38</span>, <span class="dv">40</span>,<span class="dv">37</span>))</span>
-<span id="cb117-131"><a href="#cb117-131" aria-hidden="true" tabindex="-1"></a>g</span>
+<span id="cb117-129"><a href="#cb117-129" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- g %&gt;% add_edges(edges=c(1,34)) %&gt;% add_vertices(3) %&gt;%</span></span>
+<span id="cb117-130"><a href="#cb117-130" aria-hidden="true" tabindex="-1"></a><span class="in">     add_edges(edges=c(38,39, 39,40, 40,38, 40,37))</span></span>
+<span id="cb117-131"><a href="#cb117-131" aria-hidden="true" tabindex="-1"></a><span class="in">g</span></span>
 <span id="cb117-132"><a href="#cb117-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-133"><a href="#cb117-133" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span>
+<span id="cb117-133"><a href="#cb117-133" aria-hidden="true" tabindex="-1"></a><span class="in">plot(g)</span></span>
 <span id="cb117-134"><a href="#cb117-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-135"><a href="#cb117-135" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-136"><a href="#cb117-136" aria-hidden="true" tabindex="-1"></a>We now have an undirected graph with 40 vertices and 86 edges. Vertex and edge IDs are always *contiguous*, so if you delete a vertex all subsequent vertices will be renumbered. When a vertex is renumbered, edges are **not** renumbered, but their source and target vertices will be. Use <span class="in">`delete_vertices`</span> and <span class="in">`delete_edges`</span> to perform these operations. For instance, to delete the edge connecting vertices <span class="in">`1-34`</span>, get its ID and then delete it:</span>
 <span id="cb117-137"><a href="#cb117-137" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-138"><a href="#cb117-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-139"><a href="#cb117-139" aria-hidden="true" tabindex="-1"></a><span class="fu">get.edge.ids</span>(g, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>))</span>
+<span id="cb117-139"><a href="#cb117-139" aria-hidden="true" tabindex="-1"></a><span class="in">get.edge.ids(g, c(1,34))</span></span>
 <span id="cb117-140"><a href="#cb117-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-141"><a href="#cb117-141" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-144"><a href="#cb117-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -1763,16 +2003,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-148"><a href="#cb117-148" aria-hidden="true" tabindex="-1"></a>As an example, to create a broken ring:</span>
 <span id="cb117-149"><a href="#cb117-149" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-150"><a href="#cb117-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-151"><a href="#cb117-151" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">delete_edges</span>(<span class="st">"10|1"</span>)</span>
-<span id="cb117-152"><a href="#cb117-152" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span>
+<span id="cb117-151"><a href="#cb117-151" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- make_ring(10) %&gt;% delete_edges("10|1")</span></span>
+<span id="cb117-152"><a href="#cb117-152" aria-hidden="true" tabindex="-1"></a><span class="in">plot(g)</span></span>
 <span id="cb117-153"><a href="#cb117-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-154"><a href="#cb117-154" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-155"><a href="#cb117-155" aria-hidden="true" tabindex="-1"></a>The example above shows that you can also refer to edges with strings containing the IDs of the source and target vertices, connected by a pipe symbol <span class="in">`|`</span>. <span class="in">`"10|1"`</span> in the above example means the edge that connects vertex 10 to vertex 1. Of course you can also use the edge IDs directly, or retrieve them with the <span class="in">`get.edge.ids`</span> function:</span>
 <span id="cb117-156"><a href="#cb117-156" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-157"><a href="#cb117-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-158"><a href="#cb117-158" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">5</span>)</span>
-<span id="cb117-159"><a href="#cb117-159" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">delete_edges</span>(g, <span class="fu">get.edge.ids</span>(g, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>, <span class="dv">4</span>,<span class="dv">5</span>)))</span>
-<span id="cb117-160"><a href="#cb117-160" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g)</span>
+<span id="cb117-158"><a href="#cb117-158" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- make_ring(5)</span></span>
+<span id="cb117-159"><a href="#cb117-159" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- delete_edges(g, get.edge.ids(g, c(1,5, 4,5)))</span></span>
+<span id="cb117-160"><a href="#cb117-160" aria-hidden="true" tabindex="-1"></a><span class="in">plot(g)</span></span>
 <span id="cb117-161"><a href="#cb117-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-162"><a href="#cb117-162" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-163"><a href="#cb117-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Constructing graphs</span></span>
@@ -1780,9 +2020,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-165"><a href="#cb117-165" aria-hidden="true" tabindex="-1"></a>In addition to <span class="in">`make_empty_graph`</span>, <span class="in">`make_graph`</span>, and <span class="in">`make_graph_from_literal`</span>, <span class="in">`igraph`</span> includes many other function to construct a graph. Some are *deterministic*, i.e. they produce the same graph each single time, e.g. <span class="in">`make_tree`</span>:</span>
 <span id="cb117-166"><a href="#cb117-166" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-167"><a href="#cb117-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-168"><a href="#cb117-168" aria-hidden="true" tabindex="-1"></a>graph1 <span class="ot">&lt;-</span> <span class="fu">make_tree</span>(<span class="dv">127</span>, <span class="dv">2</span>, <span class="at">mode =</span> <span class="st">"undirected"</span>)</span>
-<span id="cb117-169"><a href="#cb117-169" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span>
-<span id="cb117-170"><a href="#cb117-170" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph1)</span>
+<span id="cb117-168"><a href="#cb117-168" aria-hidden="true" tabindex="-1"></a><span class="in">graph1 &lt;- make_tree(127, 2, mode = "undirected")</span></span>
+<span id="cb117-169"><a href="#cb117-169" aria-hidden="true" tabindex="-1"></a><span class="in">summary(graph1)</span></span>
+<span id="cb117-170"><a href="#cb117-170" aria-hidden="true" tabindex="-1"></a><span class="in">plot(graph1)</span></span>
 <span id="cb117-171"><a href="#cb117-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-172"><a href="#cb117-172" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-173"><a href="#cb117-173" aria-hidden="true" tabindex="-1"></a>This generates a regular tree graph with 127 vertices, each vertex having two children. No matter how many times you call <span class="in">`make_tree`</span>, the generated graph will always be the same if you use the same parameters:</span>
@@ -1792,29 +2032,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-179"><a href="#cb117-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-180"><a href="#cb117-180" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-181"><a href="#cb117-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-182"><a href="#cb117-182" aria-hidden="true" tabindex="-1"></a><span class="fu">identical_graphs</span>(graph1,graph2)</span>
+<span id="cb117-182"><a href="#cb117-182" aria-hidden="true" tabindex="-1"></a><span class="in">identical_graphs(graph1,graph2)</span></span>
 <span id="cb117-183"><a href="#cb117-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-184"><a href="#cb117-184" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-185"><a href="#cb117-185" aria-hidden="true" tabindex="-1"></a>Other functions generate graphs *stochastically*, i.e. they produce a different graph each time. For instance <span class="in">`sample_grg`</span>:</span>
 <span id="cb117-186"><a href="#cb117-186" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-187"><a href="#cb117-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-188"><a href="#cb117-188" aria-hidden="true" tabindex="-1"></a>graph1 <span class="ot">&lt;-</span> <span class="fu">sample_grg</span>(<span class="dv">100</span>, <span class="fl">0.2</span>)</span>
-<span id="cb117-189"><a href="#cb117-189" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(graph1)</span>
-<span id="cb117-190"><a href="#cb117-190" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph1)</span>
+<span id="cb117-188"><a href="#cb117-188" aria-hidden="true" tabindex="-1"></a><span class="in">graph1 &lt;- sample_grg(100, 0.2)</span></span>
+<span id="cb117-189"><a href="#cb117-189" aria-hidden="true" tabindex="-1"></a><span class="in">summary(graph1)</span></span>
+<span id="cb117-190"><a href="#cb117-190" aria-hidden="true" tabindex="-1"></a><span class="in">plot(graph1)</span></span>
 <span id="cb117-191"><a href="#cb117-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-192"><a href="#cb117-192" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-193"><a href="#cb117-193" aria-hidden="true" tabindex="-1"></a>This generates a geometric random graph: *n* points are chosen randomly and uniformly inside the unit square and pairs of points closer to each other than a predefined distance *d* are connected by an edge. If you generate GRGs with the same parameters, they will be different:</span>
 <span id="cb117-194"><a href="#cb117-194" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-195"><a href="#cb117-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-196"><a href="#cb117-196" aria-hidden="true" tabindex="-1"></a>graph2 <span class="ot">&lt;-</span> <span class="fu">sample_grg</span>(<span class="dv">100</span>, <span class="fl">0.2</span>)</span>
-<span id="cb117-197"><a href="#cb117-197" aria-hidden="true" tabindex="-1"></a><span class="fu">identical_graphs</span>(graph1, graph2)</span>
-<span id="cb117-198"><a href="#cb117-198" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(graph2)</span>
+<span id="cb117-196"><a href="#cb117-196" aria-hidden="true" tabindex="-1"></a><span class="in">graph2 &lt;- sample_grg(100, 0.2)</span></span>
+<span id="cb117-197"><a href="#cb117-197" aria-hidden="true" tabindex="-1"></a><span class="in">identical_graphs(graph1, graph2)</span></span>
+<span id="cb117-198"><a href="#cb117-198" aria-hidden="true" tabindex="-1"></a><span class="in">plot(graph2)</span></span>
 <span id="cb117-199"><a href="#cb117-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-200"><a href="#cb117-200" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-201"><a href="#cb117-201" aria-hidden="true" tabindex="-1"></a>A slightly looser way to check if the graphs are equivalent is via <span class="in">`isomorphic`</span>. Two graphs are said to be isomorphic if they have the same number of components (vertices and edges) and maintain a one-to-one correspondence between vertices and edges, i.e., they are connected in the same way.</span>
 <span id="cb117-202"><a href="#cb117-202" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-203"><a href="#cb117-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-204"><a href="#cb117-204" aria-hidden="true" tabindex="-1"></a><span class="fu">isomorphic</span>(graph1, graph2)</span>
+<span id="cb117-204"><a href="#cb117-204" aria-hidden="true" tabindex="-1"></a><span class="in">isomorphic(graph1, graph2)</span></span>
 <span id="cb117-205"><a href="#cb117-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-206"><a href="#cb117-206" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-207"><a href="#cb117-207" aria-hidden="true" tabindex="-1"></a>Checking for isomorphism can take a while for large graphs (in this case, the answer can quickly be given by checking the degree sequence of the two graphs). <span class="in">`identical_graph`</span> is a stricter criterion than <span class="in">`isomorphic`</span>: the two graphs must have the same list of vertices and edges, in exactly the same order, with same directedness, and the two graphs must also have identical graph, vertex and edge attributes.</span>
@@ -1833,56 +2073,56 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-222"><a href="#cb117-222" aria-hidden="true" tabindex="-1"></a>Each vertex represents a person, so we want to store ages, genders and types of connection between two people (<span class="in">`is_formal`</span> refers to whether a connection between one person or another is formal or informal, i.e. colleagues or friends). The <span class="in">`\$`</span> operator is a shortcut to get and set graph attributes. It is shorter and just as readable as <span class="in">`graph_attr`</span> and <span class="in">`set_graph_attr`</span>.</span>
 <span id="cb117-223"><a href="#cb117-223" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-224"><a href="#cb117-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-225"><a href="#cb117-225" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">31</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">47</span>, <span class="dv">22</span>, <span class="dv">50</span>) </span>
-<span id="cb117-226"><a href="#cb117-226" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>)</span>
-<span id="cb117-227"><a href="#cb117-227" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb117-228"><a href="#cb117-228" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span>
+<span id="cb117-225"><a href="#cb117-225" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$age &lt;- c(25, 31, 18, 23, 47, 22, 50) </span></span>
+<span id="cb117-226"><a href="#cb117-226" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$gender &lt;- c("f", "m", "f", "m", "m", "f", "m")</span></span>
+<span id="cb117-227"><a href="#cb117-227" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)$is_formal &lt;- c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE)</span></span>
+<span id="cb117-228"><a href="#cb117-228" aria-hidden="true" tabindex="-1"></a><span class="in">summary(g)</span></span>
 <span id="cb117-229"><a href="#cb117-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-230"><a href="#cb117-230" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-231"><a href="#cb117-231" aria-hidden="true" tabindex="-1"></a><span class="in">`V`</span> and <span class="in">`E`</span> are the standard way to obtain a sequence of all vertices and edges, respectively. This assigns an attribute to *all* vertices/edges at once. Another way to generate our social network is with the use of <span class="in">`set_vertex_attr`</span> and <span class="in">`set_edge_attr`</span> and the operator <span class="in">`%\&gt;%`</span>:</span>
 <span id="cb117-232"><a href="#cb117-232" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-233"><a href="#cb117-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE, eval=FALSE}</span></span>
-<span id="cb117-234"><a href="#cb117-234" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_graph</span>(<span class="sc">~</span> Alice<span class="sc">-</span>Bob<span class="sc">:</span>Claire<span class="sc">:</span>Frank, Claire<span class="sc">-</span>Alice<span class="sc">:</span>Dennis<span class="sc">:</span>Frank<span class="sc">:</span>Esther,</span>
-<span id="cb117-235"><a href="#cb117-235" aria-hidden="true" tabindex="-1"></a>                George<span class="sc">-</span>Dennis<span class="sc">:</span>Frank, Dennis<span class="sc">-</span>Esther) <span class="sc">%&gt;%</span></span>
-<span id="cb117-236"><a href="#cb117-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_vertex_attr</span>(<span class="st">"age"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">31</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">47</span>, <span class="dv">22</span>, <span class="dv">50</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb117-237"><a href="#cb117-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_vertex_attr</span>(<span class="st">"gender"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb117-238"><a href="#cb117-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_edge_attr</span>(<span class="st">"is_formal"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb117-239"><a href="#cb117-239" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g)</span>
+<span id="cb117-234"><a href="#cb117-234" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- make_graph(~ Alice-Bob:Claire:Frank, Claire-Alice:Dennis:Frank:Esther,</span></span>
+<span id="cb117-235"><a href="#cb117-235" aria-hidden="true" tabindex="-1"></a><span class="in">                George-Dennis:Frank, Dennis-Esther) %&gt;%</span></span>
+<span id="cb117-236"><a href="#cb117-236" aria-hidden="true" tabindex="-1"></a><span class="in">  set_vertex_attr("age", value = c(25, 31, 18, 23, 47, 22, 50)) %&gt;%</span></span>
+<span id="cb117-237"><a href="#cb117-237" aria-hidden="true" tabindex="-1"></a><span class="in">  set_vertex_attr("gender", value = c("f", "m", "f", "m", "m", "f", "m")) %&gt;%</span></span>
+<span id="cb117-238"><a href="#cb117-238" aria-hidden="true" tabindex="-1"></a><span class="in">  set_edge_attr("is_formal", value = c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE))</span></span>
+<span id="cb117-239"><a href="#cb117-239" aria-hidden="true" tabindex="-1"></a><span class="in">summary(g)</span></span>
 <span id="cb117-240"><a href="#cb117-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-241"><a href="#cb117-241" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-242"><a href="#cb117-242" aria-hidden="true" tabindex="-1"></a>To assign or modify an attribute for a single vertex/edge:</span>
 <span id="cb117-243"><a href="#cb117-243" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-244"><a href="#cb117-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-245"><a href="#cb117-245" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal</span>
-<span id="cb117-246"><a href="#cb117-246" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb117-247"><a href="#cb117-247" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)<span class="sc">$</span>is_formal</span>
+<span id="cb117-245"><a href="#cb117-245" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)$is_formal</span></span>
+<span id="cb117-246"><a href="#cb117-246" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)$is_formal[1] &lt;- TRUE</span></span>
+<span id="cb117-247"><a href="#cb117-247" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)$is_formal</span></span>
 <span id="cb117-248"><a href="#cb117-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-249"><a href="#cb117-249" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-250"><a href="#cb117-250" aria-hidden="true" tabindex="-1"></a>Attribute values can be set to any R object, but note that storing the graph in some file formats might result in the loss of complex attribute values. Vertices, edges and the graph itself can all be used to set attributes, e.g. to add a date to the graph:</span>
 <span id="cb117-251"><a href="#cb117-251" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-252"><a href="#cb117-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-253"><a href="#cb117-253" aria-hidden="true" tabindex="-1"></a>g<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2022-02-11"</span>)</span>
-<span id="cb117-254"><a href="#cb117-254" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_attr</span>(g, <span class="st">"date"</span>)</span>
+<span id="cb117-253"><a href="#cb117-253" aria-hidden="true" tabindex="-1"></a><span class="in">g$date &lt;- c("2022-02-11")</span></span>
+<span id="cb117-254"><a href="#cb117-254" aria-hidden="true" tabindex="-1"></a><span class="in">graph_attr(g, "date")</span></span>
 <span id="cb117-255"><a href="#cb117-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-256"><a href="#cb117-256" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-257"><a href="#cb117-257" aria-hidden="true" tabindex="-1"></a>To retrieve attributes, you can also use <span class="in">`graph_attr`</span>, <span class="in">`vertex_attr`</span>, and <span class="in">`edge_attr`</span>. To find the ID of a vertex you can use the function <span class="in">`match`</span>:</span>
 <span id="cb117-258"><a href="#cb117-258" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-259"><a href="#cb117-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-260"><a href="#cb117-260" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(<span class="fu">c</span>(<span class="st">"George"</span>), <span class="fu">V</span>(g)<span class="sc">$</span>name)</span>
+<span id="cb117-260"><a href="#cb117-260" aria-hidden="true" tabindex="-1"></a><span class="in">match(c("George"), V(g)$name)</span></span>
 <span id="cb117-261"><a href="#cb117-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-262"><a href="#cb117-262" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-263"><a href="#cb117-263" aria-hidden="true" tabindex="-1"></a>To assign attributes to a subset of vertices or edges, you can use:</span>
 <span id="cb117-264"><a href="#cb117-264" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-265"><a href="#cb117-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-266"><a href="#cb117-266" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alejandra"</span>, <span class="st">"Bruno"</span>, <span class="st">"Carmina"</span>)</span>
-<span id="cb117-267"><a href="#cb117-267" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)</span>
+<span id="cb117-266"><a href="#cb117-266" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$name[1:3] &lt;- c("Alejandra", "Bruno", "Carmina")</span></span>
+<span id="cb117-267"><a href="#cb117-267" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)</span></span>
 <span id="cb117-268"><a href="#cb117-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-269"><a href="#cb117-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-270"><a href="#cb117-270" aria-hidden="true" tabindex="-1"></a>To delete attributes:</span>
 <span id="cb117-271"><a href="#cb117-271" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-272"><a href="#cb117-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-273"><a href="#cb117-273" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">delete_vertex_attr</span>(g, <span class="st">"gender"</span>)</span>
-<span id="cb117-274"><a href="#cb117-274" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>gender</span>
+<span id="cb117-273"><a href="#cb117-273" aria-hidden="true" tabindex="-1"></a><span class="in">g &lt;- delete_vertex_attr(g, "gender")</span></span>
+<span id="cb117-274"><a href="#cb117-274" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$gender</span></span>
 <span id="cb117-275"><a href="#cb117-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-276"><a href="#cb117-276" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-277"><a href="#cb117-277" aria-hidden="true" tabindex="-1"></a>If you want to save a graph in R with all the attributes use the R's standard function <span class="in">`dput`</span> function and retrieve it later with <span class="in">`dget`</span>. You can also just save the R workspace and restore it later.</span>
@@ -1894,29 +2134,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-283"><a href="#cb117-283" aria-hidden="true" tabindex="-1"></a>Perhaps the simplest property one can think of is the *degree*. The degree of a vertex equals the number of edges adjacent to it. In case of directed networks, we can also define *in-degree* (the number of edges pointing towards the vertex) and *out-degree* (the number of edges originating from the vertex). <span class="in">`igraph`</span> is able to calculate all of them using a simple syntax:</span>
 <span id="cb117-284"><a href="#cb117-284" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-285"><a href="#cb117-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-286"><a href="#cb117-286" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g)</span>
+<span id="cb117-286"><a href="#cb117-286" aria-hidden="true" tabindex="-1"></a><span class="in">degree(g)</span></span>
 <span id="cb117-287"><a href="#cb117-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-288"><a href="#cb117-288" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-289"><a href="#cb117-289" aria-hidden="true" tabindex="-1"></a>If the graph was directed, we would have been able to calculate the in- and out-degrees separately using <span class="in">`degree(mode="in")`</span> and <span class="in">`degree(mode="out")`</span>. You can also pass a single vertex ID or a list of vertex IDs to <span class="in">`degree`</span> if you want to calculate the degrees for only a subset of vertices:</span>
 <span id="cb117-290"><a href="#cb117-290" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-291"><a href="#cb117-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-292"><a href="#cb117-292" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="dv">7</span>)</span>
+<span id="cb117-292"><a href="#cb117-292" aria-hidden="true" tabindex="-1"></a><span class="in">degree(g, 7)</span></span>
 <span id="cb117-293"><a href="#cb117-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-294"><a href="#cb117-294" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-295"><a href="#cb117-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-296"><a href="#cb117-296" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="at">v=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>))</span>
+<span id="cb117-296"><a href="#cb117-296" aria-hidden="true" tabindex="-1"></a><span class="in">degree(g, v=c(3,4,5))</span></span>
 <span id="cb117-297"><a href="#cb117-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-298"><a href="#cb117-298" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-299"><a href="#cb117-299" aria-hidden="true" tabindex="-1"></a>Most functions that accept vertex IDs also accept vertex *names* (i.e. the values of the <span class="in">`name`</span> vertex attribute) as long as the names are unique:</span>
 <span id="cb117-300"><a href="#cb117-300" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-301"><a href="#cb117-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-302"><a href="#cb117-302" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="at">v=</span><span class="fu">c</span>(<span class="st">"Carmina"</span>, <span class="st">"Frank"</span>, <span class="st">"Dennis"</span>))</span>
+<span id="cb117-302"><a href="#cb117-302" aria-hidden="true" tabindex="-1"></a><span class="in">degree(g, v=c("Carmina", "Frank", "Dennis"))</span></span>
 <span id="cb117-303"><a href="#cb117-303" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-304"><a href="#cb117-304" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-305"><a href="#cb117-305" aria-hidden="true" tabindex="-1"></a>It also works for single vertices:</span>
 <span id="cb117-306"><a href="#cb117-306" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-307"><a href="#cb117-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-308"><a href="#cb117-308" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(g, <span class="st">"Bruno"</span>)</span>
+<span id="cb117-308"><a href="#cb117-308" aria-hidden="true" tabindex="-1"></a><span class="in">degree(g, "Bruno")</span></span>
 <span id="cb117-309"><a href="#cb117-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-310"><a href="#cb117-310" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-311"><a href="#cb117-311" aria-hidden="true" tabindex="-1"></a>A similar syntax is used for most of the structural properties <span class="in">`igraph`</span> can calculate. For vertex properties, the functions accept a vertex ID, a vertex name, or a list of vertex IDs or names (and if they are omitted, the default is the set of all vertices). For edge properties, the functions accept a single edge ID or a list of edge IDs.</span>
@@ -1930,14 +2170,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-319"><a href="#cb117-319" aria-hidden="true" tabindex="-1"></a>Besides degree, igraph includes built-in routines to calculate many other centrality properties, including vertex and edge betweenness (<span class="in">`edge_betweenness`</span>) or Google's PageRank (<span class="in">`page_rank`</span>) just to name a few. Here we just illustrate edge betweenness:</span>
 <span id="cb117-320"><a href="#cb117-320" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-321"><a href="#cb117-321" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-322"><a href="#cb117-322" aria-hidden="true" tabindex="-1"></a><span class="fu">edge_betweenness</span>(g)</span>
+<span id="cb117-322"><a href="#cb117-322" aria-hidden="true" tabindex="-1"></a><span class="in">edge_betweenness(g)</span></span>
 <span id="cb117-323"><a href="#cb117-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-324"><a href="#cb117-324" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-325"><a href="#cb117-325" aria-hidden="true" tabindex="-1"></a>Now we can also figure out which connections have the highest betweenness centrality:</span>
 <span id="cb117-326"><a href="#cb117-326" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-327"><a href="#cb117-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-328"><a href="#cb117-328" aria-hidden="true" tabindex="-1"></a>ebs <span class="ot">&lt;-</span> <span class="fu">edge_betweenness</span>(g)</span>
-<span id="cb117-329"><a href="#cb117-329" aria-hidden="true" tabindex="-1"></a><span class="fu">as_edgelist</span>(g)[ebs <span class="sc">==</span> <span class="fu">max</span>(ebs), ]</span>
+<span id="cb117-328"><a href="#cb117-328" aria-hidden="true" tabindex="-1"></a><span class="in">ebs &lt;- edge_betweenness(g)</span></span>
+<span id="cb117-329"><a href="#cb117-329" aria-hidden="true" tabindex="-1"></a><span class="in">as_edgelist(g)[ebs == max(ebs), ]</span></span>
 <span id="cb117-330"><a href="#cb117-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-331"><a href="#cb117-331" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-332"><a href="#cb117-332" aria-hidden="true" tabindex="-1"></a><span class="fu">## Querying vertices and edges based on attributes</span></span>
@@ -1947,40 +2187,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-336"><a href="#cb117-336" aria-hidden="true" tabindex="-1"></a>Imagine that in a given social network, you want to find out who has the largest degree. You can do that with the tools presented so far and the <span class="in">`which.max`</span> function:</span>
 <span id="cb117-337"><a href="#cb117-337" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-338"><a href="#cb117-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-339"><a href="#cb117-339" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">degree</span>(g))</span>
+<span id="cb117-339"><a href="#cb117-339" aria-hidden="true" tabindex="-1"></a><span class="in">which.max(degree(g))</span></span>
 <span id="cb117-340"><a href="#cb117-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-341"><a href="#cb117-341" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-342"><a href="#cb117-342" aria-hidden="true" tabindex="-1"></a>Another example would be to select only vertices that have only odd IDs but not even ones, using the <span class="in">`V`</span> function:</span>
 <span id="cb117-343"><a href="#cb117-343" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-344"><a href="#cb117-344" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-345"><a href="#cb117-345" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">graph.full</span>(<span class="at">n=</span><span class="dv">10</span>)</span>
-<span id="cb117-346"><a href="#cb117-346" aria-hidden="true" tabindex="-1"></a>only_odd_vertices <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">V</span>(graph)<span class="sc">%%</span><span class="dv">2</span><span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb117-347"><a href="#cb117-347" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(only_odd_vertices)</span>
+<span id="cb117-345"><a href="#cb117-345" aria-hidden="true" tabindex="-1"></a><span class="in">graph &lt;- graph.full(n=10)</span></span>
+<span id="cb117-346"><a href="#cb117-346" aria-hidden="true" tabindex="-1"></a><span class="in">only_odd_vertices &lt;- which(V(graph)%%2==1)</span></span>
+<span id="cb117-347"><a href="#cb117-347" aria-hidden="true" tabindex="-1"></a><span class="in">length(only_odd_vertices)</span></span>
 <span id="cb117-348"><a href="#cb117-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-349"><a href="#cb117-349" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-350"><a href="#cb117-350" aria-hidden="true" tabindex="-1"></a>Of course, it is possible to select vertices or edges by positional indices:</span>
 <span id="cb117-351"><a href="#cb117-351" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-352"><a href="#cb117-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-353"><a href="#cb117-353" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> <span class="fu">V</span>(graph)[<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
-<span id="cb117-354"><a href="#cb117-354" aria-hidden="true" tabindex="-1"></a>seq</span>
+<span id="cb117-353"><a href="#cb117-353" aria-hidden="true" tabindex="-1"></a><span class="in">seq &lt;- V(graph)[2, 3, 7]</span></span>
+<span id="cb117-354"><a href="#cb117-354" aria-hidden="true" tabindex="-1"></a><span class="in">seq</span></span>
 <span id="cb117-355"><a href="#cb117-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-356"><a href="#cb117-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-357"><a href="#cb117-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-358"><a href="#cb117-358" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> seq[<span class="dv">1</span>, <span class="dv">3</span>]    <span class="co"># filtering an existing vertex set</span></span>
-<span id="cb117-359"><a href="#cb117-359" aria-hidden="true" tabindex="-1"></a>seq</span>
+<span id="cb117-358"><a href="#cb117-358" aria-hidden="true" tabindex="-1"></a><span class="in">seq &lt;- seq[1, 3]    # filtering an existing vertex set</span></span>
+<span id="cb117-359"><a href="#cb117-359" aria-hidden="true" tabindex="-1"></a><span class="in">seq</span></span>
 <span id="cb117-360"><a href="#cb117-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-361"><a href="#cb117-361" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-362"><a href="#cb117-362" aria-hidden="true" tabindex="-1"></a>Selecting a vertex that does not exist results in an error:</span>
 <span id="cb117-363"><a href="#cb117-363" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-364"><a href="#cb117-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE, eval = FALSE}</span></span>
-<span id="cb117-365"><a href="#cb117-365" aria-hidden="true" tabindex="-1"></a>seq <span class="ot">&lt;-</span> <span class="fu">V</span>(graph)[<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="st">"foo"</span>, <span class="fl">3.5</span>]</span>
-<span id="cb117-366"><a href="#cb117-366" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in simple_vs_index(x, ii, na_ok) : Unknown vertex selected</span></span>
+<span id="cb117-365"><a href="#cb117-365" aria-hidden="true" tabindex="-1"></a><span class="in">seq &lt;- V(graph)[2, 3, 7, "foo", 3.5]</span></span>
+<span id="cb117-366"><a href="#cb117-366" aria-hidden="true" tabindex="-1"></a><span class="in">## Error in simple_vs_index(x, ii, na_ok) : Unknown vertex selected</span></span>
 <span id="cb117-367"><a href="#cb117-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-368"><a href="#cb117-368" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-369"><a href="#cb117-369" aria-hidden="true" tabindex="-1"></a>Attribute names can also be used as-is within the indexing brackets of <span class="in">`V()`</span> and <span class="in">`E()`</span>. This can be combined with R's ability to use boolean vectors for indexing to obtain very concise and readable expressions to retrieve a subset of the vertex or edge set of a graph. For instance, the following command gives you the names of the individuals younger than 30 years in our social network:</span>
 <span id="cb117-370"><a href="#cb117-370" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-371"><a href="#cb117-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-372"><a href="#cb117-372" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)[age <span class="sc">&lt;</span> <span class="dv">30</span>]<span class="sc">$</span>name</span>
+<span id="cb117-372"><a href="#cb117-372" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)[age &lt; 30]$name</span></span>
 <span id="cb117-373"><a href="#cb117-373" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-374"><a href="#cb117-374" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-375"><a href="#cb117-375" aria-hidden="true" tabindex="-1"></a>Of course, <span class="in">`&lt;`</span> is not the only boolean operator that can be used for this. Other possibilities include the following:</span>
@@ -1998,18 +2238,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-387"><a href="#cb117-387" aria-hidden="true" tabindex="-1"></a>You can also create a "not in" operator from <span class="in">`%in%`</span> using the <span class="in">`Negate`</span> function:</span>
 <span id="cb117-388"><a href="#cb117-388" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-389"><a href="#cb117-389" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-390"><a href="#cb117-390" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">%notin%</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">Negate</span>(<span class="st">`</span><span class="at">%in%</span><span class="st">`</span>)</span>
+<span id="cb117-390"><a href="#cb117-390" aria-hidden="true" tabindex="-1"></a><span class="in">`%notin%` &lt;- Negate(`%in%`)</span></span>
 <span id="cb117-391"><a href="#cb117-391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-392"><a href="#cb117-392" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-393"><a href="#cb117-393" aria-hidden="true" tabindex="-1"></a>If an attribute has the same name as an <span class="in">`igraph`</span> function, you should be careful as the syntax can become a little confusing. For instance, if there is an attribute named <span class="in">`degree`</span> that represents the grades of an exam for each person, that should not be confused with the <span class="in">`igraph`</span> function that computes the degrees of vertices in a network sense:</span>
 <span id="cb117-394"><a href="#cb117-394" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-395"><a href="#cb117-395" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-396"><a href="#cb117-396" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>degree <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B+"</span>, <span class="st">"A+"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
-<span id="cb117-397"><a href="#cb117-397" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>degree[<span class="fu">degree</span>(g) <span class="sc">==</span> <span class="dv">3</span>]</span>
+<span id="cb117-396"><a href="#cb117-396" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$degree &lt;- c("A", "B", "B+", "A+", "C", "A", "B")</span></span>
+<span id="cb117-397"><a href="#cb117-397" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$degree[degree(g) == 3]</span></span>
 <span id="cb117-398"><a href="#cb117-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-399"><a href="#cb117-399" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-400"><a href="#cb117-400" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-401"><a href="#cb117-401" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g)<span class="sc">$</span>name[<span class="fu">degree</span>(g) <span class="sc">==</span> <span class="dv">3</span>]</span>
+<span id="cb117-401"><a href="#cb117-401" aria-hidden="true" tabindex="-1"></a><span class="in">V(g)$name[degree(g) == 3]</span></span>
 <span id="cb117-402"><a href="#cb117-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-403"><a href="#cb117-403" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-404"><a href="#cb117-404" aria-hidden="true" tabindex="-1"></a><span class="fu">### Selecting edges</span></span>
@@ -2019,13 +2259,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-408"><a href="#cb117-408" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`.from`</span> allows you to filter the edge sequence based on the source vertices of the edges. E.g., to select all the edges originating from Carmina (who has vertex index 3):</span>
 <span id="cb117-409"><a href="#cb117-409" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-410"><a href="#cb117-410" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE, warning = FALSE}</span></span>
-<span id="cb117-411"><a href="#cb117-411" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="dv">3</span>)]</span>
+<span id="cb117-411"><a href="#cb117-411" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)[.from(3)]</span></span>
 <span id="cb117-412"><a href="#cb117-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-413"><a href="#cb117-413" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-414"><a href="#cb117-414" aria-hidden="true" tabindex="-1"></a>Of course it also works with vertex names:</span>
 <span id="cb117-415"><a href="#cb117-415" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-416"><a href="#cb117-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE, warning = FALSE}</span></span>
-<span id="cb117-417"><a href="#cb117-417" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[<span class="fu">.from</span>(<span class="st">"Carmina"</span>)]</span>
+<span id="cb117-417"><a href="#cb117-417" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)[.from("Carmina")]</span></span>
 <span id="cb117-418"><a href="#cb117-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-419"><a href="#cb117-419" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-420"><a href="#cb117-420" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`.to`</span> filters edge sequences based on the target vertices. This is different from <span class="in">`.from`</span> if the graph is directed, while it gives the same answer for undirected graphs. Using <span class="in">`.inc`</span> selects only those edges that are incident on a single vertex or at least one of the vertices, irrespectively of the edge directions.</span>
@@ -2033,7 +2273,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-422"><a href="#cb117-422" aria-hidden="true" tabindex="-1"></a>The <span class="in">`%--%`</span> operator can be used to select edges between specific groups of vertices, ignoring edge directions in directed graphs. For instance, the following expression selects all the edges between Carmina (vertex index 3), Dennis (vertex index 5) and Esther (vertex index 6):</span>
 <span id="cb117-423"><a href="#cb117-423" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-424"><a href="#cb117-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-425"><a href="#cb117-425" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g) [ <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">%--%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">6</span> ]</span>
+<span id="cb117-425"><a href="#cb117-425" aria-hidden="true" tabindex="-1"></a><span class="in">E(g) [ 3:5 %--% 5:6 ]</span></span>
 <span id="cb117-426"><a href="#cb117-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-427"><a href="#cb117-427" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-428"><a href="#cb117-428" aria-hidden="true" tabindex="-1"></a>To make the <span class="in">`%--%`</span> operator work with names, you can build string vectors containing the names and then use these vectors as operands. For instance, to select all the edges that connect men to women, we can do the following after re-adding the gender attribute that we deleted earlier:</span>
@@ -2043,17 +2283,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-434"><a href="#cb117-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-435"><a href="#cb117-435" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-436"><a href="#cb117-436" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-437"><a href="#cb117-437" aria-hidden="true" tabindex="-1"></a>men <span class="ot">&lt;-</span> <span class="fu">V</span>(g)[gender <span class="sc">==</span> <span class="st">"m"</span>]<span class="sc">$</span>name</span>
-<span id="cb117-438"><a href="#cb117-438" aria-hidden="true" tabindex="-1"></a>men</span>
+<span id="cb117-437"><a href="#cb117-437" aria-hidden="true" tabindex="-1"></a><span class="in">men &lt;- V(g)[gender == "m"]$name</span></span>
+<span id="cb117-438"><a href="#cb117-438" aria-hidden="true" tabindex="-1"></a><span class="in">men</span></span>
 <span id="cb117-439"><a href="#cb117-439" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-440"><a href="#cb117-440" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-441"><a href="#cb117-441" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-442"><a href="#cb117-442" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> <span class="fu">V</span>(g)[gender <span class="sc">==</span> <span class="st">"f"</span>]<span class="sc">$</span>name</span>
-<span id="cb117-443"><a href="#cb117-443" aria-hidden="true" tabindex="-1"></a>women</span>
+<span id="cb117-442"><a href="#cb117-442" aria-hidden="true" tabindex="-1"></a><span class="in">women &lt;- V(g)[gender == "f"]$name</span></span>
+<span id="cb117-443"><a href="#cb117-443" aria-hidden="true" tabindex="-1"></a><span class="in">women</span></span>
 <span id="cb117-444"><a href="#cb117-444" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-445"><a href="#cb117-445" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-446"><a href="#cb117-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-447"><a href="#cb117-447" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(g)[men <span class="sc">%--%</span> women]</span>
+<span id="cb117-447"><a href="#cb117-447" aria-hidden="true" tabindex="-1"></a><span class="in">E(g)[men %--% women]</span></span>
 <span id="cb117-448"><a href="#cb117-448" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-449"><a href="#cb117-449" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-450"><a href="#cb117-450" aria-hidden="true" tabindex="-1"></a><span class="fu">## Treating a graph as an adjacency matrix</span></span>
@@ -2061,7 +2301,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb117-452"><a href="#cb117-452" aria-hidden="true" tabindex="-1"></a>The adjacency matrix is another way to represent a graph. In an adjacency matrix, rows and columns are labeled by graph vertices, and the elements of the matrix indicate the number of edges between vertices *i* and *j*. The adjacency matrix for the example graph is:</span>
 <span id="cb117-453"><a href="#cb117-453" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-454"><a href="#cb117-454" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb117-455"><a href="#cb117-455" aria-hidden="true" tabindex="-1"></a><span class="fu">get.adjacency</span>(g)</span>
+<span id="cb117-455"><a href="#cb117-455" aria-hidden="true" tabindex="-1"></a><span class="in">get.adjacency(g)</span></span>
 <span id="cb117-456"><a href="#cb117-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb117-457"><a href="#cb117-457" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-458"><a href="#cb117-458" aria-hidden="true" tabindex="-1"></a>For example, Carmina (<span class="in">`1, 0, 0, 1, 1, 1, 0`</span>) is directly connected to Alejandra (who has vertex index 1), Frank (index 4), Dennis (index 5) and Esther (index 6), but not to Bruno (index 2) or to George (index 7).</span>
@@ -2275,6 +2515,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+
 
 
 
