@@ -91,7 +91,7 @@ world_with_applicants <- world %>%
 ggplot(data = world_with_applicants) +
   geom_sf(aes(fill = Applicants), color = "white") +
   scale_fill_viridis_c(name = "Number of Applicants", na.value = "lightgrey", 
-                       limits = c(1, 150), oob = scales::squish) +  # Set the range from 1 to 150
+                       limits = c(1, 300), oob = scales::squish) +  # Set the range from 1 to 150
   labs(title = "Global Distribution of Applicants") +
   theme_minimal()
 
